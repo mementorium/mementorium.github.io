@@ -1148,7 +1148,7 @@ function step(){
   if('bgm' in L&&!ytPlaying){L.bgm?playBgm(L.bgm):stopBgm();}
   if(L.sfx)SFX[L.sfx]();
   if(L.bg){scene($('vnBg'),SC[L.bg]);$('box').classList.remove('on');CG.cur=CG.prev=null;CG.gray=CG.beads=null;CG.bw=false;$('chr').className='';$('vnBg').classList.remove('blur');}
-  if('chr' in L){const c=$('chr');if(L.chr&&CHR[L.chr]){VN.chr=L.chr;c.src=CHR[(L.s&&L.s[0]===CHRNM[L.chr])||!CHR[L.chr+'_c']?L.chr:L.chr+'_c'];c.className='';void c.offsetWidth;c.className='on';$('vnBg').classList.add('blur');}else{VN.chr=null;c.className='';$('vnBg').classList.remove('blur');}}
+  if('chr' in L){const c=$('chr');if(L.chr&&CHR[L.chr]){VN.chr=L.chr;c.dataset.k='';c.src=CHR[(L.s&&L.s[0]===CHRNM[L.chr])||!CHR[L.chr+'_c']?L.chr:L.chr+'_c'];c.className='';void c.offsetWidth;c.className='on';$('vnBg').classList.add('blur');}else{VN.chr=null;c.className='';$('vnBg').classList.remove('blur');}}
   if(L.cg){if(/end/.test(L.cg))$('ctl').classList.remove('on');setCG(L.cg,L.pan,L.fin);scene($('vnBg'),SC.cg);}
   if('lb' in L){$('vn').classList.toggle('lb',!!L.lb);$('vn').classList.toggle('fit',!!L.fit);$('vn').classList.toggle('subm',!!L.lb);if(!L.lb)$('sub').classList.remove('on');}
   if(L.beads)CG.beads=performance.now();
@@ -1340,14 +1340,14 @@ const ACE_END={
     {bg:'roomP',bgm:null,sfx:'door',shake:1},
     {chr:'dadan'},
     {s:['다단','dadan_yell','너 이 자시이이익!!!!']},
-    {bg:'rage',bgm:'rage'},
+    {bg:'rage',bgm:'rage'},{chr:'dadan'},
     {s:['다단','dadan_yell','두 번이나?! 아무것도 안 건드리고 사진만 두 번?!']},
     {s:['다단','dadan_yell','그 녀석 유품을 앞에 두고 장난하는 거냐!!!']},
     {s:['나','me','아, 아니 그게…']},
     {s:['다단','dadan_yell','불사조고 나발이고 상관없어! 흰수염네 1번대 대장이면 다냐!!']},
     {s:['다단','dadan_yell','당장 꺼져, 마르코오오오!!!!']},
     {sfx:'hit',shake:1,fx:'white',bg:'black',bgm:null},
-    {lb:1,fit:1,bg:'black'},
+    {lb:1,fit:1,bg:'black'},{wait:2200},
     {card:'당신은 흰수염 해적단 1번대 대장, 마르코.\n다단은 화나면 무섭다.'},
     {cg:'ace_end6',fin:2200},{wait:2000},
     {n:'당신은 산 밑까지 걷어차였다.'},
