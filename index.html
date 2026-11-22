@@ -209,7 +209,7 @@ body.touch .shArr{width:46px;height:40px;font-size:16px}
 #vnBg{transition:filter 1s ease}#vnBg.blur{filter:blur(3px) brightness(.8)}
 #caption{position:absolute;left:36px;top:34px;background:rgba(0,0,0,.6);border-left:6px solid #e8742c;padding:10px 18px;font-size:24px;letter-spacing:2px;opacity:0;transition:opacity 1s;z-index:15}
 #card{position:absolute;inset:0;background:#000;display:none;align-items:center;justify-content:center;text-align:center;font-size:24px;line-height:2;white-space:pre-line;z-index:30;padding:40px;word-break:keep-all}
-#card.on{display:flex}
+#card.on{display:flex}#card.slow.on .t{animation:cardIn 1.6s ease both}@keyframes cardIn{from{opacity:0}to{opacity:1}}
 #card .t{opacity:0;transition:opacity 1.2s}
 #card.show .t{opacity:1}
 #card .nx2{position:absolute;bottom:30px;left:0;right:0;font-size:18px;color:#8a7f96;animation:blink 1s infinite;display:none}
@@ -1148,6 +1148,7 @@ function step(){
   if('bgm' in L&&!ytPlaying){L.bgm?playBgm(L.bgm):stopBgm();}
   if(L.sfx)SFX[L.sfx]();
   if(L.bg){scene($('vnBg'),SC[L.bg]);$('box').classList.remove('on');CG.cur=CG.prev=null;CG.gray=CG.beads=null;CG.bw=false;$('chr').className='';$('vnBg').classList.remove('blur');}
+  if(L.cut){const c=$('chr');c.style.transition='none';c.className='';void c.offsetWidth;c.style.transition='';VN.chr=null;$('box').classList.remove('on');}
   if('chr' in L){const c=$('chr');if(L.chr&&CHR[L.chr]){VN.chr=L.chr;c.dataset.k='';c.src=CHR[(L.s&&L.s[0]===CHRNM[L.chr])||!CHR[L.chr+'_c']?L.chr:L.chr+'_c'];c.className='';void c.offsetWidth;c.className='on';$('vnBg').classList.add('blur');}else{VN.chr=null;c.className='';$('vnBg').classList.remove('blur');}}
   if(L.cg){if(/end/.test(L.cg))$('ctl').classList.remove('on');setCG(L.cg,L.pan,L.fin);scene($('vnBg'),SC.cg);}
   if('lb' in L){$('vn').classList.toggle('lb',!!L.lb);$('vn').classList.toggle('fit',!!L.fit);$('vn').classList.toggle('subm',!!L.lb);if(!L.lb)$('sub').classList.remove('on');}
@@ -1178,7 +1179,7 @@ function say(L){if(VN.chr&&CHR[VN.chr+'_c']){const k=(L.s&&L.s[0]===CHRNM[VN.chr
   VN.full=text;let i=0;const tx=$('tx');tx.textContent='';clearInterval(VN.typing);
   VN.typing=setInterval(()=>{i++;tx.textContent=text.slice(0,i);if(i>=text.length){clearInterval(VN.typing);VN.typing=null;$('nx').style.display='block';VN.wait=true;}},34);
 }
-function showCard(text){const c=$('card');c.querySelector('.t').textContent=text;c.classList.add('on');c.querySelector('.nx2').style.display='none';
+function showCard(text,slow){const c=$('card');c.classList.toggle('slow',!!slow);c.querySelector('.t').textContent=text;c.classList.add('on');c.querySelector('.nx2').style.display='none';
   requestAnimationFrame(()=>requestAnimationFrame(()=>c.classList.add('show')));
   vt(()=>{c.querySelector('.nx2').style.display='block';VN.cardCb=()=>{c.classList.remove('show');vt(()=>{c.classList.remove('on');step();},700);};},1300);}
 function advance(){
@@ -1346,7 +1347,7 @@ const ACE_END={
     {s:['나','me','아, 아니 그게…']},
     {s:['다단','dadan_yell','불사조고 나발이고 상관없어! 흰수염네 1번대 대장이면 다냐!!']},
     {s:['다단','dadan_yell','당장 꺼져, 마르코오오오!!!!']},
-    {sfx:'hit',shake:1,fx:'white',bg:'black',bgm:null},
+    {cut:1},{sfx:'hit',shake:1,fx:'red',bg:'black',bgm:null},
     {lb:1,fit:1,bg:'black'},{wait:2200},
     {card:'당신은 흰수염 해적단 1번대 대장, 마르코.\n다단은 화나면 무섭다.'},
     {cg:'ace_end6',fin:2200},{wait:2000},
@@ -1817,9 +1818,9 @@ function runEnding(e,replay){
   const ph=photo(loc);
   runVN(G.endings[e],()=>{
     if(!replay){SAVE[G.id]=SAVE[G.id]||{};SAVE[G.id].endings=SAVE[G.id].endings||{};SAVE[G.id].endings[e]={photo:ph,loc:JSON.parse(JSON.stringify(loc))};if(e===1&&!SAVE[G.id].trueAt)SAVE[G.id].trueAt=Date.now();persist();}
-    showCard(`엔딩 ${e} · ${G.ends[e]}${replay?'':'\n\n앨범에 사진이 저장되었습니다.'}`);
-    if(!replay)SFX.chime();
-    VN.q=[];VN.i=0;VN.done=()=>{$('fade').style.opacity=0;playBgm('calm');openAlbum(G.ch);};
+    $('box').classList.remove('on');$('sub').classList.remove('on');
+    VN.q=[];VN.i=0;VN.done=()=>{};
+    setTimeout(()=>{showCard(`엔딩 ${e} · ${G.ends[e]}${replay?'':'\n\n앨범에 사진이 저장되었습니다.'}`,1);if(!replay)SFX.chime();VN.done=()=>{$('fade').style.opacity=0;playBgm('calm');openAlbum(G.ch);};},1800);
   });
 }
 </script>
