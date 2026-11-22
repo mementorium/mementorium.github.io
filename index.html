@@ -1820,7 +1820,8 @@ function runEnding(e,replay){
     if(!replay){SAVE[G.id]=SAVE[G.id]||{};SAVE[G.id].endings=SAVE[G.id].endings||{};SAVE[G.id].endings[e]={photo:ph,loc:JSON.parse(JSON.stringify(loc))};if(e===1&&!SAVE[G.id].trueAt)SAVE[G.id].trueAt=Date.now();persist();}
     $('box').classList.remove('on');$('sub').classList.remove('on');
     VN.q=[];VN.i=0;VN.done=()=>{};
-    setTimeout(()=>{showCard(`엔딩 ${e} · ${G.ends[e]}${replay?'':'\n\n앨범에 사진이 저장되었습니다.'}`,1);if(!replay)SFX.chime();VN.done=()=>{$('fade').style.opacity=0;playBgm('calm');openAlbum(G.ch);};},1800);
+    {const f=$('fade');f.style.transition='opacity 1.6s ease';f.style.background='#000';void f.offsetWidth;f.style.opacity=1;}
+    setTimeout(()=>{{const f=$('fade');f.style.transition='opacity .6s';f.style.opacity=0;}showCard(`엔딩 ${e} · ${G.ends[e]}${replay?'':'\n\n앨범에 사진이 저장되었습니다.'}`,1);if(!replay)SFX.chime();VN.done=()=>{$('fade').style.opacity=0;playBgm('calm');openAlbum(G.ch);};},1800);
   });
 }
 </script>
