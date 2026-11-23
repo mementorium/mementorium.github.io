@@ -208,7 +208,7 @@ body.touch .shArr{width:46px;height:40px;font-size:16px}
 #chr.on{opacity:1;transform:translate(-50%,0)}#chr[data-k^="ace"]{width:390px}
 #vnBg{transition:filter 1s ease}#vnBg.blur{filter:blur(3px) brightness(.8)}
 #caption{position:absolute;left:36px;top:34px;background:rgba(0,0,0,.6);border-left:6px solid #e8742c;padding:10px 18px;font-size:24px;letter-spacing:2px;opacity:0;transition:opacity 1s;z-index:15}
-#card{position:absolute;inset:0;background:#000;display:none;align-items:center;justify-content:center;text-align:center;font-size:24px;line-height:2;white-space:pre-line;z-index:30;padding:40px;word-break:keep-all}
+#credits{position:absolute;inset:0;background:#000;z-index:85;overflow:hidden;opacity:0;transition:opacity 1.2s}#credits.on{opacity:1}#credits .roll{position:absolute;left:0;right:0;top:100%;text-align:center;color:#e8dcc4;font-size:20px;line-height:1.9;white-space:pre-line;word-break:keep-all}#credits .roll b{display:block;font-size:34px;color:#ffcf8a;margin-bottom:10px;letter-spacing:4px}#credits .roll i{font-style:normal;display:block;color:#a8987c;font-size:15px;margin-top:26px}#credits .skip{position:absolute;right:16px;bottom:12px;color:#7a6e5c;font-size:13px}#card{position:absolute;inset:0;background:#000;display:none;align-items:center;justify-content:center;text-align:center;font-size:24px;line-height:2;white-space:pre-line;z-index:30;padding:40px;word-break:keep-all}
 #card.on{display:flex}#card.slow.on .t{animation:cardIn 1.6s ease both}@keyframes cardIn{from{opacity:0}to{opacity:1}}
 #card .t{opacity:0;transition:opacity 1.2s}
 #card.show .t{opacity:1}
@@ -1291,7 +1291,7 @@ const ACE_END={
     {s:['에이스','ace','늦어서 미안. 방, 그대로 둬줘서 고마워.']},
     {n:'그가 고개를 돌려, 당신을 보며 웃었다.'},
     {s:['에이스','ace_laugh','너도 고마워, 마르코.']},
-    {s:['에이스','ace','여기까지 와줬구나. 아버지랑 모두한테… 고마웠다고 전해줘.']},
+    {s:['에이스','ace','여기까지 와줬구나. 루피랑 모두한테… 고마웠다고 전해줘.']},
     {s:['마르코','marco','……그래. 꼭 전하지, 에이스.']},
     {chr:null},
     {card:'당신은 흰수염 해적단 1번대 대장, 마르코.\n그의 마지막 바다를 함께한 동료였다.'},
@@ -1304,7 +1304,7 @@ const ACE_END={
     {n:'다단은 지금도 가끔, 사진 속 그 방을 오래 들여다본다.'},
     {cut:1},{lb:0,fit:0,bg:'black'},
     {card:'남겨진 사람들은 슬퍼하고 그리워하기만 하지 않는다.\n그 사람이 남긴 물건들로 좋은 기억을 꺼내 들고,\n다시 살아갈 힘을 얻는다.'},
-    {card:'누군가를 기억해준다는 건 정말 고마운 일이에요.'}
+    {card:'누군가를 기억해준다는 건 정말 고마운 일이다.'}
   ],
   2:[
     {bg:'roomP',bgm:'calm'},
@@ -1489,7 +1489,7 @@ const REN_END={
     {s:['센쥬로','senjuro','탄지로 씨, 이걸 받아주세요. 형님 칼의 코등이예요.']},
     {s:['센쥬로','senjuro','분명… 형님도 그걸 바라실 거예요.']},
     {card:'남겨진 사람들은 슬퍼하고 그리워하기만 하지 않는다.\n그 사람이 남긴 물건들로 좋은 기억을 꺼내 들고,\n다시 살아갈 힘을 얻는다.'},
-    {card:'누군가를 기억해준다는 건 정말 고마운 일이에요.'}
+    {card:'누군가를 기억해준다는 건 정말 고마운 일이다.'}
   ],
   2:[
     {bg:'roomP',bgm:'calm'},
@@ -1654,7 +1654,7 @@ const GOJ_END={
     {n:'불 꺼진 방, 저주 인형을 끌어안고 밤새 영화를 보던 날들.'},
     {n:'그 빈백은 지금도 TV 앞, 늘 같은 자리에 있다.'},
     {card:'남겨진 사람들은 슬퍼하고 그리워하기만 하지 않는다.\n그 사람이 남긴 물건들로 좋은 기억을 꺼내 들고,\n다시 살아갈 힘을 얻는다.'},
-    {card:'누군가를 기억해준다는 건 정말 고마운 일이에요.'}
+    {card:'누군가를 기억해준다는 건 정말 고마운 일이다.'}
   ],
   2:[
     {bg:'roomP',bgm:'calm'},
@@ -1844,6 +1844,26 @@ function showResult(r){go('result');stopBgm();const ph=photo(loc);r.photo=ph;
   let t=r.wrong===0&&r.missing===0?'모든 유품이 제자리를 찾았습니다.':`잘못 배치된 물건이 <b style="color:#ffcf8a">${r.wrong}개</b> 있었습니다.`;
   if(r.missing)t+=`<br><small>상자에 남겨진 유품도 ${r.missing}개 있었습니다.</small>`;
   $('rTx').innerHTML=t;$('rGo').onclick=()=>{SFX.flip1();runEnding(r.e);};}
+const CREDITS={ace:`<b>메멘토리움</b>유품 정리 게임
+
+<i>등장인물</i>포트거스 D. 에이스
+다단
+마르코
+
+<i>만든 사람</i>메멘토리움
+
+<i>원작</i>ONE PIECE · 오다 에이치로
+이 게임은 팬 창작물입니다.
+
+
+
+플레이해 주셔서 감사합니다.`};
+function rollCredits(done){const txt=CREDITS[G.id];if(!txt){done();return;}
+  const el=document.createElement('div');el.id='credits';el.innerHTML=`<div class="roll">${txt}</div><div class="skip">클릭하면 넘어가요</div>`;stage.appendChild(el);
+  const roll=el.querySelector('.roll');let fin=false;
+  const end=()=>{if(fin)return;fin=true;el.classList.remove('on');setTimeout(()=>{el.remove();done();},1200);};
+  requestAnimationFrame(()=>{el.classList.add('on');const h=roll.offsetHeight+el.offsetHeight;roll.style.transition='transform 26s linear';void roll.offsetWidth;roll.style.transform=`translateY(-${h}px)`;});
+  roll.addEventListener('transitionend',end);el.addEventListener('click',e=>{e.stopPropagation();end();});}
 function runEnding(e,replay){
   if(!lastRes||replay)lastRes=replay&&e!==6?evaluate():lastRes||{e};
   const ph=photo(loc,e===1);if(e===1){CGIMG.true_end=new Image();CGIMG.true_end.src=ph;}
@@ -1852,7 +1872,7 @@ function runEnding(e,replay){
     $('box').classList.remove('on');$('sub').classList.remove('on');
     VN.q=[];VN.i=0;VN.done=()=>{};
     {const f=$('fade');f.style.transition='opacity 1.6s ease';f.style.background='#000';void f.offsetWidth;f.style.opacity=1;}
-    setTimeout(()=>{{const f=$('fade');f.style.transition='opacity .6s';f.style.opacity=0;}showCard(`엔딩 ${e} · ${G.ends[e]}${replay?'':'\n\n앨범에 사진이 저장되었습니다.'}`,1);if(!replay)SFX.chime();VN.done=()=>{$('fade').style.opacity=0;playBgm('calm');openAlbum(G.ch);};},1800);
+    setTimeout(()=>{{const f=$('fade');f.style.transition='opacity .6s';f.style.opacity=0;}showCard(`엔딩 ${e} · ${G.ends[e]}${replay?'':'\n\n앨범에 사진이 저장되었습니다.'}`,1);if(!replay)SFX.chime();VN.done=()=>{const go2=()=>{$('fade').style.opacity=0;playBgm('calm');openAlbum(G.ch);};if(e===1){VN.done=()=>{};$('card').classList.remove('on');rollCredits(go2);}else go2();};},1800);
   });
 }
 </script>
