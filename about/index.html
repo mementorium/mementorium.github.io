@@ -4,174 +4,185 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MEMENTORIUM 메멘토리움 — 게임 소개</title>
-<meta name="description" content="최애가 죽은 뒤, 그가 쓰던 방을 정리하는 도트 게임.">
+<meta name="description" content="카메라가 비추지 않은, 죽음 이후의 이야기. 최애가 떠난 방의 유품을 정리하는 도트 인디 게임.">
 <style>
 @font-face{font-family:'Galmuri11';src:url('Galmuri11.woff2') format('woff2');font-display:swap}
 :root{
-  --night:#14111f;--night2:#1d1830;--line:#3d3360;
+  --night:#14111f;--night2:#1d1830;--purple:#2b2347;--line:#3d3360;
   --cream:#f3e6c8;--dim:#b3a8c9;--moon:#f2e4a6;--sun:#e8915a;--red:#c9584f;
-  --paper:#efe3c6;--paper2:#e3d2ab;--ink:#4a3a2c;--ink2:#7d6852;--kraft:#c8a26c;--kraft2:#a9844f;--leather:#b4682c;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{overflow-x:clip;scroll-behavior:smooth;scroll-padding-top:60px}
+html{overflow-x:clip;scroll-behavior:smooth;scroll-padding-top:64px}
 body{overflow-x:clip;background:var(--night);color:var(--cream);font-family:'Galmuri11',monospace;font-size:15px;line-height:1.9;-webkit-font-smoothing:none}
 img{display:block;max-width:100%}
 .px{image-rendering:pixelated}
 a{color:inherit;text-decoration:none}
 
-/* ── 메뉴 ── */
-nav{position:fixed;inset:0 0 auto;z-index:20;display:flex;align-items:center;gap:26px;padding:0 24px;height:52px;background:rgba(20,17,31,.9);border-bottom:2px solid var(--line)}
-nav .logo{font-size:16px;letter-spacing:2px;margin-right:auto}
-nav .links{display:flex;gap:20px;font-size:13px;color:var(--dim)}
+/* ── 상단 메뉴 ── */
+nav{position:fixed;inset:0 0 auto;z-index:20;display:flex;align-items:center;gap:28px;padding:0 28px;height:56px;
+  background:rgba(20,17,31,.86);backdrop-filter:blur(6px);border-bottom:2px solid var(--line)}
+nav .logo{font-size:17px;letter-spacing:2px;margin-right:auto}
+nav .links{display:flex;gap:22px;font-size:13px;color:var(--dim)}
 nav .links a:hover{color:var(--cream)}
-nav .play{font-size:13px;padding:5px 12px;border:2px solid var(--cream);background:var(--cream);color:var(--night)}
-nav .play:hover{background:transparent;color:var(--cream)}
+.btn{display:inline-block;font-family:inherit;font-size:14px;color:var(--night);background:var(--moon);padding:8px 18px;
+  box-shadow:0 4px 0 #a9955a, 4px 4px 0 4px rgba(0,0,0,.25);border:0;cursor:pointer;transition:transform .08s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 #a9955a}
+.btn.ghost{background:transparent;color:var(--cream);box-shadow:inset 0 0 0 2px var(--cream)}
+.btn.big{font-size:18px;padding:14px 34px}
 #menuBtn{display:none;background:none;border:0;color:var(--cream);font:inherit;font-size:20px;cursor:pointer}
 
-/* ── 첫 화면: 게임 타이틀 그대로 ── */
+/* ── 첫 화면 ── */
 .hero{position:relative;height:100vh;min-height:560px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
   background:linear-gradient(#120f1e 0%,#1f1934 55%,#2f2548 100%)}
 #sky{position:absolute;inset:0;width:100%;height:100%}
-.moon{position:absolute;top:13%;right:14%;width:80px;height:80px;background:var(--moon);
+.moon{position:absolute;top:14%;right:14%;width:84px;height:84px;background:var(--moon);
   clip-path:polygon(25% 0,75% 0,75% 8%,88% 8%,88% 17%,92% 17%,92% 25%,100% 25%,100% 75%,92% 75%,92% 83%,88% 83%,88% 92%,75% 92%,75% 100%,25% 100%,25% 92%,12% 92%,12% 83%,8% 83%,8% 75%,0 75%,0 25%,8% 25%,8% 17%,12% 17%,12% 8%,25% 8%);
   filter:drop-shadow(0 0 30px rgba(242,228,166,.5))}
+.moon::after{content:'';position:absolute;left:28%;top:30%;width:14%;height:12%;background:#d9c98a;box-shadow:24px 18px 0 -2px #d9c98a,10px 34px 0 #e3d496}
 .hills{position:absolute;left:0;right:0;bottom:0;height:22%;background:#1a1529;
   clip-path:polygon(0 40%,8% 30%,18% 34%,28% 18%,40% 30%,52% 22%,62% 34%,74% 16%,86% 28%,100% 20%,100% 100%,0 100%)}
 .hills.back{height:30%;background:#241d39;clip-path:polygon(0 30%,12% 18%,24% 26%,36% 10%,50% 24%,64% 12%,78% 26%,90% 14%,100% 22%,100% 100%,0 100%)}
-.hero h1{position:relative;font-size:clamp(32px,9vw,108px);line-height:1;font-weight:normal;text-shadow:0 6px 0 #6b5a8c,0 10px 0 rgba(0,0,0,.35)}
-.hero .ko{position:relative;margin-top:22px;font-size:clamp(15px,2.2vw,21px);letter-spacing:.9em;padding-left:.9em;color:var(--dim)}
-.tap{position:relative;display:inline-block;margin-top:clamp(60px,10vh,110px);font-size:16px;color:var(--cream);animation:blink 1.4s steps(1) infinite}
-.tap:hover{color:var(--moon)}
+.hero h1{position:relative;font-size:clamp(32px,9vw,112px);letter-spacing:.04em;line-height:1;color:var(--cream);
+  text-shadow:0 6px 0 #6b5a8c, 0 10px 0 rgba(0,0,0,.35)}
+.hero .ko{position:relative;margin-top:22px;font-size:clamp(16px,2.4vw,22px);letter-spacing:.9em;padding-left:.9em;color:var(--dim)}
+.hero .tag{position:relative;margin-top:34px;font-size:clamp(14px,1.8vw,17px);color:var(--cream)}
+.hero .cta{position:relative;margin-top:36px;display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.scroll{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-size:12px;color:var(--dim);animation:bob 1.6s steps(2) infinite}
+@keyframes bob{50%{transform:translate(-50%,6px)}}
+
+/* ── 공통 구역 ── */
+section{padding:110px 24px}
+.wrap{max-width:1040px;margin:0 auto}
+.eyebrow{font-size:12px;letter-spacing:.35em;color:var(--sun)}
+h2{font-size:clamp(26px,4vw,36px);font-weight:normal;margin:10px 0 36px;line-height:1.35}
+h3{font-size:18px;font-weight:normal;margin-bottom:8px}
+.alt{background:var(--night2)}
+.frame{border:4px solid var(--cream);box-shadow:8px 8px 0 rgba(0,0,0,.4);background:#000}
+
+/* 게임 정보 */
+.info{display:grid;grid-template-columns:1.25fr 1fr;gap:56px;align-items:center}
+.spec{list-style:none;border-top:2px dashed var(--line)}
+.spec li{display:flex;gap:18px;padding:12px 2px;border-bottom:2px dashed var(--line);font-size:14px}
+.spec b{font-weight:normal;color:var(--dim);min-width:72px}
+.lead{font-size:16px;margin-bottom:28px}
+
+/* 시놉시스 */
+.synopsis{text-align:center;background:linear-gradient(var(--night),#0c0a14)}
+.synopsis p{margin:0 auto 26px;max-width:620px;font-size:16px}
+.synopsis .em{color:var(--moon);font-size:19px}
+.synopsis .vert{margin:38px auto 0;font-size:18px;color:var(--moon);writing-mode:vertical-rl;letter-spacing:.4em;height:auto}
+
+/* 기획 의도 */
+.intent{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--purple);padding:26px 24px;border-left:4px solid var(--sun)}
+.card p{font-size:14px;color:var(--dim)}
+.card .no{font-size:12px;color:var(--sun);letter-spacing:.2em;margin-bottom:10px}
+.quote{margin-top:44px;text-align:center;font-size:17px;color:var(--moon)}
+
+/* 진행 */
+.steps{display:grid;gap:70px}
+.step{display:grid;grid-template-columns:1.3fr 1fr;gap:44px;align-items:center}
+.step:nth-child(even) .frame{order:2}
+.step .n{font-size:44px;color:var(--line);line-height:1}
+.step p{font-size:14px;color:var(--dim)}
+
+/* 특징 */
+.feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.feat{border:2px solid var(--line);padding:24px 22px;background:rgba(43,35,71,.35)}
+.feat .ic{font-size:22px;margin-bottom:10px;color:var(--moon)}
+.feat p{font-size:13.5px;color:var(--dim)}
+
+/* 엔딩 */
+.endings{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 22px}
+.pol{background:#efe4cc;color:#3a2d22;padding:10px 10px 14px;box-shadow:6px 6px 0 rgba(0,0,0,.35);transform:rotate(var(--r,0deg));transition:transform .2s}
+.pol:hover{transform:rotate(0) translateY(-4px)}
+.pol img{width:100%;aspect-ratio:16/9;object-fit:cover;background:#222}
+.pol .t{margin-top:10px;font-size:14px}
+.pol .d{font-size:12px;color:#7a6650;line-height:1.6}
+.pol.blur img{filter:blur(6px) saturate(.6)}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--dim);margin:-14px 0 34px}
+.legend span::before{content:'■ ';color:var(--c)}
+
+/* 캐릭터 */
+.rooms{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.room{background:var(--purple);padding:20px 16px;text-align:center;border-top:4px solid var(--c,var(--sun));position:relative}
+.room .who{font-size:18px}
+.room .where{font-size:12px;color:var(--dim);margin:4px 0 14px}
+.room .q{font-size:12px;color:var(--moon);line-height:1.7;min-height:62px}
+.room .st{display:inline-block;margin-top:14px;font-size:11px;padding:2px 10px;background:var(--c);color:var(--night)}
+.room.soon,.room.soon.rv.in{opacity:.5;border-top-color:var(--line)}
+.room.soon .st{background:var(--line);color:var(--dim)}
+.room.lockd,.room.lockd.rv.in{opacity:.8}
+.room.lockd .st{background:transparent;color:var(--moon);box-shadow:inset 0 0 0 1px var(--moon)}
+
+/* 마지막 */
+.final{text-align:center;padding:130px 24px;background:linear-gradient(#2f2548,#120f1e)}
+.final p{color:var(--dim);margin:8px 0 34px}
+footer{padding:34px 24px;text-align:center;font-size:12px;color:#6f6588;border-top:2px solid var(--line);line-height:1.8}
+
+
+/* 이야기: 게임 속 검은 화면 */
+.story{background:#000;text-align:center;padding:120px 24px}
+.story p{max-width:560px;margin:0 auto 32px;font-size:16px;line-height:2.1;color:#e9e1d2}
+.story .cut{font-size:20px;letter-spacing:.5em;padding-left:.5em;color:var(--cream);margin:64px auto}
+.story .cut::after{content:'▼';display:block;font-size:12px;letter-spacing:0;color:var(--dim);margin-top:22px;animation:blink 1.4s steps(1) infinite}
 @keyframes blink{50%{opacity:.25}}
-.hero .demo{position:relative;margin-top:14px;font-size:12px;color:#8d82a8}
 
-/* ── 종이 / 밤 구역 ── */
-section{position:relative;padding:100px 24px}
-.wrap{max-width:1000px;margin:0 auto}
-.paper{background:var(--paper);color:var(--ink);
-  background-image:radial-gradient(rgba(125,104,82,.14) 1px,transparent 1.6px);background-size:10px 10px}
-.night2{background:var(--night2)}
-
-/* 마스킹테이프 제목 */
-.label{display:inline-block;position:relative;font-size:clamp(20px,3vw,26px);padding:4px 18px 6px;margin-bottom:34px;transform:rotate(-1.5deg);
-  background:rgba(232,145,90,.75);color:var(--ink)}
-.label.y{background:rgba(242,214,120,.85)}
-.label.b{background:rgba(127,176,224,.7)}
-.label.g{background:rgba(160,196,140,.75)}
-.night .label,.night2 .label{color:var(--night)}
-
-.pol{background:#fbf6ea;padding:10px 10px 12px;box-shadow:6px 7px 0 rgba(74,58,44,.28);position:relative}
-.pol img{width:100%}
-.pol .cap{margin-top:8px;font-size:13px;color:var(--ink);text-align:center}
-.tape{position:absolute;width:90px;height:24px;background:rgba(232,145,90,.6);top:-11px;left:50%;margin-left:-45px;transform:rotate(-4deg);z-index:2}
-.tape.y{background:rgba(242,214,120,.75)}
-
-/* 소개 */
-.about{display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center}
-.about .big{font-size:clamp(22px,3.2vw,30px);line-height:1.5;margin-bottom:18px}
-.about p{color:var(--ink2);margin-bottom:26px}
-.card{background:#fbf6ea;border:2px solid var(--paper2);padding:6px 18px;box-shadow:4px 5px 0 rgba(74,58,44,.18)}
-.card div{display:flex;gap:16px;padding:7px 0;border-bottom:1px solid var(--paper2);font-size:14px}
-.card div:last-child{border:0}
-.card b{font-weight:normal;color:var(--ink2);min-width:64px}
-.about .pol{transform:rotate(2deg)}
-
-/* 이야기: 게임 속 검은 화면처럼 */
-.story{background:#000;text-align:center;padding:130px 24px}
-.story p{max-width:560px;margin:0 auto 34px;font-size:16px;line-height:2.1;color:#e9e1d2}
-.story .cut{font-size:20px;letter-spacing:.5em;padding-left:.5em;color:var(--cream);margin:70px auto}
-.story .cut::after{content:'▼';display:block;font-size:12px;letter-spacing:0;color:var(--dim);margin-top:24px;animation:blink 1.4s steps(1) infinite}
-
-/* 기획 메모 */
-.memo{max-width:640px;margin:0 auto;background:#fbf6ea;padding:46px 46px 40px;transform:rotate(-.8deg);position:relative;
-  background-image:repeating-linear-gradient(transparent 0 31px,#dccaa4 31px 32px);background-position:0 38px;line-height:32px;
-  box-shadow:8px 9px 0 rgba(74,58,44,.25)}
-.memo .tape{width:120px;margin-left:-60px}
-.memo h3{font-weight:normal;font-size:17px;color:var(--sun);margin-bottom:0}
-.memo p{font-size:15px;margin:0 0 32px;color:var(--ink)}
-.memo .sign{text-align:right;color:var(--ink2);font-size:14px;margin:0}
-
-/* 하는 법: 앨범 한 쪽 */
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
-.steps .pol:nth-child(1){transform:rotate(-2deg)}
-.steps .pol:nth-child(2){transform:rotate(1.5deg);margin-top:26px}
-.steps .pol:nth-child(3){transform:rotate(-1deg)}
-.steps .pol:nth-child(4){transform:rotate(2deg);margin-top:20px}
-.steps .pol img{aspect-ratio:16/10;object-fit:cover}
-.steps .n{position:absolute;top:-14px;left:-12px;width:34px;height:34px;background:var(--leather);color:#fbf6ea;display:flex;align-items:center;justify-content:center;font-size:15px;z-index:3;box-shadow:2px 3px 0 rgba(0,0,0,.25)}
-.steps .t{margin-top:10px;font-size:15px;color:var(--ink)}
-.steps .d{font-size:12.5px;line-height:1.7;color:var(--ink2)}
-.zoom{cursor:zoom-in}
-
-/* 상자 메모 (특징) */
-.boxrow{display:flex;gap:40px;align-items:flex-end;justify-content:center}
-.boxlabel{flex:1;max-width:620px;background:var(--kraft);color:var(--ink);padding:26px 30px 24px;position:relative;
-  box-shadow:inset 0 0 0 4px var(--kraft2),8px 9px 0 rgba(0,0,0,.4)}
-.boxlabel .hd{display:flex;justify-content:space-between;border-bottom:3px dashed var(--ink);padding-bottom:8px;margin-bottom:12px;font-size:17px}
-.boxlabel .hd span{font-size:12px;color:#5d4630}
-.boxlabel ul{list-style:none}
-.boxlabel li{position:relative;padding:5px 0 5px 32px;font-size:14.5px;line-height:1.7}
-.boxlabel li::before{content:'';position:absolute;left:2px;top:10px;width:14px;height:14px;border:2px solid var(--ink)}
-.boxlabel li.v::after{content:'✓';position:absolute;left:3px;top:1px;font-size:17px;color:var(--red)}
-.boxlabel .fragile{position:absolute;right:-18px;top:-20px;transform:rotate(9deg);border:3px solid var(--red);color:var(--red);padding:2px 10px;font-size:14px;background:var(--kraft)}
-.boximg{width:170px;flex:none}
-
-/* 엔딩 앨범 */
-.albumhd{display:flex;justify-content:space-between;align-items:baseline;border-bottom:3px solid var(--ink);padding-bottom:6px;margin-bottom:12px}
-.albumhd b{font-weight:normal;font-size:clamp(20px,3vw,26px)}
-.albumhd span{font-size:20px;color:var(--ink2)}
-.albumnote{color:var(--ink2);margin-bottom:36px}
-.endings{display:grid;grid-template-columns:repeat(3,1fr);gap:30px 24px}
-.endings .pol{transform:rotate(var(--r,0deg))}
-.endings img{aspect-ratio:16/9;object-fit:cover;background:#222}
-.endings .t{margin-top:8px;font-size:14px}
-.endings .d{font-size:12px;color:var(--ink2);line-height:1.6}
-.endings .blur img{filter:blur(6px) saturate(.6)}
+/* 하는 법: 폴라로이드 */
+.snaps{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-top:10px}
+.snap{position:relative;background:#fbf6ea;color:#4a3a2c;padding:10px 10px 14px;box-shadow:6px 7px 0 rgba(0,0,0,.4)}
+.snap.rv.in:nth-child(1),.snap:nth-child(1){transform:rotate(-2deg)}
+.snap.rv.in:nth-child(2),.snap:nth-child(2){transform:rotate(1.5deg);margin-top:26px}
+.snap.rv.in:nth-child(3),.snap:nth-child(3){transform:rotate(-1deg)}
+.snap.rv.in:nth-child(4),.snap:nth-child(4){transform:rotate(2deg);margin-top:20px}
+.snap img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.snap .n{position:absolute;top:-14px;left:-12px;width:34px;height:34px;background:#b4682c;color:#fbf6ea;display:flex;align-items:center;justify-content:center;font-size:15px;z-index:2;box-shadow:2px 3px 0 rgba(0,0,0,.3)}
+.snap .tp{position:absolute;width:80px;height:22px;top:-10px;left:50%;margin-left:-40px;background:rgba(242,214,120,.75);transform:rotate(-4deg);z-index:1}
+.snap .t{margin-top:10px;font-size:15px}
+.snap .d{font-size:12.5px;line-height:1.7;color:#7d6852}
 
 /* 로그북 책장 */
-.shelfnote{color:var(--dim);margin-bottom:40px}
 .shelf{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;padding-bottom:22px;border-bottom:12px solid #3a2a20;box-shadow:0 6px 0 #241912}
 .bk{position:relative;width:150px;height:200px;background:var(--bc);box-shadow:inset 0 0 0 4px rgba(0,0,0,.25),inset 12px 0 0 rgba(0,0,0,.18),6px 6px 0 rgba(0,0,0,.35)}
-.bk .lbl{position:absolute;left:20px;right:10px;top:14px;background:#fbf6ea;color:var(--ink);text-align:center;padding:3px 0 5px}
-.bk .lbl small{display:block;font-size:9px;letter-spacing:.15em;color:var(--ink2)}
+.bk .lbl{position:absolute;left:20px;right:10px;top:14px;background:#fbf6ea;color:#4a3a2c;text-align:center;padding:3px 0 5px}
+.bk .lbl small{display:block;font-size:9px;letter-spacing:.15em;color:#7d6852}
 .bk .lbl b{font-weight:normal;font-size:16px}
 .bk .ic{position:absolute;left:6px;right:0;top:76px;height:70px;display:flex;align-items:center;justify-content:center;font-size:40px;color:#fbf6ea}
 .bk .ic img{width:78px;filter:drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff) drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff)}
 .bk .ft{position:absolute;left:14px;right:6px;bottom:10px;text-align:center;font-size:11px;line-height:1.5;color:#fbf6ea}
 .bk.lock{filter:grayscale(.85) brightness(.7)}
 
-/* 마지막 */
-.final{text-align:center;padding:140px 24px 120px;background:linear-gradient(#1d1830,#0c0a14)}
-.final h2{font-weight:normal;font-size:clamp(22px,3.4vw,32px)}
-.final .tap{margin-top:46px}
-footer{padding:30px 24px;text-align:center;font-size:12px;color:#6f6588;border-top:2px solid var(--line);line-height:1.8;background:#0c0a14}
-
+/* 사진 크게 보기 */
 #lb{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
 #lb.on{display:flex}
 #lb img{max-width:min(1200px,100%);max-height:90vh;border:4px solid var(--cream)}
+.zoom{cursor:zoom-in}
+
+/* 나타나기 */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
+.rv.in{opacity:1;transform:none}
 
 @media (max-width:860px){
-  nav .links{display:none;position:absolute;top:52px;left:0;right:0;flex-direction:column;gap:0;background:var(--night);border-bottom:2px solid var(--line)}
-  nav .links.on{display:flex}
-  nav .links a{padding:13px 24px;border-top:1px solid var(--line)}
-  #menuBtn{display:block}
-  nav .play{display:none}
-  .about{grid-template-columns:1fr;gap:40px}
-  .steps{grid-template-columns:1fr 1fr;gap:34px 20px}
-  .steps .pol:nth-child(n){margin-top:0}
-  .endings{grid-template-columns:1fr 1fr;gap:22px 16px}
-  .boximg{display:none}
-  .boxlabel{padding:22px 18px}
-  .boxlabel .hd{flex-direction:column;gap:2px}
-  .boxlabel .fragile{right:-4px}
-  .memo{padding:36px 24px 30px}
+  .snaps{grid-template-columns:1fr 1fr;gap:34px 20px}
+  .snap:nth-child(n),.snap.rv.in:nth-child(n){margin-top:0}
   .bk{width:120px;height:170px}
   .bk .ic{top:60px;height:52px;font-size:32px}
   .bk .ic img{width:58px}
-  .moon{width:54px;height:54px;right:10%}
-  section{padding:80px 18px}
+  nav .links{display:none;position:absolute;top:56px;left:0;right:0;flex-direction:column;gap:0;background:var(--night);border-bottom:2px solid var(--line)}
+  nav .links.on{display:flex}
+  nav .links a{padding:14px 28px;border-top:1px solid var(--line)}
+  #menuBtn{display:block}
+  nav .btn{display:none}
+  .info,.step{grid-template-columns:1fr;gap:28px}
+  .step:nth-child(even) .frame{order:0}
+  .intent{grid-template-columns:1fr}
+  .endings{grid-template-columns:1fr 1fr}
+  .rooms{grid-template-columns:1fr 1fr}
+  .moon{width:56px;height:56px;right:10%}
+  section{padding:80px 20px}
 }
-@media (prefers-reduced-motion:reduce){.tap,.story .cut::after{animation:none}}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.scroll,.story .cut::after{animation:none}}
 </style>
 </head>
 <body>
@@ -179,17 +190,19 @@ footer{padding:30px 24px;text-align:center;font-size:12px;color:#6f6588;border-t
 <nav>
   <a class="logo" href="#top">MEMENTORIUM</a>
   <div class="links" id="links">
-    <a href="#about">소개</a>
+    <a href="#about">게임 소개</a>
     <a href="#story">이야기</a>
-    <a href="#memo">기획 메모</a>
-    <a href="#play">하는 법</a>
-    <a href="#endings">엔딩</a>
-    <a href="#rooms">로그북</a>
+    <a href="#intent">기획 의도</a>
+    <a href="#play">게임 진행</a>
+    <a href="#features">게임 특징</a>
+    <a href="#endings">멀티 엔딩</a>
+    <a href="#rooms">기억의 방</a>
   </div>
-  <a class="play" href="https://mementorium.github.io/">▶ 플레이</a>
+  <a class="btn" href="https://mementorium.github.io/">▶ 플레이</a>
   <button id="menuBtn" aria-label="메뉴">☰</button>
 </nav>
 
+<!-- 첫 화면 -->
 <header class="hero" id="top">
   <canvas id="sky"></canvas>
   <div class="moon"></div>
@@ -197,29 +210,34 @@ footer{padding:30px 24px;text-align:center;font-size:12px;color:#6f6588;border-t
   <div class="hills"></div>
   <h1>MEMENTORIUM</h1>
   <div class="ko">메멘토리움</div>
-  <a class="tap" href="https://mementorium.github.io/">— 탭하여 시작 —</a>
-  <div class="demo">데모판 · 무료 · 브라우저에서 바로</div>
+  <p class="tag">카메라가 비추지 않은, 죽음 이후의 이야기.</p>
+  <div class="cta">
+    <a class="btn big" href="https://mementorium.github.io/">▶ 지금 플레이</a>
+    <a class="btn big ghost" href="#about">게임 소개</a>
+  </div>
+  <div class="scroll">▼ SCROLL</div>
 </header>
 
-<!-- 소개 -->
-<section id="about" class="paper">
-  <div class="wrap about">
-    <div>
-      <div class="label">이런 게임이에요</div>
-      <p class="big">최애가 죽은 다음,<br>그가 쓰던 방을 정리하는 게임.</p>
-      <p>원작에서 죽음을 맞은 캐릭터의 마지막 장면을 다시 보고, 남은 물건들을 하나씩 제자리에 놓아 주는 도트 게임이에요. 지금은 에이스 편 데모를 해 볼 수 있어요.</p>
-      <div class="card">
-        <div><b>장르</b>유품 정리 퍼즐 + 비주얼 노벨</div>
-        <div><b>그래픽</b>도트</div>
-        <div><b>엔딩</b>캐릭터마다 6개</div>
-        <div><b>플레이</b>휴대폰, PC 브라우저 · 무료</div>
-      </div>
+<!-- 게임 소개 -->
+<section id="about">
+  <div class="wrap info">
+    <div class="rv">
+      <div class="eyebrow">ABOUT</div>
+      <h2>최애가 떠난 방,<br>그 물건들을 정리합니다.</h2>
+      <p class="lead">원작에서 죽음을 맞은 캐릭터의 마지막 장면을 다시 보고, 그가 쓰던 방에 남은 물건을 정리하는 도트 게임입니다. 지금은 에이스 편 데모를 플레이할 수 있습니다.</p>
+      <ul class="spec">
+        <li><b>장르</b>유품 정리 퍼즐 · 비주얼 노벨</li>
+        <li><b>그래픽</b>도트 (픽셀 아트)</li>
+        <li><b>플랫폼</b>웹 브라우저 (PC · 모바일)</li>
+        <li><b>엔딩</b>캐릭터마다 6개</li>
+        <li><b>버전</b>데모 (에이스 편) · 무료</li>
+      </ul>
     </div>
-    <div class="pol"><span class="tape y"></span><img class="zoom" src="img/shot_shelf.jpg" alt="로그북을 고르는 화면"><div class="cap">누구의 기억을 펼치시겠습니까?</div></div>
+    <img class="frame zoom rv" src="img/shot_shelf.jpg" alt="로그북을 고르는 첫 화면">
   </div>
 </section>
 
-<!-- 이야기 -->
+<!-- 시놉시스 -->
 <section id="story" class="story">
   <p>만화는 그가 쓰러지는 장면에서 다음 화로 넘어간다.<br>남은 사람들이 어떻게 지냈는지는 나오지 않는다.</p>
   <div class="cut">몇 주 후</div>
@@ -228,73 +246,90 @@ footer{padding:30px 24px;text-align:center;font-size:12px;color:#6f6588;border-t
   <p>당신이 누군지는<br>방을 다 치우고 나서야 알게 된다.</p>
 </section>
 
-<!-- 기획 메모 -->
-<section id="memo" class="paper">
-  <div class="memo">
-    <span class="tape"></span>
-    <h3>기획 메모</h3>
-    <p>좋아하는 캐릭터가 죽으면 원작은 거기서 다음 이야기로 넘어가요. 그런데 남은 사람들한테는 그다음 날이 있잖아요. 방을 치우고, 물건을 나누고, 그래도 살아가야 하는 날들이요.</p>
-    <p>카메라가 비추지 않은 그 시간을 게임으로 만들고 싶었어요. 물건을 정리하다 보면 하나하나에 떠오르는 장면이 있고, 그 장면들은 캐릭터가 죽어도 남아 있으니까요.</p>
-    <p class="sign">당신의 최애는, 남은 사람들이 잘 기리고 있어요.</p>
+<!-- 기획 의도 -->
+<section id="intent" class="alt">
+  <div class="wrap">
+    <div class="eyebrow">INTENT</div>
+    <h2>기획 의도</h2>
+    <div class="intent">
+      <div class="card rv">
+        <div class="no">01</div>
+        <h3>죽음 이후의 끝맺음</h3>
+        <p>원작은 캐릭터가 죽는 순간까지만 보여 줍니다. 메멘토리움은 카메라가 비추지 않은 그 뒤, 남겨진 사람들이 방을 정리하는 시간을 보여 줍니다.</p>
+      </div>
+      <div class="card rv">
+        <div class="no">02</div>
+        <h3>캐릭터는 남아 있다</h3>
+        <p>캐릭터는 죽어도 독자의 기억 속에는 계속 남아 있습니다. 유품 하나하나에 담긴 장면을 떠올리며 그 캐릭터를 다시 만납니다.</p>
+      </div>
+      <div class="card rv">
+        <div class="no">03</div>
+        <h3>다시 살아갈 힘</h3>
+        <p>남겨진 사람들은 슬퍼하기만 하지 않습니다. 그가 남긴 물건으로 좋은 기억을 붙잡고, 다시 잘 살아갈 힘을 얻습니다.</p>
+      </div>
+    </div>
+    <p class="quote rv">“당신의 최애는, 남겨진 사람들이 잘 기리고 있습니다.”</p>
   </div>
 </section>
 
-<!-- 하는 법 -->
-<section id="play" class="paper" style="background-color:#e9dcbc">
+<!-- 게임 진행 -->
+<section id="play">
   <div class="wrap">
-    <div class="label y">이렇게 해요</div>
-    <div class="steps">
-      <div class="pol"><span class="n">1</span><img class="zoom" src="img/shot_shelf.jpg" alt=""><div class="t">로그북 고르기</div><div class="d">바닷가에 놓인 로그북 중 한 권을 펼쳐요.</div></div>
-      <div class="pol"><span class="n">2</span><img class="zoom" src="img/shot_vn.jpg" alt=""><div class="t">그날</div><div class="d">원작 속 마지막 장면부터 시작해요. 대사를 넘기며 그날을 다시 봐요.</div></div>
-      <div class="pol"><span class="n">3</span><img class="zoom" src="img/shot_room.jpg" alt=""><div class="t">정리</div><div class="d">상자를 열고 물건을 끌어다 놓아요. 정해진 칸은 없어요.</div></div>
-      <div class="pol"><span class="n">4</span><img class="zoom" src="img/shot_album.jpg" alt=""><div class="t">찰칵</div><div class="d">다 놓았으면 사진을 찍어요. 놓은 대로 엔딩이 달라져요.</div></div>
+    <div class="eyebrow">HOW TO PLAY</div>
+    <h2>게임 진행</h2>
+    <div class="snaps">
+      <div class="snap"><span class="n">1</span><span class="tp"></span><img class="zoom" src="img/shot_shelf.jpg" alt="로그북 고르는 화면"><div class="t">로그북 고르기</div><div class="d">바닷가에 놓인 로그북 중 한 권 펼치기</div></div>
+      <div class="snap"><span class="n">2</span><span class="tp"></span><img class="zoom" src="img/shot_vn.jpg" alt="그날을 다시 보는 장면"><div class="t">그날 다시 보기</div><div class="d">원작 속 마지막 장면부터 대사를 넘기며 따라가기</div></div>
+      <div class="snap"><span class="n">3</span><span class="tp"></span><img class="zoom" src="img/shot_room.jpg" alt="방을 정리하는 장면"><div class="t">유품 정리하기</div><div class="d">상자를 열어 물건을 원하는 자리에 끌어다 놓기</div></div>
+      <div class="snap"><span class="n">4</span><span class="tp"></span><img class="zoom" src="img/shot_album.jpg" alt="엔딩 앨범"><div class="t">사진 찍기</div><div class="d">다 놓았으면 찰칵 찍기. 놓은 대로 엔딩이 갈림</div></div>
     </div>
   </div>
 </section>
 
-<!-- 상자 메모 -->
-<section id="features" class="night2">
+<!-- 게임 특징 -->
+<section id="features" class="alt">
   <div class="wrap">
-    <div class="label g">상자에 붙어 있던 메모</div>
-    <div class="boxrow">
-      <div class="boxlabel">
-        <span class="fragile">취급 주의</span>
-        <div class="hd">정리하기 전에 읽어 주세요<span>보내는 사람: 다단</span></div>
-        <ul>
-          <li class="v">자리는 정해져 있지 않아요. 방 어디든 놓을 수 있어요.</li>
-          <li class="v">상자에 그 애 물건이 아닌 것도 섞여 있어요.</li>
-          <li class="v">원래 방에 있던 물건도 자리가 틀렸을 수 있어요.</li>
-          <li>큰 물건은 좁은 데 안 들어가요.</li>
-          <li>방 배경 480×270, 물건 64×64. 전부 도트로 찍었어요.</li>
-          <li>당신이 누군지는 엔딩에서 나와요.</li>
-        </ul>
-      </div>
-      <img class="boximg px" src="img/box.png" alt="">
+    <div class="eyebrow">FEATURES</div>
+    <h2>게임 특징</h2>
+    <div class="feats">
+      <div class="feat rv"><div class="ic">✦</div><h3>자유로운 배치</h3><p>칸 없이 방 어디든 끌어다 놓기</p></div>
+      <div class="feat rv"><div class="ic">?</div><h3>섞여 든 물건</h3><p>상자에 섞인 남의 물건 가려내기</p></div>
+      <div class="feat rv"><div class="ic">◆</div><h3>배경인 줄 알았던 소품</h3><p>처음부터 방에 있던 물건도 자리 다시 보기</p></div>
+      <div class="feat rv"><div class="ic">▣</div><h3>크기의 규칙</h3><p>물건 크기에 맞는 자리 찾기</p></div>
+      <div class="feat rv"><div class="ic">♥</div><h3>당신은 누구인가</h3><p>방을 정리하는 ‘당신’의 정체는 엔딩에서 확인하기</p></div>
+      <div class="feat rv"><div class="ic">▲</div><h3>손으로 찍은 도트</h3><p>배경 480×270, 유품 64×64 도트로 그린 방과 물건</p></div>
     </div>
   </div>
 </section>
 
 <!-- 엔딩 -->
-<section id="endings" class="paper">
+<section id="endings">
   <div class="wrap">
-    <div class="albumhd"><b>엔딩 열람</b><span>1 / 6</span></div>
-    <p class="albumnote">엔딩은 캐릭터마다 여섯 개예요. 잘 정리하면 울컥하고, 대충 하면 혼나요.</p>
+    <div class="eyebrow">MULTI ENDING</div>
+    <h2>멀티 엔딩</h2>
+    <p class="lead rv">캐릭터마다 엔딩이 6개 있습니다. 물건을 어떻게 놓았는지에 따라 결말이 달라집니다.</p>
+    <div class="legend rv">
+      <span style="--c:var(--moon)">진엔딩</span>
+      <span style="--c:var(--sun)">아쉬운 엔딩</span>
+      <span style="--c:var(--red)">괘씸한 엔딩</span>
+    </div>
     <div class="endings">
-      <div class="pol" style="--r:-1.5deg"><img class="px zoom" src="img/end1b.png" alt=""><div class="t">1. 다녀왔어</div><div class="d">모든 게 제자리에 있을 때.</div></div>
-      <div class="pol blur" style="--r:1deg"><img class="px" src="img/end2.png" alt=""><div class="t">2. 북적이는 방</div><div class="d">자리는 맞는데 남의 물건이 섞였을 때.</div></div>
-      <div class="pol blur" style="--r:-.5deg"><img class="px" src="img/end3.png" alt=""><div class="t">3. 어긋난 기억</div><div class="d">그 애 물건뿐인데 자리가 틀렸을 때.</div></div>
-      <div class="pol blur" style="--r:1.5deg"><img class="px" src="img/end4.png" alt=""><div class="t">4. 괘씸한 손님</div><div class="d">물건을 전부 엉뚱한 데 뒀을 때.</div></div>
-      <div class="pol blur" style="--r:-1deg"><img class="px" src="img/end5.png" alt=""><div class="t">5. 남의 방</div><div class="d">남의 물건으로만 채웠을 때.</div></div>
-      <div class="pol blur" style="--r:.8deg"><img class="px" src="img/end6.png" alt=""><div class="t">6. ???</div><div class="d">직접 찾아보세요.</div></div>
+      <div class="pol rv" style="--r:-1.5deg"><img class="px zoom" src="img/end1b.png" alt=""><div class="t" style="color:#9a7b1c">1. 다녀왔어</div><div class="d">모든 것이 제자리에 놓였을 때.</div></div>
+      <div class="pol blur rv" style="--r:1deg"><img class="px" src="img/end2.png" alt=""><div class="t" style="color:#b0602e">2. 북적이는 방</div><div class="d">자리는 맞았지만, 남의 물건이 섞였을 때.</div></div>
+      <div class="pol blur rv" style="--r:-.5deg"><img class="px" src="img/end3.png" alt=""><div class="t" style="color:#b0602e">3. 어긋난 기억</div><div class="d">그의 물건뿐이지만, 자리가 어긋났을 때.</div></div>
+      <div class="pol blur rv" style="--r:1.5deg"><img class="px" src="img/end4.png" alt=""><div class="t" style="color:#a3403a">4. 괘씸한 손님</div><div class="d">그의 물건을 전부 엉뚱한 곳에 두었을 때.</div></div>
+      <div class="pol blur rv" style="--r:-1deg"><img class="px" src="img/end5.png" alt=""><div class="t" style="color:#a3403a">5. 남의 방</div><div class="d">남의 물건으로만 방을 채웠을 때.</div></div>
+      <div class="pol blur rv" style="--r:.8deg"><img class="px" src="img/end6.png" alt=""><div class="t" style="color:#a3403a">6. ???</div><div class="d">직접 찾아보세요.</div></div>
     </div>
   </div>
 </section>
 
-<!-- 로그북 -->
-<section id="rooms" class="night">
+<!-- 기억의 방 -->
+<section id="rooms" class="alt">
   <div class="wrap">
-    <div class="label b">로그북 다섯 권</div>
-    <p class="shelfnote">앞 권의 진엔딩을 봐야 다음 권이 열려요. 데모에서는 에이스 편을 할 수 있어요.</p>
+    <div class="eyebrow">LOG BOOK</div>
+    <h2>기억의 방</h2>
+    <p class="lead rv">앞 권의 진엔딩을 보면 다음 권이 열립니다. 데모에서는 에이스 편을 플레이할 수 있습니다.</p>
     <div class="shelf">
       <div class="bk" style="--bc:#b4682c"><div class="lbl"><small>LOG BOOK</small><b>에이스</b></div><div class="ic"><img class="px" src="img/ahat.png" alt=""></div><div class="ft">다단의 집</div></div>
       <div class="bk lock" style="--bc:#4f6f9e"><div class="lbl"><small>LOG BOOK</small><b>고죠</b></div><div class="ic">?</div><div class="ft">🔒 에이스<br>진엔딩 후 열람</div></div>
@@ -305,19 +340,23 @@ footer{padding:30px 24px;text-align:center;font-size:12px;color:#6f6588;border-t
   </div>
 </section>
 
+<!-- 마지막 -->
 <section class="final">
-  <h2>누구의 기억을 펼치시겠습니까?</h2>
-  <a class="tap" href="https://mementorium.github.io/">— 탭하여 시작 —</a>
+  <div class="eyebrow">MEMENTORIUM</div>
+  <h2 style="margin-bottom:0">누구의 기억을 펼치시겠습니까?</h2>
+  <p>데모판 · 설치 없이 브라우저에서 바로 플레이</p>
+  <a class="btn big" href="https://mementorium.github.io/">▶ 지금 플레이</a>
 </section>
 
 <footer>
-  MEMENTORIUM ©2026<br>
-  비영리 팬 창작물이에요. 캐릭터 저작권은 각 원작자에게 있어요.
+  MEMENTORIUM ©2026. ALL RIGHTS RESERVED.<br>
+  본 게임은 비영리 팬 창작물이며, 등장 캐릭터의 저작권은 각 원작자에게 있습니다.
 </footer>
 
 <div id="lb"><img alt=""></div>
 
 <script>
+// 별 반짝이는 밤하늘 (도트)
 const cv=document.getElementById('sky'),cx=cv.getContext('2d');let stars=[];
 function size(){const r=cv.getBoundingClientRect();cv.width=Math.ceil(r.width/3);cv.height=Math.ceil(r.height/3);
   stars=Array.from({length:Math.floor(cv.width*cv.height/260)},()=>({x:Math.random()*cv.width|0,y:Math.random()*cv.height*.75|0,p:Math.random()*6,s:Math.random()<.12?2:1}));}
@@ -326,11 +365,17 @@ function draw(t){cx.clearRect(0,0,cv.width,cv.height);
   if(!matchMedia('(prefers-reduced-motion:reduce)').matches)requestAnimationFrame(draw);}
 cv.style.imageRendering='pixelated';size();addEventListener('resize',size);requestAnimationFrame(draw);
 
+// 스크롤하면 나타나기
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+// 그림 크게 보기
 const lb=document.getElementById('lb');
 document.querySelectorAll('.zoom').forEach(im=>im.addEventListener('click',()=>{lb.firstElementChild.src=im.src;lb.firstElementChild.className=im.classList.contains('px')?'px':'';lb.classList.add('on')}));
 lb.addEventListener('click',()=>lb.classList.remove('on'));
 addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('on')});
 
+// 모바일 메뉴
 const links=document.getElementById('links');
 document.getElementById('menuBtn').onclick=()=>links.classList.toggle('on');
 links.querySelectorAll('a').forEach(a=>a.onclick=()=>links.classList.remove('on'));
