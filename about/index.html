@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MEMENTORIUM 메멘토리움 — 게임 소개</title>
+<meta name="description" content="카메라가 비추지 않은, 죽음 이후의 이야기. 최애가 떠난 방의 유품을 정리하는 도트 인디 게임.">
+<style>
+@font-face{font-family:'Galmuri11';src:url('Galmuri11.woff2') format('woff2');font-display:swap}
+:root{
+  --night:#14111f;--night2:#1d1830;--purple:#2b2347;--line:#3d3360;
+  --cream:#f3e6c8;--dim:#b3a8c9;--moon:#f2e4a6;--sun:#e8915a;--red:#c9584f;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{background:var(--night);color:var(--cream);font-family:'Galmuri11',monospace;font-size:15px;line-height:1.9;-webkit-font-smoothing:none}
+img{display:block;max-width:100%}
+.px{image-rendering:pixelated}
+a{color:inherit;text-decoration:none}
+
+/* ── 상단 메뉴 ── */
+nav{position:fixed;inset:0 0 auto;z-index:20;display:flex;align-items:center;gap:28px;padding:0 28px;height:56px;
+  background:rgba(20,17,31,.86);backdrop-filter:blur(6px);border-bottom:2px solid var(--line)}
+nav .logo{font-size:17px;letter-spacing:2px;margin-right:auto}
+nav .links{display:flex;gap:22px;font-size:13px;color:var(--dim)}
+nav .links a:hover{color:var(--cream)}
+.btn{display:inline-block;font-family:inherit;font-size:14px;color:var(--night);background:var(--moon);padding:8px 18px;
+  box-shadow:0 4px 0 #a9955a, 4px 4px 0 4px rgba(0,0,0,.25);border:0;cursor:pointer;transition:transform .08s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 #a9955a}
+.btn.ghost{background:transparent;color:var(--cream);box-shadow:inset 0 0 0 2px var(--cream)}
+.btn.big{font-size:18px;padding:14px 34px}
+#menuBtn{display:none;background:none;border:0;color:var(--cream);font:inherit;font-size:20px;cursor:pointer}
+
+/* ── 첫 화면 ── */
+.hero{position:relative;height:100vh;min-height:560px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  background:linear-gradient(#120f1e 0%,#1f1934 55%,#2f2548 100%)}
+#sky{position:absolute;inset:0;width:100%;height:100%}
+.moon{position:absolute;top:14%;right:14%;width:84px;height:84px;background:var(--moon);
+  clip-path:polygon(25% 0,75% 0,75% 8%,88% 8%,88% 17%,92% 17%,92% 25%,100% 25%,100% 75%,92% 75%,92% 83%,88% 83%,88% 92%,75% 92%,75% 100%,25% 100%,25% 92%,12% 92%,12% 83%,8% 83%,8% 75%,0 75%,0 25%,8% 25%,8% 17%,12% 17%,12% 8%,25% 8%);
+  filter:drop-shadow(0 0 30px rgba(242,228,166,.5))}
+.moon::after{content:'';position:absolute;left:28%;top:30%;width:14%;height:12%;background:#d9c98a;box-shadow:24px 18px 0 -2px #d9c98a,10px 34px 0 #e3d496}
+.hills{position:absolute;left:0;right:0;bottom:0;height:22%;background:#1a1529;
+  clip-path:polygon(0 40%,8% 30%,18% 34%,28% 18%,40% 30%,52% 22%,62% 34%,74% 16%,86% 28%,100% 20%,100% 100%,0 100%)}
+.hills.back{height:30%;background:#241d39;clip-path:polygon(0 30%,12% 18%,24% 26%,36% 10%,50% 24%,64% 12%,78% 26%,90% 14%,100% 22%,100% 100%,0 100%)}
+.hero h1{position:relative;font-size:clamp(32px,9vw,112px);letter-spacing:.04em;line-height:1;color:var(--cream);
+  text-shadow:0 6px 0 #6b5a8c, 0 10px 0 rgba(0,0,0,.35)}
+.hero .ko{position:relative;margin-top:22px;font-size:clamp(16px,2.4vw,22px);letter-spacing:.9em;padding-left:.9em;color:var(--dim)}
+.hero .tag{position:relative;margin-top:34px;font-size:clamp(14px,1.8vw,17px);color:var(--cream)}
+.hero .cta{position:relative;margin-top:36px;display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.scroll{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-size:12px;color:var(--dim);animation:bob 1.6s steps(2) infinite}
+@keyframes bob{50%{transform:translate(-50%,6px)}}
+
+/* ── 공통 구역 ── */
+section{padding:110px 24px}
+.wrap{max-width:1040px;margin:0 auto}
+.eyebrow{font-size:12px;letter-spacing:.35em;color:var(--sun)}
+h2{font-size:clamp(26px,4vw,36px);font-weight:normal;margin:10px 0 36px;line-height:1.35}
+h3{font-size:18px;font-weight:normal;margin-bottom:8px}
+.alt{background:var(--night2)}
+.frame{border:4px solid var(--cream);box-shadow:8px 8px 0 rgba(0,0,0,.4);background:#000}
+
+/* 게임 정보 */
+.info{display:grid;grid-template-columns:1.25fr 1fr;gap:56px;align-items:center}
+.spec{list-style:none;border-top:2px dashed var(--line)}
+.spec li{display:flex;gap:18px;padding:12px 2px;border-bottom:2px dashed var(--line);font-size:14px}
+.spec b{font-weight:normal;color:var(--dim);min-width:72px}
+.lead{font-size:16px;margin-bottom:28px}
+
+/* 시놉시스 */
+.synopsis{text-align:center;background:linear-gradient(var(--night),#0c0a14)}
+.synopsis p{margin:0 auto 26px;max-width:620px;font-size:16px}
+.synopsis .em{color:var(--moon);font-size:19px}
+.synopsis .vert{margin:38px auto 0;font-size:18px;color:var(--moon);writing-mode:vertical-rl;letter-spacing:.4em;height:auto}
+
+/* 기획 의도 */
+.intent{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--purple);padding:26px 24px;border-left:4px solid var(--sun)}
+.card p{font-size:14px;color:var(--dim)}
+.card .no{font-size:12px;color:var(--sun);letter-spacing:.2em;margin-bottom:10px}
+.quote{margin-top:44px;text-align:center;font-size:17px;color:var(--moon)}
+
+/* 진행 */
+.steps{display:grid;gap:70px}
+.step{display:grid;grid-template-columns:1.3fr 1fr;gap:44px;align-items:center}
+.step:nth-child(even) .frame{order:2}
+.step .n{font-size:44px;color:var(--line);line-height:1}
+.step p{font-size:14px;color:var(--dim)}
+
+/* 특징 */
+.feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.feat{border:2px solid var(--line);padding:24px 22px;background:rgba(43,35,71,.35)}
+.feat .ic{font-size:22px;margin-bottom:10px;color:var(--moon)}
+.feat p{font-size:13.5px;color:var(--dim)}
+
+/* 엔딩 */
+.endings{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 22px}
+.pol{background:#efe4cc;color:#3a2d22;padding:10px 10px 14px;box-shadow:6px 6px 0 rgba(0,0,0,.35);transform:rotate(var(--r,0deg));transition:transform .2s}
+.pol:hover{transform:rotate(0) translateY(-4px)}
+.pol img{width:100%;aspect-ratio:16/9;object-fit:cover;background:#222}
+.pol .t{margin-top:10px;font-size:14px}
+.pol .d{font-size:12px;color:#7a6650;line-height:1.6}
+.pol.blur img{filter:blur(6px) saturate(.6)}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--dim);margin:-14px 0 34px}
+.legend span::before{content:'■ ';color:var(--c)}
+
+/* 캐릭터 */
+.rooms{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.room{background:var(--purple);padding:20px 16px;text-align:center;border-top:4px solid var(--c,var(--sun));position:relative}
+.room .who{font-size:18px}
+.room .where{font-size:12px;color:var(--dim);margin:4px 0 14px}
+.room .q{font-size:12px;color:var(--moon);line-height:1.7;min-height:62px}
+.room .st{display:inline-block;margin-top:14px;font-size:11px;padding:2px 10px;background:var(--c);color:var(--night)}
+.room.soon{opacity:.5}
+.room.soon .st{background:var(--line);color:var(--dim)}
+
+/* 마지막 */
+.final{text-align:center;padding:130px 24px;background:linear-gradient(#2f2548,#120f1e)}
+.final p{color:var(--dim);margin:8px 0 34px}
+footer{padding:34px 24px;text-align:center;font-size:12px;color:#6f6588;border-top:2px solid var(--line);line-height:1.8}
+
+/* 사진 크게 보기 */
+#lb{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+#lb.on{display:flex}
+#lb img{max-width:min(1200px,100%);max-height:90vh;border:4px solid var(--cream)}
+.zoom{cursor:zoom-in}
+
+/* 나타나기 */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
+.rv.in{opacity:1;transform:none}
+
+@media (max-width:860px){
+  nav .links{display:none;position:absolute;top:56px;left:0;right:0;flex-direction:column;gap:0;background:var(--night);border-bottom:2px solid var(--line)}
+  nav .links.on{display:flex}
+  nav .links a{padding:14px 28px;border-top:1px solid var(--line)}
+  #menuBtn{display:block}
+  nav .btn{display:none}
+  .info,.step{grid-template-columns:1fr;gap:28px}
+  .step:nth-child(even) .frame{order:0}
+  .intent{grid-template-columns:1fr}
+  .endings{grid-template-columns:1fr 1fr}
+  .rooms{grid-template-columns:1fr 1fr}
+  .moon{width:56px;height:56px;right:10%}
+  section{padding:80px 20px}
+}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.scroll{animation:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="#top">MEMENTORIUM</a>
+  <div class="links" id="links">
+    <a href="#about">게임 소개</a>
+    <a href="#story">시놉시스</a>
+    <a href="#intent">기획 의도</a>
+    <a href="#play">게임 진행</a>
+    <a href="#features">게임 특징</a>
+    <a href="#endings">멀티 엔딩</a>
+    <a href="#rooms">기억의 방</a>
+  </div>
+  <a class="btn" href="https://mementorium.github.io/">▶ 플레이</a>
+  <button id="menuBtn" aria-label="메뉴">☰</button>
+</nav>
+
+<!-- 첫 화면 -->
+<header class="hero" id="top">
+  <canvas id="sky"></canvas>
+  <div class="moon"></div>
+  <div class="hills back"></div>
+  <div class="hills"></div>
+  <h1>MEMENTORIUM</h1>
+  <div class="ko">메멘토리움</div>
+  <p class="tag">카메라가 비추지 않은, 죽음 이후의 이야기.</p>
+  <div class="cta">
+    <a class="btn big" href="https://mementorium.github.io/">▶ 지금 플레이</a>
+    <a class="btn big ghost" href="#about">게임 소개</a>
+  </div>
+  <div class="scroll">▼ SCROLL</div>
+</header>
+
+<!-- 게임 소개 -->
+<section id="about">
+  <div class="wrap info">
+    <div class="rv">
+      <div class="eyebrow">ABOUT</div>
+      <h2>최애가 떠난 방,<br>그 물건들을 정리합니다.</h2>
+      <p class="lead">‘메멘토리움’은 이야기 속에서 죽음을 맞은 캐릭터의 마지막 순간을 다시 겪고, 그가 남긴 유품을 정리하는 도트 그래픽 인디 게임입니다.</p>
+      <ul class="spec">
+        <li><b>장르</b>인디 · 어드벤처 · 정리 퍼즐 · 비주얼 노벨</li>
+        <li><b>그래픽</b>도트 (픽셀 아트)</li>
+        <li><b>플랫폼</b>웹 브라우저 (PC · 모바일)</li>
+        <li><b>엔딩</b>캐릭터마다 6개</li>
+        <li><b>가격</b>무료</li>
+      </ul>
+    </div>
+    <img class="frame zoom rv" src="img/shot_shelf.jpg" alt="로그북을 고르는 첫 화면">
+  </div>
+</section>
+
+<!-- 시놉시스 -->
+<section id="story" class="synopsis">
+  <div class="wrap">
+    <div class="eyebrow">SYNOPSIS</div>
+    <h2>시놉시스</h2>
+    <p>이야기는 늘 그가 쓰러지는 장면에서 끝난다.<br>박수가 터지고, 화면이 꺼지고, 다음 화가 시작된다.</p>
+    <p>하지만 남겨진 사람들에게는<br>그다음 날이 있었다.</p>
+    <p class="em">주인 없는 방. 아직 따뜻한 물건들.<br>상자 몇 개.</p>
+    <p>당신은 그 상자를 들고 방에 들어선다.<br>무엇을 어디에 둘지는 당신의 몫이다.</p>
+    <p>그리고 당신이 누구인지는,<br>마지막에 알게 된다.</p>
+  </div>
+</section>
+
+<!-- 기획 의도 -->
+<section id="intent" class="alt">
+  <div class="wrap">
+    <div class="eyebrow">INTENT</div>
+    <h2>기획 의도</h2>
+    <div class="intent">
+      <div class="card rv">
+        <div class="no">01</div>
+        <h3>죽음 이후의 끝맺음</h3>
+        <p>원작은 캐릭터가 죽는 순간까지만 보여 줍니다. 메멘토리움은 카메라가 비추지 않은 그 뒤, 남겨진 사람들이 방을 정리하는 시간을 보여 줍니다.</p>
+      </div>
+      <div class="card rv">
+        <div class="no">02</div>
+        <h3>캐릭터는 남아 있다</h3>
+        <p>캐릭터는 죽어도 독자의 기억 속에는 계속 남아 있습니다. 유품 하나하나에 담긴 장면을 떠올리며 그 캐릭터를 다시 만납니다.</p>
+      </div>
+      <div class="card rv">
+        <div class="no">03</div>
+        <h3>다시 살아갈 힘</h3>
+        <p>남겨진 사람들은 슬퍼하기만 하지 않습니다. 그가 남긴 물건으로 좋은 기억을 붙잡고, 다시 잘 살아갈 힘을 얻습니다.</p>
+      </div>
+    </div>
+    <p class="quote rv">“당신의 최애는, 남겨진 사람들이 잘 기리고 있습니다.”</p>
+  </div>
+</section>
+
+<!-- 게임 진행 -->
+<section id="play">
+  <div class="wrap">
+    <div class="eyebrow">HOW TO PLAY</div>
+    <h2>게임 진행</h2>
+    <div class="steps">
+      <div class="step rv">
+        <img class="frame zoom" src="img/shot_shelf.jpg" alt="로그북 선택 화면">
+        <div><div class="n">01</div><h3>누구의 기억을 펼치시겠습니까?</h3>
+          <p>바닷가에 놓인 로그북 가운데 한 권을 고릅니다. 로그북마다 한 캐릭터의 기억이 담겨 있습니다.</p></div>
+      </div>
+      <div class="step rv">
+        <img class="frame zoom" src="img/shot_vn.jpg" alt="마지막 순간을 다시 겪는 장면">
+        <div><div class="n">02</div><h3>그날의 기억</h3>
+          <p>캐릭터가 죽음을 맞기 직전의 순간부터 이야기가 시작됩니다. 비주얼 노벨처럼 그날을 다시 따라갑니다.</p></div>
+      </div>
+      <div class="step rv">
+        <img class="frame zoom" src="img/shot_room.jpg" alt="에이스의 방에서 유품을 정리하는 장면">
+        <div><div class="n">03</div><h3>유품 정리</h3>
+          <p>상자를 열고 유품을 꺼내 원하는 자리에 끌어다 놓습니다. 정해진 칸은 없습니다. 어디에 두어야 그 사람다울지 직접 생각해야 합니다.</p></div>
+      </div>
+      <div class="step rv">
+        <img class="frame zoom" src="img/shot_album.jpg" alt="엔딩 사진이 모이는 앨범">
+        <div><div class="n">04</div><h3>사진 한 장</h3>
+          <p>정리를 마치면 방을 사진으로 남깁니다. 어떻게 정리했는지에 따라 엔딩이 달라지고, 본 엔딩은 앨범에 차곡차곡 모입니다.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 게임 특징 -->
+<section id="features" class="alt">
+  <div class="wrap">
+    <div class="eyebrow">FEATURES</div>
+    <h2>게임 특징</h2>
+    <div class="feats">
+      <div class="feat rv"><div class="ic">✦</div><h3>자유로운 배치</h3><p>칸에 맞춰 넣는 게임이 아닙니다. 언패킹처럼 방 어디든 물건을 끌어다 놓을 수 있습니다.</p></div>
+      <div class="feat rv"><div class="ic">?</div><h3>섞여 든 물건</h3><p>상자 안에는 그의 물건이 아닌 것도 들어 있습니다. 누구의 것인지 가려내야 합니다.</p></div>
+      <div class="feat rv"><div class="ic">◆</div><h3>배경인 줄 알았던 소품</h3><p>처음부터 방에 있던 물건이 사실은 엉뚱한 자리에 놓여 있을지도 모릅니다.</p></div>
+      <div class="feat rv"><div class="ic">▣</div><h3>크기의 규칙</h3><p>유품마다 크기가 달라, 들어가지 않는 자리도 있습니다.</p></div>
+      <div class="feat rv"><div class="ic">♥</div><h3>당신은 누구인가</h3><p>방을 정리하는 ‘당신’의 정체는 엔딩에서 밝혀집니다.</p></div>
+      <div class="feat rv"><div class="ic">▲</div><h3>손으로 찍은 도트</h3><p>배경 480×270, 유품 64×64 도트로 그린 방과 물건들.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 엔딩 -->
+<section id="endings">
+  <div class="wrap">
+    <div class="eyebrow">MULTI ENDING</div>
+    <h2>멀티 엔딩</h2>
+    <p class="lead rv">캐릭터마다 6개의 엔딩이 있습니다. 눈물 나는 엔딩도, 황당한 엔딩도 있습니다. 모든 엔딩을 모아 보세요.</p>
+    <div class="legend rv">
+      <span style="--c:var(--moon)">진엔딩</span>
+      <span style="--c:var(--sun)">아쉬운 엔딩</span>
+      <span style="--c:var(--red)">괘씸한 엔딩</span>
+    </div>
+    <div class="endings">
+      <div class="pol rv" style="--r:-1.5deg"><img class="px zoom" src="img/end1b.png" alt=""><div class="t" style="color:#9a7b1c">1. 다녀왔어</div><div class="d">모든 것이 제자리에 놓였을 때.</div></div>
+      <div class="pol rv" style="--r:1deg"><img class="px zoom" src="img/end2.png" alt=""><div class="t" style="color:#b0602e">2. 북적이는 방</div><div class="d">자리는 맞았지만, 남의 물건이 섞였을 때.</div></div>
+      <div class="pol rv" style="--r:-.5deg"><img class="px zoom" src="img/end3.png" alt=""><div class="t" style="color:#b0602e">3. 어긋난 기억</div><div class="d">그의 물건뿐이지만, 자리가 어긋났을 때.</div></div>
+      <div class="pol rv" style="--r:1.5deg"><img class="px zoom" src="img/end4.png" alt=""><div class="t" style="color:#a3403a">4. 괘씸한 손님</div><div class="d">그의 물건을 전부 엉뚱한 곳에 두었을 때.</div></div>
+      <div class="pol rv" style="--r:-1deg"><img class="px zoom" src="img/end5.png" alt=""><div class="t" style="color:#a3403a">5. 남의 방</div><div class="d">남의 물건으로만 방을 채웠을 때.</div></div>
+      <div class="pol blur rv" style="--r:.8deg"><img class="px" src="img/end6.png" alt=""><div class="t" style="color:#a3403a">6. ???</div><div class="d">직접 찾아보세요.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 기억의 방 -->
+<section id="rooms" class="alt">
+  <div class="wrap">
+    <div class="eyebrow">ROOMS</div>
+    <h2>기억의 방</h2>
+    <p class="lead rv">한 캐릭터마다 한 개의 방. 방마다 20개가 넘는 유품이 기다리고 있습니다.</p>
+    <div class="rooms">
+      <div class="room rv" style="--c:var(--sun)"><div class="who">에이스</div><div class="where">다단의 집</div><div class="q">불꽃은 꺼져도<br>남은 온기는 사라지지 않는다.</div><span class="st">플레이 가능</span></div>
+      <div class="room rv" style="--c:#e0b04a"><div class="who">렌고쿠</div><div class="where">센쥬로의 방</div><div class="q">마음을 불태워라.<br>그 불꽃은 남은 이들에게 옮겨붙는다.</div><span class="st">플레이 가능</span></div>
+      <div class="room rv" style="--c:#7fb0e0"><div class="who">고죠</div><div class="where">이타도리의 방</div><div class="q">최강은 떠났어도<br>그가 남긴 청춘은 계속된다.</div><span class="st">플레이 가능</span></div>
+      <div class="room soon rv"><div class="who">에렌</div><div class="where">???</div><div class="q">· · ·</div><span class="st">준비 중</span></div>
+      <div class="room soon rv"><div class="who">진페이</div><div class="where">???</div><div class="q">· · ·</div><span class="st">준비 중</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 마지막 -->
+<section class="final">
+  <div class="eyebrow">MEMENTORIUM</div>
+  <h2 style="margin-bottom:0">누구의 기억을 펼치시겠습니까?</h2>
+  <p>설치 없이, 브라우저에서 바로.</p>
+  <a class="btn big" href="https://mementorium.github.io/">▶ 지금 플레이</a>
+</section>
+
+<footer>
+  MEMENTORIUM ©2026. ALL RIGHTS RESERVED.<br>
+  본 게임은 비영리 팬 창작물이며, 등장 캐릭터의 저작권은 각 원작자에게 있습니다.
+</footer>
+
+<div id="lb"><img alt=""></div>
+
+<script>
+// 별 반짝이는 밤하늘 (도트)
+const cv=document.getElementById('sky'),cx=cv.getContext('2d');let stars=[];
+function size(){const r=cv.getBoundingClientRect();cv.width=Math.ceil(r.width/3);cv.height=Math.ceil(r.height/3);
+  stars=Array.from({length:Math.floor(cv.width*cv.height/260)},()=>({x:Math.random()*cv.width|0,y:Math.random()*cv.height*.75|0,p:Math.random()*6,s:Math.random()<.12?2:1}));}
+function draw(t){cx.clearRect(0,0,cv.width,cv.height);
+  for(const s of stars){const a=.35+.65*Math.abs(Math.sin(t/1400+s.p));cx.fillStyle=`rgba(243,230,200,${a})`;cx.fillRect(s.x,s.y,s.s,s.s);}
+  if(!matchMedia('(prefers-reduced-motion:reduce)').matches)requestAnimationFrame(draw);}
+cv.style.imageRendering='pixelated';size();addEventListener('resize',size);requestAnimationFrame(draw);
+
+// 스크롤하면 나타나기
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+// 그림 크게 보기
+const lb=document.getElementById('lb');
+document.querySelectorAll('.zoom').forEach(im=>im.addEventListener('click',()=>{lb.firstElementChild.src=im.src;lb.firstElementChild.className=im.classList.contains('px')?'px':'';lb.classList.add('on')}));
+lb.addEventListener('click',()=>lb.classList.remove('on'));
+addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('on')});
+
+// 모바일 메뉴
+const links=document.getElementById('links');
+document.getElementById('menuBtn').onclick=()=>links.classList.toggle('on');
+links.querySelectorAll('a').forEach(a=>a.onclick=()=>links.classList.remove('on'));
+</script>
+</body>
+</html>
