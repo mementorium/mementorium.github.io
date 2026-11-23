@@ -32,16 +32,24 @@ nav .links a:hover{color:var(--cream)}
 #menuBtn{display:none;background:none;border:0;color:var(--cream);font:inherit;font-size:20px;cursor:pointer}
 
 /* 첫 화면 */
-.hero{position:relative;min-height:calc(100vh - 95px);display:flex;align-items:flex-end;overflow:hidden}
-.hero .art{position:absolute;inset:0;background:url('img/house.webp') center 40%/cover no-repeat;image-rendering:pixelated;transform:scale(1.04)}
-.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,12,22,.92) 0%,rgba(14,12,22,.6) 45%,rgba(14,12,22,.15) 100%),linear-gradient(0deg,var(--bg) 0%,transparent 35%)}
-.hero .in{position:relative;z-index:1;padding:0 48px 110px;max-width:900px}
+.hero{position:relative;min-height:calc(100vh - 95px);display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;
+  background:linear-gradient(#120f1e 0%,#1c1730 25%,#221b3a 50%,#2a2246 75%,#1a1528 100%)}
+#sky{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated}
+.moon{position:absolute;top:12%;right:13%;width:88px;height:88px;background:#f2e4a6;
+  clip-path:polygon(25% 0,75% 0,75% 8%,88% 8%,88% 17%,92% 17%,92% 25%,100% 25%,100% 75%,92% 75%,92% 83%,88% 83%,88% 92%,75% 92%,75% 100%,25% 100%,25% 92%,12% 92%,12% 83%,8% 83%,8% 75%,0 75%,0 25%,8% 25%,8% 17%,12% 17%,12% 8%,25% 8%)}
+.moon i{position:absolute;background:#ddcd8e}
+.glow{position:absolute;top:calc(12% - 50px);right:calc(13% - 50px);width:188px;height:188px;border-radius:50%;background:radial-gradient(rgba(242,228,166,.22),transparent 65%)}
+.hills{position:absolute;left:0;right:0;bottom:0;height:26%;background:#251e3b;
+  clip-path:polygon(0 38%,10% 30%,22% 34%,32% 12%,44% 24%,56% 30%,68% 16%,80% 8%,92% 22%,100% 30%,100% 100%,0 100%)}
+.hills.f{height:18%;background:#17121f;clip-path:polygon(0 30%,14% 22%,30% 36%,48% 26%,66% 34%,84% 20%,100% 28%,100% 100%,0 100%)}
+.hero::after{content:'';position:absolute;left:0;right:0;bottom:0;height:120px;background:linear-gradient(transparent,var(--bg))}
+.hero .in{position:relative;z-index:1;padding:40px 24px 120px;max-width:900px}
 .badge{display:inline-block;font-size:12px;letter-spacing:.2em;color:var(--bg);background:var(--sun);padding:3px 12px;margin-bottom:26px}
-.hero h1{font-weight:normal;font-size:clamp(40px,8vw,96px);line-height:1;letter-spacing:.02em;text-shadow:0 6px 0 rgba(0,0,0,.45)}
+.hero h1{font-weight:normal;font-size:clamp(38px,9vw,112px);line-height:1;letter-spacing:.02em;text-shadow:0 7px 0 #5b4a7c,0 12px 0 rgba(0,0,0,.35)}
 .hero .sub{margin-top:14px;font-size:clamp(13px,1.6vw,16px);letter-spacing:.18em;color:var(--dim)}
 .hero .copy{margin-top:46px;font-size:clamp(22px,3vw,32px);line-height:1.45}
 .hero .copy small{display:block;margin-top:10px;font-size:clamp(14px,1.7vw,18px);color:var(--dim)}
-.hero .cta{margin-top:44px;display:flex;gap:14px;flex-wrap:wrap}
+.hero .cta{margin-top:44px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
 
 /* 공통 */
 section{padding:160px 48px}
@@ -123,8 +131,9 @@ footer .logo{font-size:15px;letter-spacing:.12em;color:var(--cream);margin-botto
   nav .logo{margin-right:auto}
   #menuBtn{display:block}
   nav .btn{display:none}
-  .hero .in{padding:0 22px 80px}
-  .hero::after{background:linear-gradient(0deg,var(--bg) 10%,rgba(14,12,22,.55) 60%,rgba(14,12,22,.35) 100%)}
+  .hero .in{padding:30px 20px 110px}
+  .moon{width:56px;height:56px;right:9%;top:9%}
+  .glow{display:none}
   section{padding:110px 22px}
   .over,.feat,.feat.r,.studio .grid{grid-template-columns:1fr;gap:44px}
   .feat.r .media{order:0}
@@ -159,7 +168,10 @@ footer .logo{font-size:15px;letter-spacing:.12em;color:var(--cream);margin-botto
 </nav>
 
 <header class="hero" id="top">
-  <div class="art"></div>
+  <canvas id="sky"></canvas>
+  <div class="glow"></div>
+  <div class="moon"><i style="left:28%;top:28%;width:16%;height:12%"></i><i style="left:58%;top:52%;width:14%;height:10%"></i><i style="left:40%;top:68%;width:9%;height:8%"></i></div>
+  <div class="hills"></div><div class="hills f"></div>
   <div class="in">
     <span class="badge">데모 공개 중</span>
     <h1>MEMENTORIUM</h1>
@@ -287,6 +299,12 @@ footer .logo{font-size:15px;letter-spacing:.12em;color:var(--cream);margin-botto
 
 <div id="lb"><img alt=""></div>
 <script>
+const cv=document.getElementById('sky'),cx=cv.getContext('2d');let st=[];
+function sz(){const r=cv.getBoundingClientRect();cv.width=Math.ceil(r.width/3);cv.height=Math.ceil(r.height/3);
+  st=Array.from({length:Math.floor(cv.width*cv.height/240)},()=>({x:Math.random()*cv.width|0,y:Math.random()*cv.height*.8|0,p:Math.random()*6,s:Math.random()<.1?2:1}));}
+function dr(t){cx.clearRect(0,0,cv.width,cv.height);for(const o of st){cx.fillStyle=`rgba(243,230,200,${(.3+.7*Math.abs(Math.sin(t/1500+o.p))).toFixed(2)})`;cx.fillRect(o.x,o.y,o.s,o.s);}
+  if(!matchMedia('(prefers-reduced-motion:reduce)').matches)requestAnimationFrame(dr);}
+sz();addEventListener('resize',sz);requestAnimationFrame(dr);
 const lb=document.getElementById('lb');
 document.querySelectorAll('.zoom').forEach(im=>im.addEventListener('click',()=>{lb.firstElementChild.src=im.src;lb.classList.add('on')}));
 lb.addEventListener('click',()=>lb.classList.remove('on'));
