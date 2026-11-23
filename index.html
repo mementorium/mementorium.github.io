@@ -209,7 +209,7 @@ body.touch .shArr{width:46px;height:40px;font-size:16px}
 #vnBg{transition:filter 1s ease}#vnBg.blur{filter:blur(3px) brightness(.8)}
 #caption{position:absolute;left:36px;top:34px;background:rgba(0,0,0,.6);border-left:6px solid #e8742c;padding:10px 18px;font-size:24px;letter-spacing:2px;opacity:0;transition:opacity 1s;z-index:15}
 #credits{position:absolute;inset:0;background:#000;z-index:85;overflow:hidden;opacity:0;transition:opacity 1.2s}#credits.on{opacity:1}#credits .roll{position:absolute;left:0;right:0;top:100%;text-align:center;color:#e8dcc4;font-size:20px;line-height:1.9;white-space:pre-line;word-break:keep-all}#credits .roll b{display:block;font-size:34px;color:#ffcf8a;margin-bottom:10px;letter-spacing:4px}#credits .roll i{font-style:normal;display:block;color:#a8987c;font-size:15px;margin-top:26px}#credits .skip{position:absolute;right:16px;bottom:12px;color:#7a6e5c;font-size:13px}#card{position:absolute;inset:0;background:#000;display:none;align-items:center;justify-content:center;text-align:center;font-size:24px;line-height:2;white-space:pre-line;z-index:30;padding:40px;word-break:keep-all}
-#card.on{display:flex}#card.on .t{animation:cardIn 1.6s ease both}@keyframes cardIn{from{opacity:0}to{opacity:1}}
+#card.on{display:flex}#card.on .t{animation:cardIn 2.6s ease both}@keyframes cardIn{from{opacity:0}to{opacity:1}}
 #card .t{opacity:0;transition:opacity 1.2s}
 #card.show .t{opacity:1}
 #card .nx2{position:absolute;bottom:30px;left:0;right:0;font-size:18px;color:#8a7f96;animation:blink 1s infinite;display:none}
@@ -1182,8 +1182,8 @@ function step(){
   step();
 }
 function say(L){if(VN.chr&&CHR[VN.chr+'_c']){const k=(L.s&&L.s[0]===CHRNM[VN.chr])?(CHR[L.s[1]]?L.s[1]:VN.chr):VN.chr+'_c';if($('chr').dataset.k!==k){$('chr').src=CHR[k];$('chr').dataset.k=k;}}if($('vn').classList.contains('subm')){const t=L.s?(typeof L.s[2]==='function'?L.s[2]():L.s[2]):(typeof L.n==='function'?L.n():L.n);const sb=$('sub');sb.classList.toggle('nar',!L.s);
-    VN.full=t;clearInterval(VN.typing);VN.sub=true;sb.style.transition='none';sb.classList.remove('on');sb.textContent=t;void sb.offsetWidth;sb.style.transition='opacity 1.6s ease';sb.classList.add('on');
-    VN.typing=setTimeout(()=>{VN.typing=null;VN.wait=true;},1400);return;}
+    VN.full=t;let i=0;sb.style.transition='';sb.textContent='';sb.classList.add('on');clearInterval(VN.typing);VN.sub=true;
+    VN.typing=setInterval(()=>{i++;sb.textContent=t.slice(0,i);if(i>=t.length){clearInterval(VN.typing);VN.typing=null;VN.wait=true;}},45);return;}
   VN.sub=false;const b=$('box');b.classList.add('on');$('nx').style.display='none';
   let text;
   if(L.s){const [name,face,t]=L.s;text=typeof t==='function'?t():t;b.classList.remove('nar');$('nm').textContent=name;
