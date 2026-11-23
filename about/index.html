@@ -85,11 +85,12 @@ h2{font-weight:normal;font-size:clamp(26px,3.6vw,40px);line-height:1.4;word-brea
 .feat h3{word-break:keep-all;font-weight:normal;font-size:clamp(22px,2.6vw,30px);margin:12px 0 22px;line-height:1.4}
 .feat ul{list-style:none;margin-top:24px;font-size:14px;color:var(--dim)}
 .feat li{padding:9px 0;border-top:1px solid var(--line)}
+.feat li:last-child{border-bottom:1px solid var(--line)}
 .feat li::before{content:'— ';color:var(--sun)}
 
 /* 엔딩 */
-.ends-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:60px}
-.ends-head .body{max-width:440px}
+.ends-head{display:flex;flex-direction:column;align-items:flex-start;gap:22px;margin-bottom:60px}
+.ends-head .body{max-width:560px}
 .ends{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:14px}
 .ends div{position:relative;overflow:hidden;background:#000}
 .ends div:first-child{grid-row:span 2}
@@ -97,6 +98,19 @@ h2{font-weight:normal;font-size:clamp(26px,3.6vw,40px);line-height:1.4;word-brea
 .ends .lock img{filter:blur(7px) brightness(.55) saturate(.6);transform:scale(1.1)}
 .ends span{position:absolute;left:0;bottom:0;right:0;padding:12px 16px;font-size:13px;background:linear-gradient(transparent,rgba(0,0,0,.75))}
 .ends .lock::after{content:'?';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:30px;color:var(--cream)}
+
+.rooms{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:60px}
+.room{background:var(--bg2);border-top:3px solid var(--c,var(--line));padding:26px 20px 24px;display:flex;flex-direction:column}
+.room .ic{height:84px;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.room .ic img{width:92px;height:76px;object-fit:contain}
+.room .ic .q{font-size:44px;color:var(--mute)}
+.room .src{font-size:11px;color:var(--mute);letter-spacing:.05em}
+.room h3{font-weight:normal;font-size:19px;margin:2px 0 4px;word-break:keep-all}
+.room .where{font-size:12px;color:var(--sun)}
+.room p{font-size:13px;color:var(--dim);line-height:1.8;margin:14px 0 18px;word-break:keep-all;flex:1}
+.room .st{font-size:12px;color:var(--moon);border:1px solid var(--moon);padding:5px 10px;align-self:flex-start}
+.room.lock .ic img{filter:grayscale(.5) brightness(1.15);opacity:.75}
+.room.lock .st{color:var(--dim);border-color:var(--line)}
 
 /* 개발 */
 .studio{background:var(--bg2)}
@@ -140,7 +154,8 @@ footer .logo{font-size:15px;letter-spacing:.12em;color:var(--cream);margin-botto
   .feat+.feat{margin-top:110px}
   .facts{gap:30px}
   .facts b{font-size:30px}
-  .ends-head{flex-direction:column;align-items:flex-start}
+  .rooms{grid-template-columns:1fr 1fr;gap:10px}
+  .rooms .room:first-child{grid-column:span 2}
   .ends{grid-template-columns:1fr 1fr;grid-template-rows:auto}
   .ends div:first-child{grid-column:span 2;grid-row:auto}
   .ends div{aspect-ratio:16/9}
@@ -161,6 +176,7 @@ footer .logo{font-size:15px;letter-spacing:.12em;color:var(--cream);margin-botto
     <a href="#story">이야기</a>
     <a href="#features">특징</a>
     <a href="#endings">엔딩</a>
+    <a href="#rooms">기억의 방</a>
     <a href="#studio">개발</a>
   </div>
   <a class="btn solid sm" href="https://mementorium.github.io/">▶ 데모 플레이</a>
@@ -257,6 +273,22 @@ footer .logo{font-size:15px;letter-spacing:.12em;color:var(--cream);margin-botto
       <div class="lock"><img class="px" src="img/end3.png" alt=""><span>3</span></div>
       <div class="lock"><img class="px" src="img/end4.png" alt=""><span>4</span></div>
       <div class="lock"><img class="px" src="img/end5.png" alt=""><span>5</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="rooms">
+  <div class="wrap">
+    <div class="ends-head" style="margin-bottom:0">
+      <div><div class="kicker">MEMORIES</div><h2>다섯 개의 기억</h2></div>
+      <p class="body">캐릭터마다 한 권의 로그북, 한 개의 방이 있습니다. 앞 권의 진엔딩을 보면 다음 권이 열립니다.</p>
+    </div>
+    <div class="rooms">
+      <div class="room" style="--c:#e8915a"><div class="ic"><img class="px" src="img/ahat_t.png" alt=""></div><div class="src">《원피스》</div><h3>포트거스 D. 에이스</h3><div class="where">다단의 집</div><p>불꽃은 꺼져도<br>남은 온기는 사라지지 않는다.</p><span class="st">▶ 플레이 가능</span></div>
+      <div class="room lock" style="--c:#7fb0e0"><div class="ic"><img class="px" src="img/blind_t.png" alt=""></div><div class="src">《주술회전》</div><h3>고죠 사토루</h3><div class="where">이타도리의 방</div><p>최강은 떠났어도<br>그가 남긴 청춘은 계속된다.</p><span class="st">🔒 에이스 진엔딩 후 열람</span></div>
+      <div class="room lock" style="--c:#e0b04a"><div class="ic"><img class="px" src="img/haori_t.png" alt=""></div><div class="src">《귀멸의 칼날》</div><h3>렌고쿠 쿄쥬로</h3><div class="where">센쥬로의 방</div><p>마음을 불태워라.<br>그 불꽃은 남은 이들에게 옮겨붙는다.</p><span class="st">🔒 고죠 진엔딩 후 열람</span></div>
+      <div class="room lock" style="--c:#8fae7a"><div class="ic"><span class="q">?</span></div><div class="src">《진격의 거인》</div><h3>에렌 예거</h3><div class="where">???</div><p>· · ·</p><span class="st">🔒 렌고쿠 진엔딩 후 열람</span></div>
+      <div class="room lock" style="--c:#9a93a8"><div class="ic"><img class="px" src="img/jcig_t.png" alt=""></div><div class="src">《명탐정 코난》</div><h3>마츠다 진페이</h3><div class="where">???</div><p>· · ·</p><span class="st">🔒 에렌 진엔딩 후 열람</span></div>
     </div>
   </div>
 </section>
