@@ -32,7 +32,7 @@ nav .links a:hover{color:var(--cream)}
 #menuBtn{display:none;background:none;border:0;color:var(--cream);font:inherit;font-size:20px;cursor:pointer}
 
 /* 첫 화면 */
-.hero{position:relative;min-height:calc(100vh - 95px);display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;
+.hero{position:relative;min-height:calc(100vh - 95px);display:flex;align-items:flex-end;justify-content:flex-start;text-align:left;overflow:hidden;
   background:linear-gradient(#120f1e 0%,#1c1730 25%,#221b3a 50%,#2a2246 75%,#1a1528 100%)}
 #sky{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated}
 .moon{position:absolute;top:12%;right:13%;width:88px;height:88px;background:#f2e4a6;
@@ -43,13 +43,13 @@ nav .links a:hover{color:var(--cream)}
   clip-path:polygon(0 38%,10% 30%,22% 34%,32% 12%,44% 24%,56% 30%,68% 16%,80% 8%,92% 22%,100% 30%,100% 100%,0 100%)}
 .hills.f{height:18%;background:#17121f;clip-path:polygon(0 30%,14% 22%,30% 36%,48% 26%,66% 34%,84% 20%,100% 28%,100% 100%,0 100%)}
 .hero::after{content:'';position:absolute;left:0;right:0;bottom:0;height:120px;background:linear-gradient(transparent,var(--bg))}
-.hero .in{position:relative;z-index:1;padding:40px 24px 120px;max-width:900px}
+.hero .in{position:relative;z-index:1;padding:0 48px 120px;max-width:900px}
 .badge{display:inline-block;font-size:12px;letter-spacing:.2em;color:var(--bg);background:var(--sun);padding:3px 12px;margin-bottom:26px}
-.hero h1{font-weight:normal;font-size:clamp(38px,9vw,112px);line-height:1;letter-spacing:.02em;text-shadow:0 7px 0 #5b4a7c,0 12px 0 rgba(0,0,0,.35)}
+.hero h1{font-weight:normal;font-size:clamp(38px,8vw,100px);line-height:1;letter-spacing:.02em;text-shadow:0 7px 0 #5b4a7c,0 12px 0 rgba(0,0,0,.35)}
 .hero .sub{margin-top:14px;font-size:clamp(13px,1.6vw,16px);letter-spacing:.18em;color:var(--dim)}
 .hero .copy{margin-top:46px;font-size:clamp(22px,3vw,32px);line-height:1.45}
 .hero .copy small{display:block;margin-top:10px;font-size:clamp(14px,1.7vw,18px);color:var(--dim)}
-.hero .cta{margin-top:44px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.hero .cta{margin-top:44px;display:flex;gap:14px;flex-wrap:wrap}
 
 /* 공통 */
 section{padding:160px 48px}
@@ -131,7 +131,7 @@ footer .logo{font-size:15px;letter-spacing:.12em;color:var(--cream);margin-botto
   nav .logo{margin-right:auto}
   #menuBtn{display:block}
   nav .btn{display:none}
-  .hero .in{padding:30px 20px 110px}
+  .hero .in{padding:0 22px 100px}
   .moon{width:56px;height:56px;right:9%;top:9%}
   .glow{display:none}
   section{padding:110px 22px}
