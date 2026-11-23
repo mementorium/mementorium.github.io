@@ -1160,6 +1160,7 @@ function step(){
   if('bgm' in L&&!ytPlaying){L.bgm?playBgm(L.bgm):stopBgm();}
   if(L.sfx)SFX[L.sfx]();
   if(L.bg){scene($('vnBg'),SC[L.bg]);$('box').classList.remove('on');CG.cur=CG.prev=null;CG.gray=CG.beads=null;CG.bw=false;$('chr').className='';$('vnBg').classList.remove('blur');}
+  if(L.cut||L.cg){$('sub').classList.remove('on');}
   if(L.cut){const c=$('chr');c.style.transition='none';c.className='';void c.offsetWidth;c.style.transition='';VN.chr=null;$('box').classList.remove('on');}
   if('chr' in L){const c=$('chr');if(L.chr&&CHR[L.chr]){VN.chr=L.chr;c.dataset.k='';c.src=CHR[(L.s&&L.s[0]===CHRNM[L.chr])||!CHR[L.chr+'_c']?L.chr:L.chr+'_c'];c.className='';void c.offsetWidth;c.className='on';$('vnBg').classList.add('blur');}else{VN.chr=null;c.className='';$('vnBg').classList.remove('blur');}}
   if(L.cg){if(/end/.test(L.cg))$('ctl').classList.remove('on');setCG(L.cg,L.pan,L.fin);scene($('vnBg'),SC.cg);}
@@ -1281,7 +1282,7 @@ const ACE_END={
     {n:'사진을 들고 마당으로 나가자, 다단이 말없이 그것을 받아 들었다.'},
     {s:['다단','dadan_c','……']},
     {s:['다단','dadan_cry','……똑같네.']},
-    {s:['다단','dadan_cry','깃발은 돛대에, 술잔은 상자 위에, 그 그림은 보물상자에… 그 녀석이 있던 그대로야.']},
+    {s:['다단','dadan_cry','깃발은 벽에, 술잔은 창틀에, 그 그림은 보물상자에… 그 녀석이 있던 그대로야.']},
     {s:['다단','dadan_cry','이 멍청한 녀석… 다녀왔단 말 한 번 없이…']},
     {n:'그녀의 어깨가 작게 떨렸다.'},
     {n:'그때, 열어둔 방문 너머로 따뜻한 바람 한 줄기가 불어왔다.'},
@@ -1298,11 +1299,10 @@ const ACE_END={
     {lb:1,fit:1,bg:'black'},{wait:1200},
     {cg:'ace_end1a',fin:2200},{wait:2200},
     {n:'어느 날, 세 형제가 나눠 마신 잔.'},
-    {n:'그 잔은 지금도 가운데 상자 위, 늘 같은 자리에 놓여 있다.'},
+    {n:'그 잔은 지금도 창틀 위, 늘 같은 자리에 놓여 있다.'},
     {cut:1},{bg:'black'},{wait:1000},
     {card:'그날 당신이 남기고 간 사진 한 장.'},
-    {cg:'true_end',fin:2200},{wait:2200},
-    {n:'다단은 지금도 가끔, 사진 속 그 방을 오래 들여다본다.'},
+    {cg:'true_end',fin:2200},{wait:3600},
     {cut:1},{bg:'black'},{wait:1000},
     {cg:'ace_end1b',fin:2600},{wait:2600},
     {n:'세 형제가 함께 꿈꾸던 바다.'},
