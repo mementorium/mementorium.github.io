@@ -741,7 +741,7 @@ const SC={
   ghost(c,t){SC.room(c,t,true,'rgba(255,140,60,.28)');
     const gh=G.ghost,cx=gh.x+gh.w/2,cy=gh.y+gh.h/2;
     const a=.55+Math.sin(t*2)*.15;const g=c.createRadialGradient(cx,cy,4,cx,cy,46);g.addColorStop(0,`rgba(255,230,180,${a*.7})`);g.addColorStop(1,'rgba(255,230,180,0)');c.fillStyle=g;c.fillRect(cx-60,cy-60,120,120);
-    c.globalAlpha=a+.15;{const gi=gh.k&&CGIMG[gh.k]&&CGIMG[gh.k].naturalWidth?CGIMG[gh.k]:SP[gh.spr];c.drawImage(gi,gh.x,gh.y+Math.sin(t*1.5)*2,gh.w,gh.h);}c.globalAlpha=1;
+    if(!gh.hide){c.globalAlpha=a+.15;const gi=gh.k&&CGIMG[gh.k]&&CGIMG[gh.k].naturalWidth?CGIMG[gh.k]:SP[gh.spr];c.drawImage(gi,gh.x,gh.y+Math.sin(t*1.5)*2,gh.w,gh.h);}c.globalAlpha=1;
     for(let i=0;i<24;i++){const k=(t*.25+i/24)%1;R(c,cx-22+((i*13)%44)+Math.sin(t+i)*3,cy+50-k*90,1,1,`rgba(255,220,140,${1-k})`);}},
   train(c,t){bands(c,['#141a3a','#2a2a55','#523a66','#8a4a6a','#d0705e','#f4a86a'],0,92);
     const sun=(t*.6)%6;c.fillStyle='#ffe2a0';c.beginPath();c.arc(170,92,10+sun,Math.PI,0);c.fill();
@@ -1288,9 +1288,9 @@ const ACE_END={
     {n:'어느 날, 세 형제가 나눠 마신 잔.'},
     {n:'그 잔은 지금도 가운데 상자 위, 늘 같은 자리에 놓여 있다.'},
     {lb:1,fit:1,bg:'black'},{wait:1200},
-    {card:'그날 당신이 찍은 사진에는,'},
+    {card:'그날 당신이 찍은 사진은,'},
     {cg:'true_end',fin:2200},{wait:2200},
-    {n:'찍은 기억이 없는 누군가가 웃고 있었다.'},
+    {n:'다단은 그 사진을 액자에 넣어, 그 녀석의 방에 걸어두었다.'},
     {cut:1},{lb:0,fit:0,bg:'black'},
     {card:'남겨진 사람들은 슬퍼하고 그리워하기만 하지 않는다.\n그 사람이 남긴 물건들로 좋은 기억을 꺼내 들고,\n다시 살아갈 힘을 얻는다.'},
     {card:'당신의 최애는, 남은 사람들이 잘 기리고 있으니 걱정 마세요.'}
@@ -1707,7 +1707,7 @@ const GOJ_END={
 
 const DATA={
   ace:{id:'ace',roomName:'에이스의 방',whom:'다단',por:'ace_por',me:'marco',quote:'불꽃은 꺼져도<br>남은 온기는 사라지지 않는다.',
-    slots:ACE_SLOT,items:ACE_ITEMS,init:{pipe:{z:'corner',x:66,y:106}},drawRoom:(c,t)=>SC.roomAceImg(c,t),truePic:{k:'ace_ghost',x:155,y:74,w:20,a:.85},endImg:{2:'ace_end2',3:'ace_end3',4:'ace_end4',5:'ace_end5',6:'ace_end6'},ghost:{spr:'body',k:'ace_ghost',x:150,y:56,w:24,h:64},
+    slots:ACE_SLOT,items:ACE_ITEMS,init:{pipe:{z:'corner',x:66,y:106}},drawRoom:(c,t)=>SC.roomAceImg(c,t),endImg:{2:'ace_end2',3:'ace_end3',4:'ace_end4',5:'ace_end5',6:'ace_end6'},ghost:{spr:'body',k:'ace_ghost',x:150,y:56,w:24,h:64,hide:1},
     intro:ACE_INTRO,warn:ACE_WARN,endings:ACE_END,ends:ACE_ENDS,miss:w=>`그리고 ${w.nm}은 왜 아직 상자 안에 있냐. `},
   rengoku:{id:'rengoku',roomName:'센쥬로의 방',whom:'센쥬로',por:'rengoku',me:'tanjiro',quote:'마음을 불태워라.<br>그 불꽃은 남은 이들에게 옮겨붙는다.',
     slots:REN_SLOT,items:REN_ITEMS,init:{zabuton:{z:'floor',x:22,y:104}},drawRoom:(c,t)=>SC.roomRen(c,t),ghost:{spr:'rbody',x:184,y:34,w:40,h:60},
