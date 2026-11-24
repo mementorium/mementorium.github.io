@@ -958,7 +958,7 @@ function albumInner(ch){const d=DECO[ch.id]||{};const sv=PXI[d.si];return `<i cl
   ${(d.pk||[]).map(([k,x,y,r])=>pxi(k,x,y,r,2)).join('')}<i class="rib" style="--rb:${d.rb||'#b8302a'}"></i>`;}
 const LOCK_MS=24*60*60*1000;
 function trueAt(id){const sv=SAVE[id];if(!sv)return null;if(!sv.trueAt&&sv.endings&&sv.endings[1]){sv.trueAt=Date.now();persist();}return sv.trueAt||null;}
-function lockInfo(i){if(i===0)return null;const prev=CHARS[i-1];const t=prev.ok?trueAt(prev.id):null;if(lockInfo(i-1)&&!t)return{msg:`${prev.nm}의 진엔딩을 보면<br>24시간 뒤에 열려요`};
+function lockInfo(i){if(i===0||SHOWALL)return null;const prev=CHARS[i-1];const t=prev.ok?trueAt(prev.id):null;if(lockInfo(i-1)&&!t)return{msg:`${prev.nm}의 진엔딩을 보면<br>24시간 뒤에 열려요`};
   if(!t)return{msg:`${prev.nm}의 진엔딩을 보면<br>24시간 뒤에 열려요`};const left=t+LOCK_MS-Date.now();if(left<=0)return null;return{msg:'열릴 때까지',left};}
 function fmtLeft(ms){const s=Math.ceil(ms/1000),h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=s%60;return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(x).padStart(2,'0')}`;}
 function paintLocks(){document.querySelectorAll('.aslot').forEach(w=>{const i=+w.dataset.i,L=lockInfo(i);w.classList.toggle('locked',!!L);let o=w.querySelector('.lockov');
@@ -968,7 +968,7 @@ setInterval(()=>{if($('shelf').classList.contains('on'))paintLocks();},1000);
 let shIdx=0;
 function toShelf(){go('shelf');scene($('shelfBg'),SC.beach);playBgm('calm');
   const box=$('albums');box.innerHTML='';
-  CHARS.forEach((ch,i)=>{const n=ch.ok?Object.keys((SAVE[ch.id]||{}).endings||{}).length:0;
+  CHARS.forEach((ch,i)=>{const n=ch.ok?(SHOWALL?6:Object.keys((SAVE[ch.id]||{}).endings||{}).length):0;
     const w=document.createElement('div');w.className='aslot';w.dataset.i=i;
     const a=document.createElement('div');a.className='album';a.style.backgroundColor=ch.col;a.style.animationDelay=(-i*.8)+'s';
     a.innerHTML=albumInner(ch)+`<div class="tag ${ch.ok?'go':''}">${ch.ok?n+' / 6':'제작 중'}</div>`;
