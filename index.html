@@ -545,6 +545,7 @@ const ART_SRC={
   keyring:[1,D=>{D.e(50,22,16,16,'#9aa0a8');D.hole(50,22,11,11);D.l(50,38,50,52,3,'#9aa0a8');D.e(50,74,20,20,'#f8f6ea');D.e(50,70,9,7,'#9acb7a');D.e(44,80,2,2,'#1b1420');D.e(56,80,2,2,'#1b1420');}],
   souvenir:[2,D=>{D.r(30,20,18,30,'#c8322c');D.r(48,14,22,36,'#3b6fb6');D.r(64,26,14,24,'#e9c74a');D.p([[14,44],[86,44],[90,98],[10,98]],'#e8d0a8');D.pl([[30,44],[34,28],[44,28],[48,44]],3,'#a88a5a');D.pl([[54,44],[58,28],[68,28],[72,44]],3,'#a88a5a');D.r(30,64,40,14,'#f4efe6');}],
   onigiri:[1,D=>{D.p([[50,18],[92,90],[8,90]],'#f4efe6');D.e(50,60,30,24,'#f4efe6');D.r(34,64,32,28,'#1e2a1e');}],
+  prison:[2,D=>{D.p([[50,18],[84,34],[50,50],[16,34]],'#6a6e7a');D.p([[16,34],[50,50],[50,88],[16,72]],'#2e3038');D.p([[50,50],[84,34],[84,72],[50,88]],'#44485a');D.r(49,50,2,38,'#1b1420');D.p([[50,18],[52,19],[18,35],[16,34]],'#8a8e9a');D.r(28,52,10,10,'#1b1420');D.r(31,55,4,4,'#9aa0b8');D.r(62,50,10,10,'#1b1420');D.r(65,53,4,4,'#9aa0b8');}],
   hammer:[2,D=>{D.l(18,96,66,30,8,'#8a5a30');D.p([[54,8],[92,36],[80,52],[42,24]],'#4b4f57');D.p([[54,8],[66,16],[54,32],[42,24]],'#6a6e76');D.l(14,60,10,84,3,'#9aa0a8');D.l(26,64,24,86,3,'#9aa0a8');}],
   sneaker:[2,D=>{D.p([[8,58],[44,50],[60,64],[94,72],[94,90],[8,90]],'#2a2a30');D.r(6,88,90,10,'#f4efe6');D.l(30,58,48,66,2,'#f4efe6');D.l(28,66,46,72,2,'#f4efe6');D.e(14,70,6,10,'#3a3a46');}],
   cigbox:[1,D=>{D.r(26,24,48,72,'#efe6cf');D.r(26,24,48,22,'#c8322c');D.e(50,64,10,10,'#c8322c');D.r(34,14,6,12,'#f4efe6');D.r(42,10,6,16,'#f4efe6');D.r(34,14,6,4,'#e8a050');D.r(42,10,6,4,'#e8a050');}]
@@ -968,10 +969,10 @@ setInterval(()=>{if($('shelf').classList.contains('on'))paintLocks();},1000);
 let shIdx=0;
 function toShelf(){go('shelf');scene($('shelfBg'),SC.beach);playBgm('calm');
   const box=$('albums');box.innerHTML='';
-  CHARS.forEach((ch,i)=>{const n=ch.ok?(SHOWALL?6:Object.keys((SAVE[ch.id]||{}).endings||{}).length):0;
+  CHARS.forEach((ch,i)=>{const NE=Object.keys((DATA[ch.id]||{}).ends||{}).length||6,n=ch.ok?(SHOWALL?NE:Object.keys((SAVE[ch.id]||{}).endings||{}).length):0;
     const w=document.createElement('div');w.className='aslot';w.dataset.i=i;
     const a=document.createElement('div');a.className='album';a.style.backgroundColor=ch.col;a.style.animationDelay=(-i*.8)+'s';
-    a.innerHTML=albumInner(ch)+`<div class="tag ${ch.ok?'go':''}">${ch.ok?n+' / 6':'제작 중'}</div>`;
+    a.innerHTML=albumInner(ch)+`<div class="tag ${ch.ok?'go':''}">${ch.ok?n+' / '+NE:'제작 중'}</div>`;
     w.appendChild(a);w.onclick=()=>{if(shSwiped)return;if(i!==shIdx){shGo(i);return;}const L=lockInfo(i);if(L){SFX.nope();toast(L.left?`${fmtLeft(L.left)} 뒤에 열려요.`:`${CHARS[i-1].nm}의 진엔딩을 먼저 봐야 해요.`);return;}if(!ch.ok){SFX.nope();toast(`${ch.nm}의 앨범은 아직 비어 있어요.`);return;}openAlbum(ch);};box.appendChild(w);});
   paintLocks();
   $('shDots').innerHTML=CHARS.map(()=>'<i></i>').join('');shLayout();}
@@ -1069,6 +1070,10 @@ function demoEnds(){if(!SHOWALL)return {};if(DEMO[G.id])return DEMO[G.id];
   const ace=ITEMS.filter(i=>i.owner===G.id),dec=ITEMS.filter(i=>i.owner!==G.id),Z=Object.keys(SLOT);
   const put=i=>i.pos?{z:i.home,x:i.pos[0],y:i.pos[1]}:i.home;
   const good=()=>{const l={};ace.forEach(i=>l[i.id]=put(i));return l;};
+  if(G.evalEnd){const D=dec.filter(i=>i.owner!=='prison'),P=ITEMS.find(i=>i.owner==='prison');
+    const L={1:good(),2:good(),3:good(),4:{},5:JSON.parse(JSON.stringify(INIT))};
+    if(P)L[2][P.id]=Z[0];L[3][D[0].id]=Z[0];D.slice(0,3).forEach((i,k)=>L[4][i.id]=Z[k%Z.length]);
+    const out={},sv=loc;for(const e in L){const n=normLoc(L[e]);out[e]={photo:photo(n),loc:n};}loc=sv;return DEMO[G.id]=out;}
   const L={1:good(),2:good(),3:good(),4:{},5:{},6:JSON.parse(JSON.stringify(INIT))};
   L[2][dec[0].id]=Z[0];
   {const w=ace[0];L[3][w.id]=w.pos?{z:w.home,x:w.pos[0]>120?30:210,y:w.pos[1]}:Z.find(z=>z!==w.home);}
@@ -1078,13 +1083,13 @@ function allEnds(){return Object.assign({},demoEnds(),(SAVE[G.id]||{}).endings||
 function pagesHTML(sp){const E=allEnds();
   if(sp===0){const R=[-3,2,2,-2,-1,3],TR=[-5,4,3,-4,6,-3];
     const L=`<div class="pg-in"><h3>시작</h3><img class="por" src="${URL_[G.por]}"${G.porColor?' style="filter:none"':''}><div class="q">${G.quote}</div><button class="pbtn" id="startBtn">▶ 기억 펼치기</button></div>${decoHTML(0,'L')}`;
-    let h=`<div class="pg-in"><h3>엔딩 열람 <span style="float:right">${Object.keys(E).length} / 6</span></h3><div id="eGrid">`;
-    for(let i=1;i<=6;i++){const e=E[i],st=`style="--r:${R[i-1]}deg;--tr:${TR[i-1]}deg"`;h+=e?`<div class="ec on" data-e="${i}" ${st}><div class="phw"><img class="ph" src="${endImg(i,e)}"></div><div class="lb">${i}. ${G.ends[i]}</div></div>`
+    let h=`<div class="pg-in"><h3>엔딩 열람 <span style="float:right">${Object.keys(E).length} / ${Object.keys(G.ends).length}</span></h3><div id="eGrid">`;
+    for(let i=1;i<=Object.keys(G.ends).length;i++){const e=E[i],st=`style="--r:${R[i-1]}deg;--tr:${TR[i-1]}deg"`;h+=e?`<div class="ec on" data-e="${i}" ${st}><div class="phw"><img class="ph" src="${endImg(i,e)}"></div><div class="lb">${i}. ${G.ends[i]}</div></div>`
       :`<div class="ec" ${st}><div class="phw"><img class="lk" src="${URL_.lock}"></div><div class="lb">${i}. ???</div></div>`;}
     return [L,h+`</div><button class="pgBtn nx" id="pgNx" aria-label="다음 장"></button></div>${decoHTML(0,'R')}`];}
   const pol=(i,x,y,r,tr)=>{const e=E[i];return `<div class="pol ${e?'on':''}" data-e="${i}" style="left:${x}px;top:${y}px;--r:${r}deg;--tr:${tr}deg"><div class="phw">${e?`<img src="${e.photo}">`:'<span class="qm">?</span>'}</div><div class="lb">${e?`${i}. ${G.ends[i]}`:`${i}. ???`}</div></div>`;};
   return [`<div class="pg-in"><h3>${G.roomName} 사진</h3>${pol(1,6,58,-4,5)}${pol(2,150,112,3,-4)}${pol(3,22,240,2,4)}<button class="pgBtn pv" id="pgPv" aria-label="앞 장"></button></div>${decoHTML(1,'L')}`,
-          `<div class="pg-in"><h3>&nbsp;</h3>${pol(4,30,40,3,-3)}${pol(5,150,160,-3,5)}${pol(6,10,250,-1,-5)}</div>${decoHTML(1,'R')}`];}
+          `<div class="pg-in"><h3>&nbsp;</h3>${pol(4,30,40,3,-3)}${pol(5,150,160,-3,5)}${G.ends[6]?pol(6,10,250,-1,-5):''}</div>${decoHTML(1,'R')}`];}
 function fillPages(){$('book').classList.remove('th-ace','th-gojo','th-rengoku');$('book').classList.add('th-'+(THEME[G.id]?G.id:'ace'));
   const [L,Rh]=pagesHTML(spread);$('lp').innerHTML=L;$('rp').innerHTML=Rh;bindPages();}
 function bindPages(){const E=allEnds();
@@ -1225,7 +1230,7 @@ $('cExit').onclick=()=>{ytStop(false);VN.done=null;vnReset();$('modal').classLis
 addEventListener('keydown',e=>{if((e.key===' '||e.key==='Enter')&&$('vn').classList.contains('on')){e.preventDefault();advance();}});
 
 /* ================= 스크립트 ================= */
-const decoyIn=()=>ITEMS.filter(i=>i.owner!==G.id&&loc[i.id]&&typeof loc[i.id]==='object');
+const decoyIn=()=>ITEMS.filter(i=>i.owner!==G.id&&i.owner!=='prison'&&loc[i.id]&&typeof loc[i.id]==='object');
 const decoyNames=()=>decoyIn().map(i=>i.nm).join(', ');
 const firstWrong=()=>{const w=ITEMS.find(i=>i.owner===G.id&&!isRight(i));return w?(loc[w.id]==='tray'?G.miss(w):'')+w.fix:'';};
 
@@ -1500,7 +1505,8 @@ const REN_END={
     {s:['센쥬로','senjuro',()=>lastRes.correct===lastRes.total?'형님 물건은… 전부 제자리예요.':'대부분… 제자리예요.']},
     {s:['센쥬로','senjuro',()=>`그런데 이건… ${decoyNames()}… 형님 것이 아니네요.`]},
     {s:['나','me','앗… 같이 싸 와서 헷갈렸나 봐요. 죄송해요.']},
-    {s:['센쥬로','senjuro','아니에요. 형님은 사람을 좋아하셨으니까, 이렇게 북적여도 웃으셨을 거예요.']},
+    {s:['센쥬로','senjuro','아니에요. 이렇게 보니까 귀살대 분들이 다 같이 놀러 오셨던 날 같아요.']},
+    {s:['센쥬로','senjuro','형님은 사람을 좋아하셨으니까, 이렇게 북적여도 웃으셨을 거예요.']},
     {s:['센쥬로','senjuro','고맙습니다, 탄지로 씨.']},
     {card:'당신은 귀살대 대원, 카마도 탄지로.'},
     {n:'잘했지만, 어딘가 조금 아쉬운 방.'},
@@ -1508,14 +1514,13 @@ const REN_END={
   ],
   3:[
     {bg:'roomP',bgm:'calm'},
-    {n:'사진을 건네자, 센쥬로가 작게 웃었다.'},
-    {s:['센쥬로','senjuro','전부 형님 물건이에요. 잘 골라주셨네요.']},
-    {s:['센쥬로','senjuro',()=>'그런데… '+firstWrong()]},
-    {s:['센쥬로','senjuro','……그렇겠죠. 탄지로 씨는 싸우는 형님만 아시니까요.']},
-    {s:['센쥬로','senjuro','집에서의 형님은 제가 알려드릴게요. 대신….']},
-    {s:['센쥬로','senjuro','탄지로 씨가 본 형님의 마지막 이야기를, 들려주세요.']},
-    {card:'당신은 귀살대 대원, 카마도 탄지로.'},
-    {n:'서로가 모르는 그를, 서로에게 들려주기로 했다.'}
+    {n:'사진을 건네기도 전에, 당신의 눈에서 눈물이 먼저 떨어졌다.'},
+    {s:['나','me','죄송해요… 렌고쿠 씨 물건은 다 맞는데, 자리를 제대로 모르겠어요.']},
+    {n:'그때, 작은 발소리가 다가왔다.'},
+    {s:['센쥬로','senjuro','탄지로 씨, 울지 마세요.']},
+    {s:['센쥬로','senjuro',()=>{const w=firstWrong();return w?w:'조금만 고치면 돼요.';}]},
+    {s:['센쥬로','senjuro','같이 해요. 집에서의 형님은 제가 알려 드릴게요.']},
+    {n:'두 사람은 나란히 앉아, 물건을 하나씩 다시 놓기 시작했다.'}
   ],
   4:[
     {bg:'roomP',bgm:null},
@@ -1590,6 +1595,7 @@ const GOJ_ITEMS=[
   {id:'onigiri',spr:'onigiri',size:1,owner:'inumaki',nm:'주먹밥',d:'김으로 싼 주먹밥 하나.',h:'포장지에 "연어알"이라고만 적혀 있다. 말수 적은 선배의 것이다.'},
   {id:'hammer',spr:'hammer',size:2,owner:'nobara',nm:'망치와 못',d:'손에 익은 망치와 못 몇 개.',h:'손잡이에 "N"이라고 새겨져 있다.'},
   {id:'sneaker',spr:'sneaker',size:2,owner:'megumi',nm:'검은 운동화',d:'흰 끈의 검은 운동화.',h:'신발 안쪽에 개 털이 잔뜩 붙어 있다.'},
+  {id:'prison',spr:'prison',size:2,owner:'prison',nm:'정육면체 상자',d:'손바닥만 한 정육면체. 만지면 이상하게 서늘하다.',h:'이 방에 둬도 되는 물건일까. 어딘가 불길한 기분이 든다.'},
   {id:'cigbox',spr:'cigbox',size:1,owner:'shoko',nm:'담뱃갑',d:'반쯤 빈 담뱃갑.',h:'그는 담배를 피우지 않았다. 의무실 냄새가 난다.'}
 ];
 const GOJ_INTRO=[
@@ -1646,57 +1652,42 @@ const GOJ_END={
     {s:['이타도리','itadori','이제 노크 안 하고 들어올 사람도 없는데….']},
     {n:'그는 웃으려다, 끝내 고개를 숙였다.'},
     {n:'그때, 아무도 켜지 않은 TV가 혼자 켜졌다.'},
-    {fade:'#fff'},{bg:'ghost'},{wait:1400},
-    {s:['고죠','gojo','여어, 유지. 영화 고르는 센스는 여전히 별로네.']},
-    {s:['이타도리','itadori','선생님……!!']},
-    {s:['고죠','gojo','울지 마. 넌 내 자랑스러운 학생이야. 앞으로도 쭉.']},
-    {s:['고죠','gojo','청춘은 다시 안 와. 실컷 즐겨. 그게 내 마지막 숙제다.']},
-    {n:'그가 고개를 돌려, 당신을 보며 장난스럽게 웃었다.'},
-    {s:['고죠','gojo','이지치~ 수고했어. 그동안 무리한 부탁만 해서 미안.']},
-    {s:['고죠','gojo','마지 빈타는… 이걸로 퉁치자?']},
-    {s:['이지치','ijichi','……네. 퉁쳐 드리겠습니다, 고죠 씨.']},
-    {card:'당신은 주술고전 보조감독, 이지치 키요타카.\n그의 무리한 부탁을 가장 많이 들어준 사람이었다.'},
-    {bg:'movie'},{wait:1200},
-    {n:'불 꺼진 방, 저주 인형을 끌어안고 밤새 영화를 보던 날들.'},
+    {fade:'#fff',slow:1},{bg:'airport',bgm:'calm'},{wait:1400},
+    {n:'하얗고 조용한 곳. 낯익은 뒷모습이 벤치에 앉아 있었다.'},
+    {s:['게토','geto','늦었네, 사토루.']},
+    {s:['고죠','gojo','……스구루. 기다렸어?']},
+    {s:['게토','geto','조금. 그래서, 남은 애들은 괜찮을 것 같아?']},
+    {s:['고죠','gojo','응. 내 방 정리까지 깔끔하게 해 줬더라. 걱정 없어.']},
+    {s:['게토','geto','그럼 가자. 이번엔 같은 쪽으로.']},
+    {n:'두 사람은 오래전 그 봄처럼, 나란히 걸어갔다.'},
+    {fade:'#000',slow:1},{bg:'movie'},{wait:1200},
+    {n:'불 꺼진 방, 인형을 끌어안고 밤새 영화를 보던 날들.'},
     {n:'그 빈백은 지금도 TV 앞, 늘 같은 자리에 있다.'},
     {card:'남겨진 사람들은 슬퍼하고 그리워하기만 하지 않는다.\n그 사람이 남긴 물건들로 좋은 기억을 꺼내 들고,\n다시 살아갈 힘을 얻는다.'},
     {card:'누군가를 기억해준다는 건 정말 고마운 일이다.'}
   ],
   2:[
-    {bg:'roomP',bgm:'calm'},
-    {n:'사진을 건네자, 이타도리가 눈을 크게 떴다.'},
-    {s:['이타도리','itadori',()=>lastRes.correct===lastRes.total?'선생님 물건은 전부 제자리예요. 대박.':'선생님 물건은 대충 제자리네요.']},
-    {s:['이타도리','itadori',()=>`근데 이건… ${decoyNames()}… 선생님 거 아닌데요?`]},
-    {s:['나','me','아… 창고에서 같이 담아 와서 헷갈렸나 봅니다. 죄송합니다.']},
-    {s:['이타도리','itadori','에이, 괜찮아요. 선생님은 시끌벅적한 거 좋아했으니까.']},
-    {s:['이타도리','itadori','고마워요, 이지치 씨.']},
-    {card:'당신은 주술고전 보조감독, 이지치 키요타카.'},
-    {n:'잘했지만, 어딘가 조금 아쉬운 방.'},
-    {n:'방의 주인은 아마, "이지치~ 아깝다~" 하고 놀렸을 것이다.'}
+    {bg:'roomP',bgm:null},
+    {n:'사진을 건네자, 이타도리의 얼굴이 하얗게 질렸다.'},
+    {s:['이타도리','itadori','……이 상자, 왜 여기 있어요?']},
+    {s:['이타도리','itadori','이것 때문에 선생님이 얼마나 오래 갇혀 있었는데…!']},
+    {n:'그때, 상자 안에서 익숙한 목소리가 새어 나왔다.'},
+    {s:['고죠','gojo','어―이, 유지? 여기 좀 좁은데.']},
+    {s:['이타도리','itadori','서, 선생님?!']},
+    {s:['고죠','gojo','꺼내 줄 사람은 이번에도 너밖에 없나 보네. 천천히 와. 기다리는 건 익숙하니까.']},
+    {n:'방은 정리됐지만, 그는 아직 상자 안에 있다.'}
   ],
   3:[
     {bg:'roomP',bgm:'calm'},
     {n:'사진을 건네자, 이타도리가 머리를 긁적였다.'},
-    {s:['이타도리','itadori','전부 선생님 거 맞아요. 잘 골라내셨네요.']},
-    {s:['이타도리','itadori',()=>'근데… '+firstWrong()]},
-    {s:['이타도리','itadori','하긴, 이지치 씨는 일할 때 선생님만 아시잖아요.']},
-    {s:['이타도리','itadori','방에서의 선생님은 제가 알려드릴게요. 대신….']},
-    {s:['이타도리','itadori','선생님이 이지치 씨한테 얼마나 무리한 부탁 했는지, 그거 들려주세요.']},
-    {card:'당신은 주술고전 보조감독, 이지치 키요타카.'},
-    {n:'서로가 모르는 그를, 서로에게 들려주기로 했다.'}
+    {s:['이타도리','itadori',()=>lastRes.decIn?`선생님 물건이랑… ${decoyNames()}까지 섞여 있네요.`:'선생님 물건은 맞는데, 자리가 좀 다르네요.']},
+    {s:['이타도리','itadori',()=>{const w=firstWrong();return w?'아, 그리고 '+w:'그래도 괜찮아요.';}]},
+    {s:['이타도리','itadori','근데 이렇게 보니까, 다 같이 모였던 날 같아요.']},
+    {s:['이타도리','itadori','선생님이 갑자기 꽃놀이 가자고 다 끌고 나갔던 날. 후시구로는 싫다면서도 끝까지 있었고, 쿠기사키는 먹기만 했고.']},
+    {n:'그날의 소란스러운 웃음소리가, 잠깐 방 안에 돌아온 것 같았다.'},
+    {s:['이타도리','itadori','……다음엔 다 같이 와서 정리해요. 선생님도 그게 더 좋아할 거예요.']}
   ],
   4:[
-    {bg:'roomP',bgm:null},
-    {n:'문이 벌컥 열렸다.'},
-    {s:['쿠기사키','nobara','이지치 씨. 이게 뭐예요?']},
-    {s:['쿠기사키','nobara',()=>lastRes.aceIn===0?'방이 텅텅 비었잖아요! 상자째 다시 들고 가시게요?':'물건은 다 선생님 건데 제자리에 있는 게 하나도 없잖아요!']},
-    {s:['이타도리','itadori',()=>'쿠기사키, 진정해… '+firstWrong()]},
-    {s:['쿠기사키','nobara','그 사람 성격 알잖아요. 이렇게 해놓으면 저승에서 백 년은 놀려요.']},
-    {s:['나','me','……면목 없습니다.']},
-    {s:['쿠기사키','nobara','다시 해요. 제대로 될 때까지 퇴근 못 해요.']},
-    {card:'당신은 주술고전 보조감독, 이지치 키요타카.\n오늘도 야근이다.'}
-  ],
-  5:[
     {bg:'roomP',bgm:null},
     {s:['이타도리','itadori','……이거, 다 누구 거예요?']},
     {s:['이타도리','itadori',()=>`${decoyNames()}…. 선생님 물건이 하나도 없어요.`]},
@@ -1706,21 +1697,17 @@ const GOJ_END={
     {s:['쿠기사키','nobara','어디가 비슷해요! 그 사람이 넥타이 매는 거 본 적 있어요?!']},
     {card:'당신은 주술고전 보조감독, 이지치 키요타카.\n……근무 평가가 걱정된다.'}
   ],
-  6:[
-    {bg:'roomP',bgm:null,sfx:'door',shake:1},
-    {s:['쿠기사키','nobara','이지치 씨이이이!!!!']},
-    {bg:'rage',bgm:'rage'},
-    {s:['쿠기사키','nobara','두 번이나?! 아무것도 안 하고 사진만 두 번 찍었다고요?!']},
-    {s:['쿠기사키','nobara','그 사람 유품 앞에서 장난해요?!']},
-    {s:['이타도리','itadori','쿠, 쿠기사키! 망치는 넣어둬!']},
-    {s:['나','me','자, 잠깐만요, 이건 오해가…!']},
-    {s:['쿠기사키','nobara','……공명(共鳴).']},
-    {sfx:'hit',shake:1,fx:'red',bg:'black',bgm:null},
-    {n:'뭔가가 아주 정확하게 꽂혔다.'},
-    {n:'당신은 그날 처음으로 병가를 냈다.'},
-    {card:'당신은 주술고전 보조감독, 이지치 키요타카.\n쿠기사키는 화나면 무섭다.'}
+  5:[
+    {bg:'roomP',bgm:null},
+    {n:'상자는 끝내 열리지 않았다.'},
+    {s:['이타도리','itadori','……괜찮아요. 저였어도 못 열었을 거예요.']},
+    {s:['이타도리','itadori','그때 제가 조금만 더 강했으면, 선생님 혼자 싸우게 두지 않았을 텐데.']},
+    {s:['이타도리','itadori','이 상자를 열면… 진짜로 끝나는 것 같아서요.']},
+    {n:'닫힌 상자 앞에서, 두 사람은 한참을 말없이 앉아 있었다.'},
+    {card:'상자는, 내일 다시 열어 보기로 했다.'}
   ]
 };
+
 
 const DATA={
   ace:{id:'ace',roomName:'에이스의 방',whom:'다단',por:'ace_por',me:'marco',quote:'"힘에 굴복해서야 남자로 태어난 의미가 없지.<br>난 결코 인생에 후회를 남기지 않아."',
@@ -1730,9 +1717,12 @@ const DATA={
     slots:REN_SLOT,items:REN_ITEMS,init:{zabuton:{z:'floor',x:22,y:104}},drawRoom:(c,t)=>SC.roomRen(c,t),ghost:{spr:'rbody',x:184,y:34,w:40,h:60},
     intro:REN_INTRO,warn:REN_WARN,endings:REN_END,ends:{1:'마음을 불태워라',2:'북적이는 방',3:'어긋난 기억',4:'괘씸한 손님',5:'남의 방',6:'박치기'},
     miss:w=>`${w.nm}은 아직 상자 안에 있네요. `},
-  gojo:{id:'gojo',roomName:'이타도리의 방',whom:'이타도리',por:'gojo',me:'ijichi',quote:'최강은 떠났어도<br>그가 남긴 청춘은 계속된다.',
+  gojo:{id:'gojo',evalEnd:()=>{const own=ITEMS.filter(i=>i.owner==='gojo');const pin=loc.prison&&typeof loc.prison==='object';
+      const aceIn=own.filter(i=>loc[i.id]&&typeof loc[i.id]==='object').length,correct=own.filter(isRight).length,decIn=decoyIn().length;
+      let e=3;if(pin)e=2;else if(aceIn===0&&decIn>0)e=4;else if(correct===own.length&&decIn===0)e=1;
+      return {e,aceIn,correct,decIn,total:own.length,wrong:decIn+(aceIn-correct)+(pin?1:0),missing:own.length-aceIn};},noMove:5,roomName:'이타도리의 방',whom:'이타도리',por:'gojo',me:'ijichi',quote:'최강은 떠났어도<br>그가 남긴 청춘은 계속된다.',
     slots:GOJ_SLOT,items:GOJ_ITEMS,init:{beanbag:{z:'bed',x:36,y:76}},drawRoom:(c,t)=>SC.roomGojo(c,t),ghost:{spr:'gbody',x:96,y:28,w:40,h:60},
-    intro:GOJ_INTRO,warn:GOJ_WARN,endings:GOJ_END,ends:{1:'청춘의 숙제',2:'북적이는 방',3:'어긋난 기억',4:'괘씸한 손님',5:'남의 방',6:'공명'},
+    intro:GOJ_INTRO,warn:GOJ_WARN,endings:GOJ_END,ends:{1:'청춘의 숙제',2:'봉인',3:'푸른 봄',4:'보조감독',5:'닫힌 상자'},
     miss:w=>`${w.nm}은 아직 상자에 있어요. `}
 };
 
@@ -1831,9 +1821,10 @@ let snapping=false;
 $('snap').onclick=e=>{e.stopPropagation();if(snapping)return;snapping=true;sel=null;showInfo();
   const wait=G.gray?1500:0;if(G.gray){REVEAL.t0=performance.now();SFX.chime();}
   setTimeout(()=>{SFX.shutter();flash('#fff',600);setTimeout(()=>{snapping=false;
-    if(moves===0){if(!warned){warned=true;runVN(G.warn,enterRoom);}else{lastRes={e:6};runEnding(6);}return;}
+    if(moves===0){if(!warned){warned=true;runVN(G.warn,enterRoom);}else{const nm=G.noMove||6;lastRes={e:nm};runEnding(nm);}return;}
     const r=evaluate();lastRes=r;showResult(r);},650);},wait);};
 function evaluate(){
+  if(G.evalEnd)return G.evalEnd();
   const ace=ITEMS.filter(i=>i.owner===G.id);
   const aceIn=ace.filter(i=>loc[i.id]&&typeof loc[i.id]==='object').length,correct=ace.filter(isRight).length,decIn=decoyIn().length;
   let e;
@@ -1891,6 +1882,7 @@ rengoku:`<b>메멘토리움</b>유품 정리 게임
 gojo:`<b>메멘토리움</b>유품 정리 게임
 
 <i>등장인물</i>고죠 사토루
+게토 스구루
 이타도리 유지
 이지치 키요타카
 
@@ -1914,7 +1906,7 @@ function rollCredits(done){const txt=CREDITS[G.id];if(!txt){done();return;}
   requestAnimationFrame(()=>{el.classList.add('on');const h=roll.offsetHeight+el.offsetHeight;roll.style.transition='transform 26s linear';void roll.offsetWidth;roll.style.transform=`translateY(-${h}px)`;});
   roll.addEventListener('transitionend',end);el.addEventListener('click',e=>{e.stopPropagation();end();});}
 function runEnding(e,replay){
-  if(!lastRes||replay)lastRes=replay&&e!==6?evaluate():lastRes||{e};
+  if(!lastRes||replay)lastRes=replay&&e!==(G.noMove||6)?evaluate():lastRes||{e};
   const ph=photo(loc,e===1);if(e===1){CGIMG.true_end=new Image();CGIMG.true_end.src=ph;}
   runVN(G.endings[e],()=>{
     if(!replay){SAVE[G.id]=SAVE[G.id]||{};SAVE[G.id].endings=SAVE[G.id].endings||{};SAVE[G.id].endings[e]={photo:ph,loc:JSON.parse(JSON.stringify(loc))};if(e===1&&!SAVE[G.id].trueAt)SAVE[G.id].trueAt=Date.now();persist();}
