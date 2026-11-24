@@ -122,8 +122,8 @@ button{font-family:inherit;cursor:pointer}
 .flip{position:absolute;left:380px;top:0;width:380px;height:440px;background:#efe4cc;border:4px solid #1a1420;transform-origin:left center;backface-visibility:hidden;z-index:4;animation:flp .5s ease-in forwards}
 @keyframes flp{to{transform:rotateY(-180deg)}}
 .page h3{font-size:24px;margin-bottom:14px;border-bottom:3px dashed #b39d72;padding-bottom:8px}
-#lp .por,.cvBack .por{image-rendering:pixelated;width:144px;height:144px;margin:8px auto 14px;display:block;box-sizing:content-box;border:4px solid #4a3a2c;padding:8px;background:#ece2cc;background-clip:padding-box;filter:grayscale(1) contrast(.9);-webkit-mask:linear-gradient(#000 0 0) padding-box,conic-gradient(#000 25%,#0000 0 50%,#000 0 75%,#0000 0) 2px 2px/8px 8px border-box;mask:linear-gradient(#000 0 0) padding-box,conic-gradient(#000 25%,#0000 0 50%,#000 0 75%,#0000 0) 2px 2px/8px 8px border-box;}
-#lp .q,.cvBack .q{font-size:18px;line-height:1.7;text-align:center;color:#6a5444;min-height:80px}
+#lp .por,.cvBack .por{image-rendering:pixelated;width:144px;height:144px;margin:2px auto 8px;display:block;box-sizing:content-box;border:4px solid #4a3a2c;padding:8px;background:#ece2cc;background-clip:padding-box;filter:grayscale(1) contrast(.9);-webkit-mask:linear-gradient(#000 0 0) padding-box,conic-gradient(#000 25%,#0000 0 50%,#000 0 75%,#0000 0) 2px 2px/8px 8px border-box;mask:linear-gradient(#000 0 0) padding-box,conic-gradient(#000 25%,#0000 0 50%,#000 0 75%,#0000 0) 2px 2px/8px 8px border-box;}
+#lp .q,.cvBack .q{font-size:14px;line-height:1.6;text-align:center;color:#6a5444;min-height:46px;word-break:keep-all}
 #lp .pbtn,.cvBack .pbtn{display:block;margin:14px auto 0}
 #eGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .page{overflow:visible}
@@ -1718,7 +1718,7 @@ const GOJ_END={
 };
 
 const DATA={
-  ace:{id:'ace',roomName:'에이스의 방',whom:'다단',por:'ace_por',me:'marco',quote:'불꽃은 꺼져도<br>남은 온기는 사라지지 않는다.',
+  ace:{id:'ace',roomName:'에이스의 방',whom:'다단',por:'ace_por',me:'marco',quote:'"힘에 굴복해서야 남자로 태어난 의미가 없지.<br>난 결코 인생에 후회를 남기지 않아."',
     slots:ACE_SLOT,items:ACE_ITEMS,init:{pipe:{z:'corner',x:66,y:106}},drawRoom:(c,t)=>SC.roomAceImg(c,t),endImg:{1:'ace_end1b',2:'ace_end2',3:'ace_end3',4:'ace_end4',5:'ace_end5',6:'ace_end6'},ghost:{spr:'body',k:'ace_ghost',x:150,y:56,w:24,h:64,hide:1},
     intro:ACE_INTRO,warn:ACE_WARN,endings:ACE_END,ends:ACE_ENDS,miss:w=>`그리고 ${w.nm}은 왜 아직 상자 안에 있냐. `},
   rengoku:{id:'rengoku',roomName:'센쥬로의 방',whom:'센쥬로',por:'rengoku',me:'tanjiro',quote:'마음을 불태워라.<br>그 불꽃은 남은 이들에게 옮겨붙는다.',
