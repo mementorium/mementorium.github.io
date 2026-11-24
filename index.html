@@ -191,10 +191,10 @@ body.touch .shArr{width:46px;height:40px;font-size:16px}
 #box.on{display:block}
 #vn[data-ch=gojo] #box{background:rgba(12,18,38,.94);border-color:#a9c6f2;box-shadow:0 0 0 4px #0b1024}
 #vn[data-ch=gojo] #nm{background:#4f86d8;color:#f2f6ff;border-color:#0b1024}
-#vn[data-ch=gojo] #nx,#vn[data-ch=gojo] #box.nar #tx{color:#b9cfee}
+#vn[data-ch=gojo] #tx,#vn[data-ch=gojo] #nx,#vn[data-ch=gojo] #box.nar #tx{color:#fff}
 #vn[data-ch=rengoku] #box{background:rgba(30,12,8,.94);border-color:#f0c56e;box-shadow:0 0 0 4px #1e0a06}
 #vn[data-ch=rengoku] #nm{background:#c8401f;color:#fff2dc;border-color:#1e0a06}
-#vn[data-ch=rengoku] #nx,#vn[data-ch=rengoku] #box.nar #tx{color:#efd6a8}
+#vn[data-ch=rengoku] #tx,#vn[data-ch=rengoku] #nx,#vn[data-ch=rengoku] #box.nar #tx{color:#fff}
 #face{display:none !important;position:absolute;left:12px;top:12px;width:88px;height:88px;background:#2d2232;border:3px solid #e8d9b8;overflow:hidden}
 #face img{width:100%;height:100%;image-rendering:pixelated}
 #face img.sil{filter:brightness(0) opacity(.85)}
@@ -1596,23 +1596,23 @@ const GOJ_SLOT={
   floor:{x:0,y:90,w:240,h:18,cap:3,min:96,nm:'바닥'}
 };
 const GOJ_ITEMS=[
-  {id:'blind',spr:'blind',size:1,owner:'gojo',home:'hook',nm:'검은 눈가리개',d:'눈을 가리는 검은 천. 그의 상징 같은 물건.',h:'"들어오면 눈가리개부터 풀어서 거울 옆 고리에 걸었어요. 거울 보면서 \'오늘도 잘생겼네\' 하고요." ― 이타도리',fix:'눈가리개는 거울 옆 고리예요. 거울 보면서 잘생겼다고 하셨잖아요.'},
-  {id:'shades',spr:'shades',size:1,owner:'gojo',home:'desk',nm:'둥근 선글라스',d:'까만 동그란 선글라스. 렌즈에 지문 하나 없다.',h:'"선글라스는 제 책상 위에 툭 올려놓고, 제 숙제를 구경했어요. 도와주지는 않고요." ― 이타도리',fix:'선글라스는 제 책상 위에 올려두셨어요.'},
-  {id:'kiku',spr:'kiku',size:1,owner:'gojo',home:'table',nm:'키쿠후쿠 상자',d:'센다이 명물, 생크림 즌다 찹쌀떡. 선생님이 제일 좋아하던 것.',h:'"키쿠후쿠는 꼭 좌탁 위에 잔뜩 쌓아두고 혼자 다 드셨어요." ― 이타도리',fix:'키쿠후쿠는 좌탁 위요. 혼자 다 드셨잖아요.'},
-  {id:'dvd',spr:'dvd',size:2,owner:'gojo',home:'tvshelf',nm:'영화 DVD 묶음',d:'장르가 제멋대로인 DVD 더미. 반납 기한이 한참 지났다.',h:'"영화 훈련 한다고 잔뜩 빌려와서, TV 장식장에 꽂아뒀어요." ― 이타도리',fix:'DVD는 TV 장식장이에요. 영화 훈련 때 꽂아두셨잖아요.'},
-  {id:'jacket',spr:'jacket',size:3,owner:'gojo',home:'closet',nm:'고전 교사 상의',d:'목까지 올라오는 검은 상의. 소매가 길다.',h:'"자기 옷을 제 옷장에 걸어놓고 갔어요. 남의 방인데." ― 이타도리',fix:'상의는 옷장에 걸어두셨어요. 남의 옷장인데도요.'},
-  {id:'beanbag',spr:'beanbag',size:3,owner:'gojo',home:'tvfront',nm:'파란 빈백',d:'침대 위에 올라가 있던 커다란 빈백. 원래 이 방 가구 같다.',h:'"선생님이 멋대로 사 온 빈백이에요. TV 앞에 두고 거기서만 영화 봤어요." ― 이타도리',fix:'빈백은 TV 앞이에요. 선생님 전용 자리.'},
+  {id:'blind',spr:'blind',size:1,owner:'gojo',home:'hook',nm:'검은 눈가리개',d:'눈을 가리는 검은 천. 그의 상징 같은 물건.',h:'들어오면 눈가리개부터 풀어서 거울 옆 고리에 걸었다. 거울 보면서 "오늘도 잘생겼네" 하고.',fix:'눈가리개는 거울 옆 고리. 거울 보면서 잘생겼다고 했었잖아.'},
+  {id:'shades',spr:'shades',size:1,owner:'gojo',home:'desk',nm:'둥근 선글라스',d:'까만 동그란 선글라스. 렌즈에 지문 하나 없다.',h:'선글라스는 책상 위에 툭 올려놓고, 숙제를 구경했다. 도와주지는 않고.',fix:'선글라스는 책상 위에 올려뒀었지.'},
+  {id:'kiku',spr:'kiku',size:1,owner:'gojo',home:'table',nm:'키쿠후쿠 상자',d:'센다이 명물, 생크림 즌다 찹쌀떡. 선생님이 제일 좋아하던 것.',h:'키쿠후쿠는 꼭 좌탁 위에 잔뜩 쌓아두고 혼자 다 먹었다.',fix:'키쿠후쿠는 좌탁 위. 혼자 다 먹었었지.'},
+  {id:'dvd',spr:'dvd',size:2,owner:'gojo',home:'tvshelf',nm:'영화 DVD 묶음',d:'장르가 제멋대로인 DVD 더미. 반납 기한이 한참 지났다.',h:'영화 훈련 한다고 잔뜩 빌려와서, TV 장식장에 꽂아뒀다.',fix:'DVD는 TV 장식장. 영화 훈련 때 꽂아뒀었지.'},
+  {id:'jacket',spr:'jacket',size:3,owner:'gojo',home:'closet',nm:'고전 교사 상의',d:'목까지 올라오는 검은 상의. 소매가 길다.',h:'자기 옷을 이 방 옷장에 걸어놓고 갔다. 남의 방인데.',fix:'상의는 옷장에 걸어뒀었지. 남의 옷장인데도.'},
+  {id:'beanbag',spr:'beanbag',size:3,owner:'gojo',home:'tvfront',nm:'파란 빈백',d:'침대 위에 올라가 있던 커다란 빈백. 원래 이 방 가구 같다.',h:'그 사람이 멋대로 사 온 빈백. TV 앞에 두고 거기서만 영화를 봤다.',fix:'빈백은 TV 앞. 그 사람 전용 자리.'},
   {id:'ydoll',spr:'ydoll',size:2,owner:'yaga',nm:'저주 인형',d:'영화를 볼 때 끌어안고 있던 인형. 집중이 흐트러지면 주먹이 날아온다.',h:'발바닥에 "야가"라고 단정하게 수놓아져 있다.'},
   {id:'tie',spr:'tie',size:1,owner:'nanami',nm:'무늬 넥타이',d:'단정하게 다려진 넥타이. 이런 걸 맸던가?',h:'안쪽 상표에 고급 양복점 이름. 정시 퇴근을 사랑한 누군가의 것이다.'},
   {id:'kesa',spr:'kesa',size:3,owner:'geto',nm:'낡은 가사',d:'오래된 스님의 가사. 고전 창고 같은 상자에 들어 있었다.',h:'그의 친구가 입던 것이라고 들었다. 그는 이것을 끝까지 자기 방에 두지 않았다.'},
-  {id:'popcorn',spr:'popcorn',size:2,owner:'gojo',home:'tvfront',nm:'팝콘 통',d:'커다란 팝콘 통. 바닥에 캐러멜이 눌어붙었다.',h:'"TV 앞 빈백 옆에 팝콘 통 끼고 영화 봤어요." ― 이타도리',fix:'팝콘 통은 TV 앞이요. 빈백 옆.'},
-  {id:'controller',spr:'controller',size:1,owner:'gojo',home:'tvshelf',nm:'게임 패드',d:'버튼 하나가 눌린 채 들어가 있다.',h:'"지면 패드를 TV 장식장에 던져놓고 삐졌어요." ― 이타도리',fix:'게임 패드는 TV 장식장이에요.'},
-  {id:'candy',spr:'candy',size:1,owner:'gojo',home:'table',nm:'사탕 병',d:'알록달록한 사탕이 가득한 유리병.',h:'"단 거는 전부 좌탁 위에. 사탕 병도요." ― 이타도리',fix:'사탕 병은 좌탁 위예요.'},
-  {id:'gphoto',spr:'gphoto',size:1,owner:'gojo',home:'desk',nm:'학창 시절 사진',d:'교복 차림의 세 사람이 웃고 있는 사진.',h:'"제 책상에 이 사진을 세워두고 한참 보다 가셨어요. 아무 말도 없이." ― 이타도리',fix:'그 사진은 제 책상 위에 세워두셨어요.'},
-  {id:'slippers',spr:'slippers',size:2,owner:'gojo',home:'tvfront',nm:'실내화',d:'발이 큰 사람용 실내화.',h:'"실내화는 TV 앞에 아무렇게나 벗어놨어요." ― 이타도리',fix:'실내화는 TV 앞이에요. 벗어던지던 자리.'},
-  {id:'gblanket',spr:'gblanket',size:3,owner:'gojo',home:'bed',nm:'별무늬 담요',d:'남색 바탕에 하얀 별이 박힌 담요.',h:'"제 침대에 자기 담요를 깔아두고 낮잠 잤어요. 제 침대인데." ― 이타도리',fix:'담요는 제 침대 위요.'},
-  {id:'keyring',spr:'keyring',size:1,owner:'gojo',home:'hook',nm:'키쿠후쿠 열쇠고리',d:'찹쌀떡 모양 열쇠고리.',h:'"눈가리개랑 같이 거울 옆 고리에 걸어두셨어요." ― 이타도리',fix:'열쇠고리는 거울 옆 고리예요.'},
-  {id:'souvenir',spr:'souvenir',size:2,owner:'gojo',home:'window',nm:'기념품 봉투',d:'출장 갈 때마다 사 온 기념품 꾸러미.',h:'"출장 다녀오면 기념품을 창틀에 쭉 늘어놨어요." ― 이타도리',fix:'기념품은 창틀에 늘어놓으셨어요.'},
+  {id:'popcorn',spr:'popcorn',size:2,owner:'gojo',home:'tvfront',nm:'팝콘 통',d:'커다란 팝콘 통. 바닥에 캐러멜이 눌어붙었다.',h:'TV 앞 빈백 옆에 팝콘 통을 끼고 영화를 봤다.',fix:'팝콘 통은 TV 앞, 빈백 옆.'},
+  {id:'controller',spr:'controller',size:1,owner:'gojo',home:'tvshelf',nm:'게임 패드',d:'버튼 하나가 눌린 채 들어가 있다.',h:'지면 패드를 TV 장식장에 던져놓고 삐졌다.',fix:'게임 패드는 TV 장식장.'},
+  {id:'candy',spr:'candy',size:1,owner:'gojo',home:'table',nm:'사탕 병',d:'알록달록한 사탕이 가득한 유리병.',h:'단 거는 전부 좌탁 위에. 사탕 병도.',fix:'사탕 병은 좌탁 위.'},
+  {id:'gphoto',spr:'gphoto',size:1,owner:'gojo',home:'desk',nm:'학창 시절 사진',d:'교복 차림의 세 사람이 웃고 있는 사진.',h:'책상에 이 사진을 세워두고 한참 보다 갔다. 아무 말도 없이.',fix:'그 사진은 책상 위에 세워뒀었지.'},
+  {id:'slippers',spr:'slippers',size:2,owner:'gojo',home:'tvfront',nm:'실내화',d:'발이 큰 사람용 실내화.',h:'실내화는 TV 앞에 아무렇게나 벗어놨다.',fix:'실내화는 TV 앞. 벗어던지던 자리.'},
+  {id:'gblanket',spr:'gblanket',size:3,owner:'gojo',home:'bed',nm:'별무늬 담요',d:'남색 바탕에 하얀 별이 박힌 담요.',h:'침대에 자기 담요를 깔아두고 낮잠을 잤다. 남의 침대인데.',fix:'담요는 침대 위.'},
+  {id:'keyring',spr:'keyring',size:1,owner:'gojo',home:'hook',nm:'키쿠후쿠 열쇠고리',d:'찹쌀떡 모양 열쇠고리.',h:'눈가리개랑 같이 거울 옆 고리에 걸어뒀다.',fix:'열쇠고리는 거울 옆 고리.'},
+  {id:'souvenir',spr:'souvenir',size:2,owner:'gojo',home:'window',nm:'기념품 봉투',d:'출장 갈 때마다 사 온 기념품 꾸러미.',h:'출장 다녀오면 기념품을 창틀에 쭉 늘어놨다.',fix:'기념품은 창틀에 늘어놨었지.'},
   {id:'onigiri',spr:'onigiri',size:1,owner:'inumaki',nm:'주먹밥',d:'김으로 싼 주먹밥 하나.',h:'포장지에 "연어알"이라고만 적혀 있다. 말수 적은 선배의 것이다.'},
   {id:'hammer',spr:'hammer',size:2,owner:'nobara',nm:'망치와 못',d:'손에 익은 망치와 못 몇 개.',h:'손잡이에 "N"이라고 새겨져 있다.'},
   {id:'sneaker',spr:'sneaker',size:2,owner:'megumi',nm:'검은 운동화',d:'흰 끈의 검은 운동화.',h:'신발 안쪽에 개 털이 잔뜩 붙어 있다.'},
@@ -1662,29 +1662,28 @@ const GOJ_INTRO=[
   {cg:'goj_school',fin:1800},
   {wait:2200},
   {n:'산속 깊은 곳의 학교. 오랜만에 조용한 아침이다.'},
-  {s:['이타도리','itadori','……선생님 물건, 가져오셨어요?']},
-  {s:['나','me','네. 정리를 부탁받아서요. 상자째로 가져왔습니다.']},
-  {s:['이타도리','itadori','고죠 선생님은 맨날 노크도 없이 제 방에 들어왔거든요.']},
-  {s:['이타도리','itadori','영화 보자고, 키쿠후쿠 먹자고… 제 방을 자기 방처럼 썼어요.']},
-  {n:'웃으며 하는 말인데, 목소리 끝이 조금 갈라져 있었다.'},
-  {s:['이타도리','itadori','그래서 여기 두고 싶어요. 선생님이 있던 그대로.']},
-  {s:['이타도리','itadori','고전 창고에서 한꺼번에 챙긴 거라, 다른 분들 물건도 섞여 있을 거예요.']},
-  {s:['이타도리','itadori','다 되면 사진 한 장 찍어주세요. 저는… 잠깐 바람 좀 쐬고 올게요.']},
+  {n:'기숙사 끝 방. 문 앞에 상자 몇 개가 쌓여 있다.'},
+  {s:['나','me','……결국 여기로 왔네.']},
+  {s:['나','me','그 사람은 맨날 노크도 없이 이 방에 들어왔지. 영화 보자고, 키쿠후쿠 먹자고.']},
+  {s:['나','me','자기 방도 아니면서, 제일 편하게 지내던 방.']},
+  {s:['나','me','그러니까 여기 두자. 그 사람이 있던 그대로.']},
+  {s:['나','me','창고에서 한꺼번에 쓸어 담아 온 거라… 다른 사람 물건도 섞여 있겠지.']},
+  {s:['나','me','다 하면 사진 한 장 남겨 두자. 잊어버리지 않게.']},
   {fade:'#000'}
 ];
 const GOJ_WARN=[
   {bg:'roomP',bgm:'calm'},
-  {s:['이타도리','itadori','(문 밖에서) 어? 벌써요? 상자 여는 소리도 안 났는데….']},
-  {s:['이타도리','itadori','저기… 한 번만 더 봐주실래요? 선생님 방이니까요.']},
+  {s:['나','me','……벌써 끝? 상자 여는 소리도 안 냈잖아.']},
+  {s:['나','me','한 번만 더 보자. 그 사람 방이니까.']},
 ];
 const GOJ_END={
   1:[
     {bg:'roomP',bgm:'box'},
-    {n:'사진을 건네자, 이타도리가 한참 동안 그것을 내려다보았다.'},
-    {s:['이타도리','itadori','……빈백이 TV 앞에 있네요.']},
-    {s:['이타도리','itadori','눈가리개는 거울 옆에, 키쿠후쿠는 좌탁 위에. 진짜… 선생님 있던 그대로다.']},
-    {s:['이타도리','itadori','이제 노크 안 하고 들어올 사람도 없는데….']},
-    {n:'그는 웃으려다, 끝내 고개를 숙였다.'},
+    {n:'다 찍은 사진을 한참 동안 내려다보았다.'},
+    {s:['나','me','……빈백은 TV 앞에 있고.']},
+    {s:['나','me','눈가리개는 거울 옆에, 키쿠후쿠는 좌탁 위에. 진짜… 그 사람 있던 그대로다.']},
+    {s:['나','me','이제 노크 안 하고 들어올 사람도 없는데.']},
+    {n:'웃으려다, 끝내 고개를 숙였다.'},
     {n:'그때, 아무도 켜지 않은 TV가 혼자 켜졌다.'},
     {fade:'#fff',slow:1},{bg:'airport',bgm:'calm'},{wait:1400},
     {n:'하얗고 조용한 곳. 낯익은 뒷모습이 벤치에 앉아 있었다.'},
@@ -1702,43 +1701,42 @@ const GOJ_END={
   ],
   2:[
     {bg:'roomP',bgm:null},
-    {n:'사진을 건네자, 이타도리의 얼굴이 하얗게 질렸다.'},
-    {s:['이타도리','itadori','……이 상자, 왜 여기 있어요?']},
-    {s:['이타도리','itadori','이것 때문에 선생님이 얼마나 오래 갇혀 있었는데…!']},
+    {n:'사진 한가운데, 그 상자가 놓여 있었다. 얼굴에서 핏기가 빠졌다.'},
+    {s:['나','me','……이게 왜 여기 있지.']},
+    {s:['나','me','이것 때문에 그 사람이 얼마나 오래 갇혀 있었는데…!']},
     {n:'그때, 상자 안에서 익숙한 목소리가 새어 나왔다.'},
-    {s:['고죠','gojo','어―이, 유지? 여기 좀 좁은데.']},
-    {s:['이타도리','itadori','서, 선생님?!']},
+    {s:['고죠','gojo','어―이. 여기 좀 좁은데?']},
+    {s:['나','me','……!']},
     {s:['고죠','gojo','꺼내 줄 사람은 이번에도 너밖에 없나 보네. 천천히 와. 기다리는 건 익숙하니까.']},
     {n:'방은 정리됐지만, 그는 아직 상자 안에 있다.'}
   ],
   3:[
     {bg:'roomP',bgm:'calm'},
-    {n:'사진을 건네자, 이타도리가 머리를 긁적였다.'},
-    {s:['이타도리','itadori',()=>lastRes.decIn?`선생님 물건이랑… ${decoyNames()}까지 섞여 있네요.`:'선생님 물건은 맞는데, 자리가 좀 다르네요.']},
-    {s:['이타도리','itadori',()=>{const w=firstWrong();return w?'아, 그리고 '+w:'그래도 괜찮아요.';}]},
-    {s:['이타도리','itadori','근데 이렇게 보니까, 다 같이 모였던 날 같아요.']},
-    {s:['이타도리','itadori','선생님이 갑자기 꽃놀이 가자고 다 끌고 나갔던 날. 후시구로는 싫다면서도 끝까지 있었고, 쿠기사키는 먹기만 했고.']},
+    {n:'사진을 보다가, 머리를 긁적였다.'},
+    {s:['나','me',()=>lastRes.decIn?`그 사람 물건이랑… ${decoyNames()}까지 섞여 있네.`:'그 사람 물건은 맞는데, 자리가 좀 다르네.']},
+    {s:['나','me',()=>{const w=firstWrong();return w?'아, 그리고 '+w:'그래도 괜찮아.';}]},
+    {s:['나','me','근데 이렇게 보니까, 다 같이 모였던 날 같다.']},
+    {s:['나','me','그 사람이 갑자기 꽃놀이 가자고 다 끌고 나갔던 날. 후시구로는 싫다면서도 끝까지 있었고, 쿠기사키는 먹기만 했고.']},
     {n:'그날의 소란스러운 웃음소리가, 잠깐 방 안에 돌아온 것 같았다.'},
-    {s:['이타도리','itadori','……다음엔 다 같이 와서 정리해요. 선생님도 그게 더 좋아할 거예요.']}
+    {s:['나','me','……다음엔 다 같이 와서 정리하자. 그 사람도 그게 더 좋아할 거야.']}
   ],
   4:[
     {bg:'roomP',bgm:null},
-    {s:['이타도리','itadori','……이거, 다 누구 거예요?']},
-    {s:['이타도리','itadori',()=>`${decoyNames()}…. 선생님 물건이 하나도 없어요.`]},
-    {n:'뒤에서 쿠기사키가 팔짱을 끼고 들어왔다.'},
-    {s:['쿠기사키','nobara','이지치 씨. 그 사람이랑 몇 년을 일했는데 물건 하나 못 알아봐요?']},
-    {s:['나','me','그, 그게… 다 비슷해 보여서….']},
-    {s:['쿠기사키','nobara','어디가 비슷해요! 그 사람이 넥타이 매는 거 본 적 있어요?!']},
+    {n:'사진을 다시 들여다보았다.'},
+    {s:['나','me','……이거, 다 누구 거지?']},
+    {s:['나','me',()=>`${decoyNames()}…. 그 사람 물건이 하나도 없잖아.`]},
+    {s:['나','me','몇 년을 같이 일했는데, 물건 하나 못 알아보다니.']},
+    {s:['나','me','"이지치, 너 그러다 혼난다?" ……고죠 씨라면 그렇게 웃었겠지.']},
     {card:'당신은 주술고전 보조감독, 이지치 키요타카.\n……근무 평가가 걱정된다.'}
   ],
   5:[
     {bg:'roomP',bgm:null},
     {n:'상자는 끝내 열리지 않았다.'},
-    {s:['이타도리','itadori','……괜찮아요. 저였어도 못 열었을 거예요.']},
-    {s:['이타도리','itadori','그때 제가 조금만 더 강했으면, 선생님 혼자 싸우게 두지 않았을 텐데.']},
-    {s:['이타도리','itadori','이 상자를 열면… 진짜로 끝나는 것 같아서요.']},
-    {n:'닫힌 상자 앞에서, 두 사람은 한참을 말없이 앉아 있었다.'},
-    {card:'상자는, 내일 다시 열어 보기로 했다.'}
+    {s:['나','me','……못 열겠어.']},
+    {s:['나','me','그때 내가 조금만 더 강했으면, 선생님 혼자 싸우게 두지 않았을 텐데.']},
+    {s:['나','me','이 상자를 열면… 진짜로 끝나는 것 같아서.']},
+    {n:'닫힌 상자 앞에서, 한참을 말없이 앉아 있었다.'},
+    {card:'당신은 주술고전 1학년, 이타도리 유지.\n상자는, 내일 다시 열어 보기로 했다.'}
   ]
 };
 
@@ -1757,7 +1755,7 @@ const DATA={
       return {e,aceIn,correct,decIn,total:own.length,wrong:decIn+(aceIn-correct)+(pin?1:0),missing:own.length-aceIn};},noMove:5,roomName:'이타도리의 방',whom:'이타도리',por:'gojo',me:'ijichi',quote:'"괜찮아, 내가 최강이니까."',
     slots:GOJ_SLOT,items:GOJ_ITEMS,init:{beanbag:{z:'bed',x:36,y:76}},drawRoom:(c,t)=>SC.roomGojo(c,t),ghost:{spr:'gbody',x:96,y:28,w:40,h:60},
     intro:GOJ_INTRO,warn:GOJ_WARN,endings:GOJ_END,ends:{1:'청춘의 숙제',2:'봉인',3:'푸른 봄',4:'보조감독',5:'닫힌 상자'},
-    miss:w=>`${w.nm}은 아직 상자에 있어요. `}
+    miss:w=>`${w.nm}은 아직 상자 안에 있네. `}
 };
 
 /* ================= 게임 흐름 ================= */
