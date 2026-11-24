@@ -137,10 +137,50 @@ footer .fl img{height:54px;image-rendering:pixelated;opacity:.85}
 .studio .grid>div:first-child{display:flex;flex-direction:column}
 .studio-logo{display:block;width:220px;margin:auto;image-rendering:pixelated}
 
+/* 기획 배경 */
+.why{display:grid;grid-template-columns:5fr 6fr;gap:90px}
+.why .body p+p{margin-top:18px}
+.ask{margin-top:40px;padding:26px 28px;border-left:3px solid var(--sun);background:var(--bg2);font-size:18px;line-height:1.7;word-break:keep-all}
+.ask small{display:block;font-size:12px;letter-spacing:.2em;color:var(--sun);margin-bottom:8px}
+
+/* 유품 */
+.objs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:60px}
+.obj{background:var(--bg2);padding:28px 26px;border-top:3px solid var(--sun)}
+.obj h3{font-weight:normal;font-size:19px;margin-bottom:16px;word-break:keep-all}
+.obj dl{font-size:13px;line-height:1.85;word-break:keep-all}
+.obj dt{color:var(--mute);font-size:11px;letter-spacing:.15em;margin-top:12px}
+.obj dd{color:var(--dim)}
+.decoy{margin-top:14px;padding:22px 26px;border:1px dashed var(--line);font-size:14px;color:var(--dim);word-break:keep-all}
+.decoy b{font-weight:normal;color:var(--moon)}
+
+/* 설계 */
+.tasks{margin-top:60px;border-top:1px solid var(--line)}
+.task{display:grid;grid-template-columns:60px 1fr 40px 1.3fr;gap:20px;align-items:center;padding:24px 0;border-bottom:1px solid var(--line);word-break:keep-all}
+.task .n{font-size:28px;color:var(--mute)}
+.task .t{font-size:16px}
+.task .t small,.task .g small{display:block;font-size:11px;letter-spacing:.15em;color:var(--mute)}
+.task .ar{color:var(--sun);text-align:center}
+.task .g{font-size:14px;color:var(--dim);line-height:1.8}
+.task .g b{font-weight:normal;color:var(--cream);font-size:16px}
+.bond{margin-top:56px;max-width:760px}
+.ref{margin-top:40px;font-size:12px;color:var(--mute);line-height:1.9}
+.axes{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:-20px 0 50px}
+.axes div{background:var(--bg2);padding:20px 24px;font-size:14px;color:var(--dim);word-break:keep-all}
+.axes b{display:block;font-weight:normal;color:var(--cream);font-size:16px;margin-bottom:4px}
+
 #lb{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
 #lb.on{display:flex}
 #lb img{max-width:min(1300px,100%);max-height:90vh}
 
+nav .links a{white-space:nowrap}
+@media (max-width:1180px){
+  nav{padding:0 20px;gap:16px}
+  nav .links{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line)}
+  nav .links.on{display:flex}
+  nav .links a{padding:14px 20px;border-top:1px solid var(--line)}
+  nav .logo{margin-right:auto}
+  #menuBtn{display:block}
+}
 @media (max-width:900px){
   nav{padding:0 20px;gap:16px}
   nav .links{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line)}
@@ -164,6 +204,11 @@ footer .fl img{height:54px;image-rendering:pixelated;opacity:.85}
   .ends div:first-child{grid-column:span 2;grid-row:auto}
   .ends div{aspect-ratio:16/9}
   .story{padding:140px 22px}
+  .why{grid-template-columns:1fr;gap:30px}
+  .objs,.axes{grid-template-columns:1fr}
+  .task{grid-template-columns:36px 1fr;gap:6px 14px}
+  .task .ar{display:none}
+  .task .g{grid-column:2}
   footer{padding:44px 22px}
   .studio-logo{width:160px;margin:20px auto 0}
 }
@@ -179,7 +224,10 @@ footer .fl img{height:54px;image-rendering:pixelated;opacity:.85}
   <div class="links" id="links">
     <a href="#overview">게임 소개</a>
     <a href="#story">이야기</a>
+    <a href="#why">기획 배경</a>
     <a href="#features">특징</a>
+    <a href="#objects">유품</a>
+    <a href="#design">설계</a>
     <a href="#endings">엔딩</a>
     <a href="#rooms">기억의 방</a>
     <a href="#studio">개발</a>
@@ -232,6 +280,23 @@ footer .fl img{height:54px;image-rendering:pixelated;opacity:.85}
   <p>당신이 누군지는<br>방을 다 치우고 나서야 알게 된다.</p>
 </section>
 
+<section id="why">
+  <div class="wrap why">
+    <div>
+      <div class="kicker">BACKGROUND</div>
+      <h2>원작은 다음 장으로 넘어갔지만,<br>독자는 아직 그 장면에 남아 있습니다.</h2>
+    </div>
+    <div>
+      <div class="body">
+        <p>1970년, 만화 《내일의 죠》에서 리키이시 토오루가 죽자 독자들은 출판사 강당에 모여 실제로 장례식을 치렀습니다. 지금도 팬들은 캐릭터의 기일을 챙기고, 추모 그림을 그리고, 그가 떠난 뒤를 상상하는 2차 창작을 씁니다.</p>
+        <p>원작은 대부분 죽는 순간까지만 보여 줍니다. 장례, 주인 없는 방, 남은 사람들의 일상은 다음 화로 넘어가며 생략됩니다. 독자의 슬픔은 이렇게 생략된 자리에 남습니다.</p>
+        <p>《메멘토리움》은 그 빈자리를 플레이로 채웁니다. 말로 위로하지 않고, 그 사람의 물건을 하나씩 손에 쥐어 보게 합니다.</p>
+      </div>
+      <div class="ask"><small>기획 질문</small>좋아하던 캐릭터를 잊지 않으면서 보내 줄 수 있을까?</div>
+    </div>
+  </div>
+</section>
+
 <section id="features">
   <div class="wrap">
     <div class="feat">
@@ -266,11 +331,52 @@ footer .fl img{height:54px;image-rendering:pixelated;opacity:.85}
   </div>
 </section>
 
+<section id="objects" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="ends-head" style="margin-bottom:0">
+      <div><div class="kicker">OBJECTS</div><h2>물건 하나에 장면 하나</h2></div>
+      <p class="body">에이스의 방에 놓이는 유품은 모두 원작의 장면에서 골랐습니다. 물건을 집으면 그 장면이 떠오르고, 어디에 둘지 정하는 순간 그 사람을 다시 생각하게 됩니다. 그중 여섯 개를 소개합니다.</p>
+    </div>
+    <div class="objs">
+      <div class="obj" style="background:var(--bg)"><h3>형제의 술잔</h3><dl><dt>원작</dt><dd>어린 시절 사보, 루피와 잔을 나누며 의형제가 된 날.</dd><dt>방에서</dt><dd>창틀에 따로 둡니다. 아무 데나 둘 수 없는 잔입니다.</dd></dl></div>
+      <div class="obj" style="background:var(--bg)"><h3>루피의 비브르 카드</h3><dl><dt>원작</dt><dd>주인이 있는 쪽으로 움직이는 종이. 에이스는 동생과 서로의 행방을 이렇게 이어 두었습니다.</dd><dt>방에서</dt><dd>보물상자 안에 넣습니다. 주인 없는 방에서도 카드는 여전히 동생 쪽을 가리킵니다.</dd></dl></div>
+      <div class="obj" style="background:var(--bg)"><h3>두 개의 해적기</h3><dl><dt>원작</dt><dd>스페이드 해적단의 선장에서 흰수염 해적단 2번대 대장으로.</dd><dt>방에서</dt><dd>두 깃발을 위아래로 겁니다. 그가 거쳐 온 두 집입니다.</dd></dl></div>
+      <div class="obj" style="background:var(--bg)"><h3>외상 술값 계산서</h3><dl><dt>원작</dt><dd>밥을 먹다 잠들고, 값을 치르지 않고 떠나던 버릇.</dd><dt>방에서</dt><dd>상자 위에 쌓아 둡니다. 이제 갚을 사람이 없습니다.</dd></dl></div>
+      <div class="obj" style="background:var(--bg)"><h3>낮잠 베개</h3><dl><dt>원작</dt><dd>식사 중에도 쓰러지듯 잠들던 모습.</dd><dt>방에서</dt><dd>바닥에 둡니다. 아무 데서나 자던 사람이었으니까요.</dd></dl></div>
+      <div class="obj" style="background:var(--bg)"><h3>낡은 쇠파이프</h3><dl><dt>원작</dt><dd>코르보 산에서 형제들과 들고 뛰어다니던 어린 시절의 무기.</dd><dt>방에서</dt><dd>사다리 옆에 기대 세웁니다. 다 자란 뒤에도 버리지 않은 물건입니다.</dd></dl></div>
+    </div>
+    <div class="decoy" style="background:var(--bg)"><b>섞여 든 물건</b> · 상자에는 주변 인물의 물건도 몇 개 들어 있습니다. 무엇이 그의 것이 아닌지 알아보려면, 그가 어떤 사람이었는지 알아야 합니다.</div>
+  </div>
+</section>
+
+<section id="design">
+  <div class="wrap">
+    <div class="ends-head" style="margin-bottom:0">
+      <div><div class="kicker">DESIGN</div><h2>애도의 순서를<br>플레이의 순서로</h2></div>
+      <p class="body">애도 상담에서 널리 쓰이는 J. W. 워든의 ‘애도의 네 가지 과업’을 바탕으로 게임의 흐름을 짰습니다. 플레이어는 한 판을 하는 동안 이 네 단계를 차례로 지나갑니다.</p>
+    </div>
+    <div class="tasks">
+      <div class="task"><span class="n">1</span><span class="t"><small>과업</small>상실을 현실로 받아들이기</span><span class="ar">→</span><span class="g"><b>그날을 다시 보기</b><br>원작의 마지막 장면을 다시 넘기며 그가 떠났다는 사실에서 시작합니다.</span></div>
+      <div class="task"><span class="n">2</span><span class="t"><small>과업</small>슬픔을 겪어 내기</span><span class="ar">→</span><span class="g"><b>상자 열기</b><br>물건마다 떠오르는 장면을 피하지 않고 하나씩 마주합니다.</span></div>
+      <div class="task"><span class="n">3</span><span class="t"><small>과업</small>그가 없는 세상에 적응하기</span><span class="ar">→</span><span class="g"><b>자리 정하기</b><br>정해진 칸이 없습니다. 주인 없는 방을 플레이어가 직접 다시 꾸밉니다.</span></div>
+      <div class="task"><span class="n">4</span><span class="t"><small>과업</small>이어지는 연결 찾기</span><span class="ar">→</span><span class="g"><b>사진 한 장</b><br>방을 비우지 않고 그대로 남겨 사진으로 찍고, 앨범에 간직합니다.</span></div>
+    </div>
+    <div class="bond body">
+      <p>이 흐름은 ‘지속적 유대’라는 관점과 이어집니다. 애도는 떠난 사람을 잊는 일이 아니라, 그와의 관계를 다른 모양으로 이어 가는 일이라는 생각입니다. 그래서 이 게임의 정리는 버리는 정리가 아니라 물건마다 제자리를 찾아 주는 정리입니다.</p>
+    </div>
+    <p class="ref">참고 · J. W. Worden, 《Grief Counseling and Grief Therapy》 / D. Klass, P. R. Silverman, S. L. Nickman 엮음, 《Continuing Bonds: New Understandings of Grief》(1996)</p>
+  </div>
+</section>
+
 <section id="endings" style="padding-top:220px">
   <div class="wrap">
     <div class="ends-head">
       <div><div class="kicker">ENDINGS</div><h2>엔딩 여섯 개</h2></div>
       <p class="body">물건을 어떻게 놓았느냐에 따라 결말이 갈립니다. 하나는 먼저 보여 드리고, 나머지는 직접 찾아보세요.</p>
+    </div>
+    <div class="axes">
+      <div><b>얼마나 기억하는가</b>그의 물건을 그가 두던 자리에 놓았는지 봅니다.</div>
+      <div><b>얼마나 알아보는가</b>섞여 든 남의 물건을 가려냈는지 봅니다.</div>
     </div>
     <div class="ends">
       <div><img class="px" src="img/end1b.png" alt=""><span>1. 다녀왔어</span></div>
