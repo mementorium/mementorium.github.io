@@ -144,12 +144,18 @@ footer .fl img{height:54px;image-rendering:pixelated;opacity:.85}
 .ask small{display:block;font-size:12px;letter-spacing:.2em;color:var(--sun);margin-bottom:8px}
 
 /* 유품 */
-.objs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:60px}
-.obj{background:var(--bg2);padding:28px 26px;border-top:3px solid var(--sun)}
-.obj h3{font-weight:normal;font-size:19px;margin-bottom:16px;word-break:keep-all}
-.obj dl{font-size:13px;line-height:1.85;word-break:keep-all}
-.obj dt{color:var(--mute);font-size:11px;letter-spacing:.15em;margin-top:12px}
-.obj dd{color:var(--dim)}
+.objs{display:grid;grid-template-columns:repeat(3,1fr);gap:46px 34px;margin-top:70px;padding:0 6px}
+.obj{position:relative;background:#fbf6ea;color:#4a3a2c;padding:14px 14px 20px;box-shadow:8px 10px 0 rgba(0,0,0,.4);transform:rotate(var(--r,0deg));transition:transform .2s}
+.obj:hover{transform:rotate(0) translateY(-4px)}
+.obj .ph{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;gap:14px;
+  background:repeating-linear-gradient(90deg,#b77a45 0 46px,#a86d3b 46px 48px),#b77a45;box-shadow:inset 0 0 0 4px rgba(0,0,0,.12),inset 0 -40px 60px rgba(0,0,0,.18)}
+.obj .ph img{width:44%;max-height:80%;object-fit:contain;filter:drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff) drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff) drop-shadow(5px 6px 0 rgba(0,0,0,.25))}
+.obj .ph img:only-child{width:52%}
+.obj h3{font-weight:normal;font-size:18px;margin:14px 2px 6px;text-align:center;word-break:keep-all}
+.obj p{font-size:13px;line-height:1.75;color:#7d6852;text-align:center;word-break:keep-all;padding:0 6px}
+.obj .tp{position:absolute;width:96px;height:26px;top:-12px;left:50%;margin-left:-48px;background:rgba(232,145,90,.7);transform:rotate(-4deg);z-index:2}
+.obj .tp.y{background:rgba(242,214,120,.8)}
+.obj .tp.b{background:rgba(127,176,224,.75)}
 .decoy{margin-top:14px;padding:22px 26px;border:1px dashed var(--line);font-size:14px;color:var(--dim);word-break:keep-all}
 .decoy b{font-weight:normal;color:var(--moon)}
 
@@ -205,7 +211,11 @@ nav .links a{white-space:nowrap}
   .ends div{aspect-ratio:16/9}
   .story{padding:140px 22px}
   .why{grid-template-columns:1fr;gap:30px}
-  .objs,.axes{grid-template-columns:1fr}
+  .axes{grid-template-columns:1fr}
+  .objs{grid-template-columns:1fr 1fr;gap:30px 18px}
+  .obj p{font-size:12px;padding:0}
+  .obj h3{font-size:15px}
+  .obj{padding:10px 10px 16px}
   .task{grid-template-columns:36px 1fr;gap:6px 14px}
   .task .ar{display:none}
   .task .g{grid-column:2}
@@ -312,7 +322,7 @@ nav .links a{white-space:nowrap}
       <div>
         <div class="no">02</div>
         <h3>정해진 칸 없이</h3>
-        <p class="body">상자를 열고 물건을 원하는 곳에 끌어다 놓습니다. 어디에 두어야 그 사람다운지는 직접 생각해야 합니다.</p>
+        <p class="body">상자를 열고 물건을 끌어다 놓습니다. 칸은 없지만 물건마다 제자리가 있고, 그 자리는 그 사람을 알아야 보입니다.</p>
         <ul>
           <li>상자에 섞인 남의 물건 가려내기</li>
           <li>배경인 줄 알았던 소품도 자리 다시 보기</li>
@@ -338,14 +348,14 @@ nav .links a{white-space:nowrap}
       <p class="body">에이스의 방에 놓이는 유품은 모두 원작의 장면에서 골랐습니다. 물건을 집으면 그 장면이 떠오르고, 어디에 둘지 정하는 순간 그 사람을 다시 생각하게 됩니다. 그중 여섯 개를 소개합니다.</p>
     </div>
     <div class="objs">
-      <div class="obj" style="background:var(--bg)"><h3>형제의 술잔</h3><dl><dt>원작</dt><dd>어린 시절 사보, 루피와 잔을 나누며 의형제가 된 날.</dd></dl></div>
-      <div class="obj" style="background:var(--bg)"><h3>루피의 비브르 카드</h3><dl><dt>원작</dt><dd>주인이 있는 쪽으로 움직이는 종이. 에이스는 동생과 서로의 행방을 이렇게 이어 두었습니다.</dd></dl></div>
-      <div class="obj" style="background:var(--bg)"><h3>두 개의 해적기</h3><dl><dt>원작</dt><dd>스페이드 해적단의 선장에서 흰수염 해적단 2번대 대장으로.</dd></dl></div>
-      <div class="obj" style="background:var(--bg)"><h3>외상 술값 계산서</h3><dl><dt>원작</dt><dd>밥을 먹다 잠들고, 값을 치르지 않고 떠나던 버릇.</dd></dl></div>
-      <div class="obj" style="background:var(--bg)"><h3>낮잠 베개</h3><dl><dt>원작</dt><dd>식사 중에도 쓰러지듯 잠들던 모습.</dd></dl></div>
-      <div class="obj" style="background:var(--bg)"><h3>낡은 쇠파이프</h3><dl><dt>원작</dt><dd>코르보 산에서 형제들과 들고 뛰어다니던 어린 시절의 무기.</dd></dl></div>
+      <div class="obj" style="--r:-2deg"><span class="tp"></span><div class="ph"><img class="px" src="img/obj_a_sake.png" alt=""></div><h3>형제의 술잔</h3><p>어린 시절 사보, 루피와 잔을 나누며 의형제가 된 날.</p></div>
+      <div class="obj" style="--r:1.5deg"><span class="tp y"></span><div class="ph"><img class="px" src="img/obj_a_vivre.png" alt=""></div><h3>루피의 비브르 카드</h3><p>주인이 있는 쪽으로 움직이는 종이. 에이스는 동생과 서로의 행방을 이렇게 이어 두었습니다.</p></div>
+      <div class="obj" style="--r:-1deg"><span class="tp b"></span><div class="ph"><img class="px" src="img/obj_a_spflag.png" alt=""><img class="px" src="img/obj_a_wbflag.png" alt=""></div><h3>두 개의 해적기</h3><p>스페이드 해적단의 선장에서 흰수염 해적단 2번대 대장으로.</p></div>
+      <div class="obj" style="--r:2deg"><span class="tp"></span><div class="ph"><img class="px" src="img/obj_a_bill.png" alt=""></div><h3>외상 술값 계산서</h3><p>밥을 먹다 잠들고, 값을 치르지 않고 떠나던 버릇.</p></div>
+      <div class="obj" style="--r:-1.5deg"><span class="tp y"></span><div class="ph"><img class="px" src="img/obj_a_pillow.png" alt=""></div><h3>낮잠 베개</h3><p>식사 중에도 쓰러지듯 잠들던 모습.</p></div>
+      <div class="obj" style="--r:1deg"><span class="tp b"></span><div class="ph"><img class="px" src="img/obj_a_pipe.png" alt=""></div><h3>낡은 쇠파이프</h3><p>코르보 산에서 형제들과 들고 뛰어다니던 어린 시절의 무기.</p></div>
     </div>
-    <div class="decoy" style="background:var(--bg)"><b>섞여 든 물건</b> · 상자에는 주변 인물의 물건도 몇 개 들어 있습니다. 무엇이 그의 것이 아닌지 알아보려면, 그가 어떤 사람이었는지 알아야 합니다.</div>
+    <div class="decoy" style="background:var(--bg);margin-top:56px"><b>섞여 든 물건</b> · 상자에는 주변 인물의 물건도 몇 개 들어 있습니다. 무엇이 그의 것이 아닌지 알아보려면, 그가 어떤 사람이었는지 알아야 합니다.</div>
   </div>
 </section>
 
@@ -358,7 +368,7 @@ nav .links a{white-space:nowrap}
     <div class="tasks">
       <div class="task"><span class="n">1</span><span class="t"><small>과업</small>상실을 현실로 받아들이기</span><span class="ar">→</span><span class="g"><b>그날을 다시 보기</b><br>원작의 마지막 장면을 다시 넘기며 그가 떠났다는 사실에서 시작합니다.</span></div>
       <div class="task"><span class="n">2</span><span class="t"><small>과업</small>슬픔을 겪어 내기</span><span class="ar">→</span><span class="g"><b>상자 열기</b><br>물건마다 떠오르는 장면을 피하지 않고 하나씩 마주합니다.</span></div>
-      <div class="task"><span class="n">3</span><span class="t"><small>과업</small>그가 없는 세상에 적응하기</span><span class="ar">→</span><span class="g"><b>자리 정하기</b><br>정해진 칸이 없습니다. 주인 없는 방을 플레이어가 직접 다시 꾸밉니다.</span></div>
+      <div class="task"><span class="n">3</span><span class="t"><small>과업</small>그가 없는 세상에 적응하기</span><span class="ar">→</span><span class="g"><b>자리 정하기</b><br>정해진 칸은 없지만 물건마다 있어야 할 자리가 있습니다. 그 사람을 떠올리며 방을 원래대로 되돌립니다.</span></div>
       <div class="task"><span class="n">4</span><span class="t"><small>과업</small>이어지는 연결 찾기</span><span class="ar">→</span><span class="g"><b>사진 한 장</b><br>방을 비우지 않고 그대로 남겨 사진으로 찍고, 앨범에 간직합니다.</span></div>
     </div>
     <div class="bond body">
