@@ -122,7 +122,7 @@ button{font-family:inherit;cursor:pointer}
 .flip{position:absolute;left:380px;top:0;width:380px;height:440px;background:#efe4cc;border:4px solid #1a1420;transform-origin:left center;backface-visibility:hidden;z-index:4;animation:flp .5s ease-in forwards}
 @keyframes flp{to{transform:rotateY(-180deg)}}
 .page h3{font-size:24px;margin-bottom:14px;border-bottom:3px dashed #b39d72;padding-bottom:8px}
-#lp .por,.cvBack .por{image-rendering:pixelated;width:144px;height:144px;margin:8px auto 14px;display:block;border:4px solid #3a2a20;background:#cfc0a0;filter:grayscale(1) contrast(.9);}
+#lp .por,.cvBack .por{image-rendering:pixelated;width:144px;height:144px;margin:8px auto 14px;display:block;box-sizing:content-box;border:4px solid #4a3a2c;padding:7px;background:#ece2cc;background-clip:padding-box;filter:grayscale(1) contrast(.9);-webkit-mask:linear-gradient(#000 0 0) padding-box,conic-gradient(#000 25%,#0000 0 50%,#000 0 75%,#0000 0) 0 0/8px 8px border-box;mask:linear-gradient(#000 0 0) padding-box,conic-gradient(#000 25%,#0000 0 50%,#000 0 75%,#0000 0) 0 0/8px 8px border-box;}
 #lp .q,.cvBack .q{font-size:18px;line-height:1.7;text-align:center;color:#6a5444;min-height:80px}
 #lp .pbtn,.cvBack .pbtn{display:block;margin:14px auto 0}
 #eGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
