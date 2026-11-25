@@ -575,7 +575,6 @@ const CGFULL=['true_end','goj_school','goj_hall','goj_m00','goj_m01','goj_m02','
 function crtFx(c,now){const t=now/1000;
   c.save();c.setTransform(1,0,0,1,0,0);const cv=c.canvas,W=cv.width,H=cv.height;
   // 가끔 가로로 밀리는 지직
-  const ph=t%3.2;if(ph<.18){for(let i=0;i<3;i++){const y=Math.floor(((t*997+i*311)%1)*H),h=6+Math.floor(((t*131+i*71)%1)*26),dx=Math.round((((t*53+i*17)%1)-.5)*40);c.drawImage(cv,0,y,W,h,dx,y,W,h);}}
   // 흔들림 따라 색 번짐
   c.globalAlpha=.06;c.globalCompositeOperation='lighter';c.drawImage(cv,2,0);c.globalCompositeOperation='source-over';c.globalAlpha=1;
   // 주사선
@@ -583,7 +582,6 @@ function crtFx(c,now){const t=now/1000;
   // 천천히 내려가는 밝은 띠
   const by=((t*.18)%1.3-.15)*H;const g=c.createLinearGradient(0,by-40,0,by+40);g.addColorStop(0,'rgba(255,255,255,0)');g.addColorStop(.5,'rgba(255,255,255,.06)');g.addColorStop(1,'rgba(255,255,255,0)');c.fillStyle=g;c.fillRect(0,by-40,W,80);
   // 잡티
-  for(let i=0;i<70;i++){const r=Math.random();c.fillStyle=r<.5?'rgba(255,255,255,.35)':'rgba(0,0,0,.35)';c.fillRect(Math.random()*W,Math.random()*H,2+Math.random()*3,1+Math.random()*2);}
   // 깜빡임 + 가장자리 둥글게 어둡게
   c.fillStyle=`rgba(0,0,0,${.03+.03*Math.sin(t*37)})`;c.fillRect(0,0,W,H);
   const v=c.createRadialGradient(W/2,H/2,H*.35,W/2,H/2,H*.95);v.addColorStop(0,'rgba(0,0,0,0)');v.addColorStop(1,'rgba(0,0,0,.45)');c.fillStyle=v;c.fillRect(0,0,W,H);
