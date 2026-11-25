@@ -583,7 +583,6 @@ function crtFx(c,now){const t=now/1000;
   const by=((t*.18)%1.3-.15)*H;const g=c.createLinearGradient(0,by-40,0,by+40);g.addColorStop(0,'rgba(255,255,255,0)');g.addColorStop(.5,'rgba(255,255,255,.06)');g.addColorStop(1,'rgba(255,255,255,0)');c.fillStyle=g;c.fillRect(0,by-40,W,80);
   // 잡티
   // 깜빡임 + 가장자리 둥글게 어둡게
-  c.fillStyle=`rgba(0,0,0,${.03+.03*Math.sin(t*37)})`;c.fillRect(0,0,W,H);
   const v=c.createRadialGradient(W/2,H/2,H*.35,W/2,H/2,H*.95);v.addColorStop(0,'rgba(0,0,0,0)');v.addColorStop(1,'rgba(0,0,0,.45)');c.fillStyle=v;c.fillRect(0,0,W,H);
   c.restore();}
 function setCG(k,pan,fin){const now=performance.now();if(CG.cur){CG.prev=CG.cur;CG.prev.fade=now;}CG.cur={key:k,img:CGIMG[k],pan:pan||'s',t0:now,fin:fin||0,full:CGFULL.includes(k)};}
