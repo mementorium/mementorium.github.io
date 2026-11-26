@@ -365,6 +365,16 @@ nav .links a{white-space:nowrap}
   .disclaim{margin-top:14px;padding:10px 14px}
 }
 
+/* 질문 구역 */
+.qs h2{font-size:clamp(30px,4vw,52px);line-height:1.35}
+.qcards{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:clamp(24px,4vh,48px)}
+.qcard{background:var(--bg2);border-top:3px solid var(--sun);padding:clamp(18px,2.6vh,28px) clamp(18px,2vw,30px)}
+.qcard b{display:block;font-weight:normal;color:var(--cream);font-size:clamp(17px,min(1.75vw,2.9vh),28px);margin-bottom:10px}
+.qcard p{color:var(--dim);font-size:clamp(14px,min(1.4vw,2.3vh),22px);line-height:1.85;word-break:keep-all}
+.qs .ref{margin-top:clamp(14px,2.4vh,26px)}
+@media (min-width:901px){.qs h2{font-size:clamp(30px,min(4vw,6vh),60px)}}
+@media (max-width:900px){.qcards{grid-template-columns:1fr}}
+
 /* 발표용 섹션 넘기기 */
 #stepper{position:fixed;right:22px;bottom:22px;z-index:40;display:flex;flex-direction:column;align-items:center;gap:6px;font-family:inherit}
 #stepper button{width:46px;height:46px;border:2px solid var(--cream);background:rgba(14,12,22,.85);color:var(--cream);font:inherit;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s,opacity .2s}
@@ -385,9 +395,9 @@ nav .links a{white-space:nowrap}
 <nav>
   <a class="logo" href="#top">MEMENTORIUM</a>
   <div class="links" id="links">
+    <a href="#question">기획 배경</a>
     <a href="#overview">게임 소개</a>
     <a href="#story">이야기</a>
-    <a href="#why">기획 배경</a>
     <a href="#features">특징</a>
     <a href="#objects">유품</a>
     <a href="#design">설계</a>
@@ -417,6 +427,34 @@ nav .links a{white-space:nowrap}
   <button class="down" type="button" data-next>▼ 아래로</button>
 </header>
 
+<section id="question">
+  <div class="wrap qs">
+    <div class="kicker">QUESTION</div>
+    <h2>우리는 왜<br>캐릭터가 죽으면 슬플까?</h2>
+    <div class="qcards">
+      <div class="qcard"><b>만난 적 없는 친구</b><p>우리는 화면 속 인물에게도 실제 친구처럼 정을 붙입니다. 심리학에서는 이를 ‘준사회적 관계’라고 부릅니다. 그래서 좋아하던 캐릭터가 떠나면 실제 이별과 비슷한 상실감을 느낍니다.</p></div>
+      <div class="qcard"><b>1970년, 진짜 장례식</b><p>만화 《내일의 죠》에서 리키이시 토오루가 죽자 독자들은 출판사 강당에 모여 실제로 장례식을 치렀습니다. 지금도 팬들은 캐릭터의 기일을 챙기고, 추모 그림과 2차 창작을 남깁니다.</p></div>
+    </div>
+    <p class="ref">참고 · D. Horton, R. R. Wohl, 「Mass Communication and Para-Social Interaction」(1956) / J. Cohen, 「Parasocial Breakups」(2003)</p>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap why">
+    <div>
+      <div class="kicker">INTENT</div>
+      <h2>원작은 다음 장으로 넘어갔지만,<br>독자는 아직 그 장면에 남아 있습니다.</h2>
+    </div>
+    <div>
+      <div class="body">
+        <p>원작은 대부분 죽는 순간까지만 보여 줍니다. 장례, 주인 없는 방, 남은 사람들의 일상은 다음 화로 넘어가며 생략됩니다. 독자의 슬픔은 이렇게 생략된 자리에 남습니다.</p>
+        <p>《메멘토리움》은 그 빈자리를 플레이로 채웁니다. 말로 위로하지 않고, 그 사람의 물건을 하나씩 손에 쥐어 보게 합니다.</p>
+      </div>
+      <div class="ask"><small>기획 질문</small>좋아하던 캐릭터를 잊지 않으면서 보내 줄 수 있을까?</div>
+    </div>
+  </div>
+</section>
+
 <section id="overview">
   <div class="wrap over">
     <div>
@@ -444,22 +482,7 @@ nav .links a{white-space:nowrap}
   <p>당신이 누군지는<br>방을 다 치우고 나서야 알게 된다.</p>
 </section>
 
-<section id="why">
-  <div class="wrap why">
-    <div>
-      <div class="kicker">BACKGROUND</div>
-      <h2>원작은 다음 장으로 넘어갔지만,<br>독자는 아직 그 장면에 남아 있습니다.</h2>
-    </div>
-    <div>
-      <div class="body">
-        <p>1970년, 만화 《내일의 죠》에서 리키이시 토오루가 죽자 독자들은 출판사 강당에 모여 실제로 장례식을 치렀습니다. 지금도 팬들은 캐릭터의 기일을 챙기고, 추모 그림을 그리고, 그가 떠난 뒤를 상상하는 2차 창작을 씁니다.</p>
-        <p>원작은 대부분 죽는 순간까지만 보여 줍니다. 장례, 주인 없는 방, 남은 사람들의 일상은 다음 화로 넘어가며 생략됩니다. 독자의 슬픔은 이렇게 생략된 자리에 남습니다.</p>
-        <p>《메멘토리움》은 그 빈자리를 플레이로 채웁니다. 말로 위로하지 않고, 그 사람의 물건을 하나씩 손에 쥐어 보게 합니다.</p>
-      </div>
-      <div class="ask"><small>기획 질문</small>좋아하던 캐릭터를 잊지 않으면서 보내 줄 수 있을까?</div>
-    </div>
-  </div>
-</section>
+
 
 <section id="features">
   <div class="wrap">
