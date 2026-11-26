@@ -386,6 +386,27 @@ nav .links a{white-space:nowrap}
 @keyframes bob{50%{transform:translate(-50%,6px)}}
 @media (max-width:900px){#stepper{right:12px;bottom:12px}#stepper button{width:40px;height:40px}}
 @media (prefers-reduced-motion:reduce){.hero .down{animation:none}}
+
+/* 유품 카드 크기 고정 */
+@media (min-width:901px){
+  #objects .objs{grid-template-columns:repeat(6,180px)!important;justify-content:center;gap:20px!important}
+  #objects .obj{width:180px;height:262px;padding:10px 10px 14px!important;display:flex;flex-direction:column}
+  #objects .obj .ph{aspect-ratio:auto!important;height:118px;flex:none}
+  #objects .obj h3{font-size:15px!important;margin:10px 0 4px!important;line-height:1.35}
+  #objects .obj p{display:-webkit-box!important;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;font-size:12px!important;line-height:1.6!important}
+}
+@media (min-width:1600px) and (min-height:760px){
+  #objects .objs{grid-template-columns:repeat(6,210px)!important;gap:26px!important}
+  #objects .obj{width:210px;height:300px}
+  #objects .obj .ph{height:140px}
+  #objects .obj h3{font-size:17px!important}
+  #objects .obj p{font-size:13px!important}
+}
+@media (min-width:901px) and (max-height:600px){
+  #objects .obj{height:196px}
+  #objects .obj .ph{height:110px}
+  #objects .obj p{display:none!important}
+}
 </style>
 </head>
 <body>
