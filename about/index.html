@@ -223,6 +223,18 @@ nav .links a{white-space:nowrap}
   .studio-logo{width:160px;margin:20px auto 0}
 }
 @media (prefers-reduced-motion:reduce){.story .cut::after{animation:none}}
+
+/* 발표용 섹션 넘기기 */
+#stepper{position:fixed;right:22px;bottom:22px;z-index:40;display:flex;flex-direction:column;align-items:center;gap:6px;font-family:inherit}
+#stepper button{width:46px;height:46px;border:2px solid var(--cream);background:rgba(14,12,22,.85);color:var(--cream);font:inherit;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s,opacity .2s}
+#stepper button:hover{background:var(--cream);color:var(--bg)}
+#stepper button[disabled]{opacity:.2;pointer-events:none}
+#stepper span{font-size:11px;color:var(--dim);letter-spacing:.05em;background:rgba(14,12,22,.7);padding:1px 6px}
+.hero .down{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:2;background:none;border:0;color:var(--dim);font:inherit;font-size:12px;letter-spacing:.2em;cursor:pointer;animation:bob 1.6s steps(2) infinite}
+.hero .down:hover{color:var(--cream)}
+@keyframes bob{50%{transform:translate(-50%,6px)}}
+@media (max-width:900px){#stepper{right:12px;bottom:12px}#stepper button{width:40px;height:40px}}
+@media (prefers-reduced-motion:reduce){.hero .down{animation:none}}
 </style>
 </head>
 <body>
@@ -261,6 +273,7 @@ nav .links a{white-space:nowrap}
       <a class="btn solid" href="https://mementorium.github.io/">▶ 지금 플레이</a>
     </div>
   </div>
+  <button class="down" type="button" data-next>▼ 아래로</button>
 </header>
 
 <section id="overview">
@@ -451,6 +464,7 @@ nav .links a{white-space:nowrap}
   <div>©2026 Dotage · 비영리 팬 창작물 (수업용 프로젝트)<br>캐릭터 저작권은 각 원작자에게 있음</div>
 </footer>
 
+<div id="stepper" aria-label="섹션 넘기기"><button type="button" id="stPrev" title="이전 (PageUp)">▲</button><span id="stNum">1</span><button type="button" id="stNext" title="다음 (PageDown · Space)">▼</button></div>
 <div id="lb"><img alt=""></div>
 <script>
 const cv=document.getElementById('sky'),cx=cv.getContext('2d');let st=[];
@@ -466,6 +480,47 @@ addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('on')});
 const links=document.getElementById('links');
 document.getElementById('menuBtn').onclick=()=>links.classList.toggle('on');
 links.querySelectorAll('a').forEach(a=>a.onclick=()=>links.classList.remove('on'));
+
+// ── 발표용: 섹션 하나씩 넘기기 ──
+(function(){
+  const navH=()=>document.querySelector('nav').getBoundingClientRect().height;
+  // 멈출 자리: 첫 화면, 각 구역(특징은 하나씩), 마지막
+  const stops=[];
+  document.querySelectorAll('header.hero, body > section').forEach(sec=>{
+    if(sec.id==='features'){sec.querySelectorAll('.feat').forEach(f=>stops.push({el:f,pad:90}));return;}
+    const inner=sec.querySelector(':scope > .wrap, :scope > .q')||sec;
+    const plain=sec.matches('header.hero, .story, .final');
+    stops.push({el:plain?sec:inner,pad:plain?0:70});
+  });
+  const y=st=>Math.max(0,st.el.getBoundingClientRect().top+scrollY-(st.pad?navH()+st.pad:navH()));
+  const cur=()=>{const t=scrollY+4;let i=0;stops.forEach((st,k)=>{if(y(st)<=t)i=k;});return i;};
+  function go(dir){
+    const i=cur(),here=stops[i];
+    if(dir>0){
+      // 지금 구역이 화면보다 길면 먼저 아래 나머지를 보여 줌
+      const r=here.el.getBoundingClientRect(), nextTop=stops[i+1]?y(stops[i+1]):Infinity;
+      if(r.bottom>innerHeight+40 && scrollY+innerHeight*.8<nextTop-20){scrollTo({top:Math.min(scrollY+innerHeight*.8,nextTop),behavior:'smooth'});return;}
+      if(stops[i+1])scrollTo({top:nextTop,behavior:'smooth'});
+    }else{
+      const top=y(here);
+      if(scrollY>top+10){scrollTo({top,behavior:'smooth'});return;}
+      if(stops[i-1])scrollTo({top:y(stops[i-1]),behavior:'smooth'});
+    }
+  }
+  const prev=document.getElementById('stPrev'),next=document.getElementById('stNext'),num=document.getElementById('stNum');
+  function upd(){const i=cur();num.textContent=(i+1)+' / '+stops.length;prev.disabled=scrollY<4;next.disabled=i>=stops.length-1&&scrollY+innerHeight>=document.documentElement.scrollHeight-4;}
+  const later=()=>{setTimeout(upd,450);setTimeout(upd,900);};
+  prev.onclick=()=>{go(-1);later();};next.onclick=()=>{go(1);later();};
+  document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>{go(1);later();});
+  addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
+  // 키보드·프레젠터 리모컨: PageDown/Space/→ 다음, PageUp/← 이전
+  addEventListener('keydown',e=>{
+    if(e.target.closest('input,textarea,select')||e.altKey||e.ctrlKey||e.metaKey)return;
+    if(document.getElementById('lb')?.classList.contains('on'))return;
+    if(['PageDown','ArrowRight'].includes(e.key)||(e.key===' '&&!e.shiftKey)){e.preventDefault();go(1);later();}
+    else if(['PageUp','ArrowLeft'].includes(e.key)||(e.key===' '&&e.shiftKey)){e.preventDefault();go(-1);later();}
+  });
+})();
 </script>
 </body>
 </html>
