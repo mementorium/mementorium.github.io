@@ -294,6 +294,77 @@ nav .links a{white-space:nowrap}
   .studio-logo{width:170px}
 }
 
+/* 발표용: 큰 글씨 */
+@media (min-width:901px) and (min-height:661px){
+  .wrap{max-width:min(1500px,92vw)}
+  .kicker{font-size:15px}
+  h2{font-size:clamp(30px,min(3.81vw,6.09vh),57px)}
+  .body{font-size:clamp(16px,min(1.51vw,2.42vh),24px);line-height:1.8}
+  .over h2{font-size:clamp(28px,min(3.36vw,5.38vh),51px)}
+  .facts div{font-size:15px}
+  .facts b{font-size:clamp(40px,min(4.03vw,6.45vh),67px)}
+
+  .story p{font-size:clamp(17px,min(1.68vw,2.69vh),26px);max-width:760px}
+  .story .cut{font-size:clamp(20px,min(2.02vw,3.23vh),32px)}
+
+  .feat .no{font-size:15px}
+  .feat h3{font-size:clamp(28px,min(3.36vw,5.38vh),53px)}
+  .feat ul{font-size:clamp(15px,min(1.4vw,2.24vh),22px)}
+
+  .obj h3{font-size:clamp(15px,min(1.4vw,2.24vh),23px)!important}
+  .obj p{font-size:clamp(12px,min(1.12vw,1.79vh),17px)!important}
+  .decoy{font-size:clamp(14px,min(1.29vw,2.06vh),20px)}
+
+  #design .task .t{font-size:clamp(15px,min(1.4vw,2.24vh),22px)}
+  #design .task .g{font-size:clamp(13px,min(1.18vw,1.88vh),18px)}
+  #design .task .g b{font-size:clamp(15px,min(1.4vw,2.24vh),22px)}
+  #design .task .n{font-size:clamp(26px,min(2.46vw,3.94vh),39px)}
+  #design .bond{font-size:clamp(14px,min(1.29vw,2.06vh),20px)}
+  .ref{font-size:clamp(11px,.85vw,13px)}
+
+  .axes div{font-size:clamp(14px,min(1.23vw,1.97vh),20px)}
+  .axes b{font-size:clamp(16px,min(1.46vw,2.33vh),23px)}
+  .ends span{font-size:clamp(13px,min(1.18vw,1.88vh),18px)}
+
+  .room h3{font-size:clamp(17px,min(1.57vw,2.51vh),25px)}
+  .room .src,.room .where{font-size:clamp(12px,.95vw,14px)}
+  .room p{font-size:clamp(13px,min(1.18vw,1.88vh),18px)}
+  .room .st{font-size:clamp(12px,.95vw,14px)}
+  .room .ic{height:clamp(64px,8vh,96px)}
+  .room .ic img{width:clamp(76px,min(7.84vw,12.54vh),126px);height:clamp(60px,7vh,90px)}
+
+  .obj .ph{aspect-ratio:3/2}
+  .objs{margin-top:clamp(16px,2.6vh,36px)!important}
+  .decoy{margin-top:clamp(14px,2.4vh,30px)!important}
+  .ends{height:min(40vh,460px)}
+  .story p{margin-bottom:min(24px,2.6vh)}
+  .story .cut{margin:min(30px,3vh) auto}
+  .studio-logo{width:clamp(220px,min(20.16vw,32.26vh),345px)}
+  .credit{font-size:clamp(13px,min(1.18vw,1.88vh),18px)}
+  .final h2{font-size:clamp(32px,min(4.03vw,6.45vh),62px)}
+  .final p{font-size:clamp(15px,min(1.34vw,2.15vh),22px)}
+}
+
+@media (min-width:901px) and (min-height:661px) and (max-height:720px){
+  .obj .ph{aspect-ratio:16/9}
+  .ends{height:35vh}
+  .ends-head{gap:6px}
+  .decoy{padding:10px 16px}
+}
+@media (min-width:901px) and (max-height:600px){
+  .hero h1{font-size:64px}
+  .hero .copy{margin-top:22px}
+  .hero .cta{margin-top:22px}
+  .story p{font-size:14px;margin-bottom:12px;line-height:1.8}
+  .story .cut{margin:14px auto}
+  .obj .ph{aspect-ratio:16/10}
+  .obj p{display:none}
+  .studio-logo{width:130px}
+  .studio .body p+p{margin-top:8px}
+  .credit{margin-top:16px;padding-top:12px}
+  .disclaim{margin-top:14px;padding:10px 14px}
+}
+
 /* 발표용 섹션 넘기기 */
 #stepper{position:fixed;right:22px;bottom:22px;z-index:40;display:flex;flex-direction:column;align-items:center;gap:6px;font-family:inherit}
 #stepper button{width:46px;height:46px;border:2px solid var(--cream);background:rgba(14,12,22,.85);color:var(--cream);font:inherit;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s,opacity .2s}
