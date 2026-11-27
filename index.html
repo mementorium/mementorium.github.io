@@ -212,6 +212,7 @@ body.touch .shArr{width:46px;height:40px;font-size:16px}
 #bigT.sm{font-size:22px;letter-spacing:3px;transform:none}#bigT.tt{font-size:22px;letter-spacing:3px;transform:none!important;transition:none!important;opacity:1}#bigT.on{opacity:1;transform:scale(1)}#bigT.out{opacity:0;transition:opacity 1.1s ease-in}
 #sub{position:absolute;left:60px;right:60px;bottom:0;height:84px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:22px;line-height:1.45;color:#f4f0e8;z-index:14;opacity:0;transition:opacity .5s;word-break:keep-all;pointer-events:none}
 #sub.on{opacity:1}#sub.nar{color:#cfc6b8}
+#vn[data-ch=gojo] #sub,#vn[data-ch=gojo] #sub.nar{color:#7cc8ff}
 #chr{position:absolute;left:50%;bottom:112px;width:300px;image-rendering:pixelated;transform:translate(-50%,40px);opacity:0;transition:opacity 1s ease,transform 1s ease;z-index:9;pointer-events:none}
 #chr.on{opacity:1;transform:translate(-50%,0)}#chr[data-k^="ace"]{width:390px}
 #vnBg{transition:filter 1s ease}#vnBg.blur{filter:blur(3px) brightness(.8)}
@@ -1724,16 +1725,12 @@ const GOJ_END={
     {s:['나','me','이제 이 방 문을 열 사람도 없는데.']},
     {n:'웃으려다, 끝내 고개를 숙였다.'},
     {n:'그때, 아무도 켜지 않은 등불이 혼자 켜졌다.'},
-    {fade:'#fff',slow:1},{bg:'airport',bgm:'calm'},{wait:1400},
-    {n:'하얗고 조용한 곳. 낯익은 뒷모습이 벤치에 앉아 있었다.'},
-    {s:['게토','geto','늦었네, 사토루.']},
-    {s:['고죠','gojo','……스구루. 기다렸어?']},
-    {s:['게토','geto','조금. 그래서, 남은 애들은 괜찮을 것 같아?']},
-    {s:['고죠','gojo','응. 내 방 정리까지 깔끔하게 해 줬더라. 걱정 없어.']},
-    {s:['게토','geto','그럼 가자. 이번엔 같은 쪽으로.']},
-    {fade:'#000',slow:1},{cut:1},{lb:1,fit:1,bg:'black'},{wait:600},
+    {fade:'#fff',slow:1},{cut:1},{lb:1,fit:0,bg:'black',bgm:'calm'},{wait:600},
     {cg:'goj_end1',fin:3600},{wait:3400},
-    {n:'두 사람은 오래전 그 봄처럼, 나란히 걸어갔다.'},
+    {s:['게토','geto','늦었네, 사토루.']},
+    {s:['고죠','gojo','……기다렸어?']},
+    {s:['게토','geto','가자. 이번엔 같은 쪽으로.']},
+    {n:'두 사람은 그 봄처럼, 나란히 걸어갔다.'},
     {cut:1},{lb:0,fit:0,bg:'black'},
     {fade:'#000',slow:1},{bg:'movie'},{wait:1200},
     {n:'불 꺼진 방, 인형을 끌어안고 밤새 영화를 보던 날들.'},
