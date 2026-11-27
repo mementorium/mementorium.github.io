@@ -212,7 +212,8 @@ body.touch .shArr{width:46px;height:40px;font-size:16px}
 #bigT.sm{font-size:22px;letter-spacing:3px;transform:none}#bigT.tt{font-size:22px;letter-spacing:3px;transform:none!important;transition:none!important;opacity:1}#bigT.on{opacity:1;transform:scale(1)}#bigT.out{opacity:0;transition:opacity 1.1s ease-in}
 #sub{position:absolute;left:60px;right:60px;bottom:0;height:84px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:22px;line-height:1.45;color:#f4f0e8;z-index:14;opacity:0;transition:opacity .5s;word-break:keep-all;pointer-events:none}
 #sub.on{opacity:1}#sub.nar{color:#cfc6b8}
-#vn[data-ch=gojo] #sub,#vn[data-ch=gojo] #sub.nar{color:#7cc8ff}
+#vn[data-ch=gojo] #sub,#vn[data-ch=gojo] #sub.nar{color:#fff}
+#vn[data-ch=gojo] #sub.gj{color:#7cc8ff}
 #chr{position:absolute;left:50%;bottom:112px;width:300px;image-rendering:pixelated;transform:translate(-50%,40px);opacity:0;transition:opacity 1s ease,transform 1s ease;z-index:9;pointer-events:none}
 #chr.on{opacity:1;transform:translate(-50%,0)}#chr[data-k^="ace"]{width:390px}
 #vnBg{transition:filter 1s ease}#vnBg.blur{filter:blur(3px) brightness(.8)}
@@ -577,10 +578,8 @@ function crtFx(c,now){const t=now/1000;
   c.save();c.setTransform(1,0,0,1,0,0);const cv=c.canvas,W=cv.width,H=cv.height;
   // 가끔 가로로 밀리는 지직
   // 흔들림 따라 색 번짐
-  c.globalAlpha=.06;c.globalCompositeOperation='lighter';c.drawImage(cv,2,0);c.globalCompositeOperation='source-over';c.globalAlpha=1;
   // 주사선
   // 천천히 내려가는 밝은 띠
-  const by=((t*.18)%1.3-.15)*H;const g=c.createLinearGradient(0,by-40,0,by+40);g.addColorStop(0,'rgba(255,255,255,0)');g.addColorStop(.5,'rgba(255,255,255,.06)');g.addColorStop(1,'rgba(255,255,255,0)');c.fillStyle=g;c.fillRect(0,by-40,W,80);
   // 잡티
   // 깜빡임 + 가장자리 둥글게 어둡게
   const v=c.createRadialGradient(W/2,H/2,H*.35,W/2,H/2,H*.95);v.addColorStop(0,'rgba(0,0,0,0)');v.addColorStop(1,'rgba(0,0,0,.45)');c.fillStyle=v;c.fillRect(0,0,W,H);
@@ -1211,7 +1210,7 @@ function step(){
   step();
 }
 function say(L){say0(L);if(L.auto){const i0=VN.i,g=VN.gen;setTimeout(()=>{if(g!==VN.gen||VN.i!==i0)return;if(VN.typing)advance();if(VN.wait)advance();},(VN.full||'').length*45+L.auto);}}
-function say0(L){if(VN.chr&&CHR[VN.chr+'_c']){const k=(L.s&&L.s[0]===CHRNM[VN.chr])?(CHR[L.s[1]]?L.s[1]:VN.chr):VN.chr+'_c';if($('chr').dataset.k!==k){$('chr').src=CHR[k];$('chr').dataset.k=k;}}if($('vn').classList.contains('subm')){const t=L.s?(typeof L.s[2]==='function'?L.s[2]():L.s[2]):(typeof L.n==='function'?L.n():L.n);const sb=$('sub');sb.classList.toggle('nar',!L.s);
+function say0(L){if(VN.chr&&CHR[VN.chr+'_c']){const k=(L.s&&L.s[0]===CHRNM[VN.chr])?(CHR[L.s[1]]?L.s[1]:VN.chr):VN.chr+'_c';if($('chr').dataset.k!==k){$('chr').src=CHR[k];$('chr').dataset.k=k;}}if($('vn').classList.contains('subm')){const t=L.s?(typeof L.s[2]==='function'?L.s[2]():L.s[2]):(typeof L.n==='function'?L.n():L.n);const sb=$('sub');sb.classList.toggle('nar',!L.s);sb.classList.toggle('gj',!!(L.s&&L.s[1]==='gojo'));
     VN.full=t;let i=0;sb.style.transition='';sb.textContent='';sb.classList.add('on');clearInterval(VN.typing);VN.sub=true;
     VN.typing=setInterval(()=>{i++;sb.textContent=t.slice(0,i);if(i>=t.length){clearInterval(VN.typing);VN.typing=null;VN.wait=true;}},45);return;}
   VN.sub=false;const b=$('box');b.classList.add('on');$('nx').style.display='none';
