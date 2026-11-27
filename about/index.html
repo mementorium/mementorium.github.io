@@ -87,29 +87,41 @@ h2{font-weight:normal;font-size:clamp(28px,min(3.4vw,5.6vh),50px);line-height:1.
 .facts div{font-size:13px;color:var(--mute)}
 .facts b{display:block;font-weight:normal;font-size:clamp(34px,min(3.2vw,5vh),52px);line-height:1.1;color:var(--cream)}
 
-/* 4 캐릭터 고르기 */
+/* 4 캐릭터 고르기: 로그북 표지 + 책등 */
 #memories{background:var(--bg2)}
-.mem{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(30px,4vw,64px);align-items:center;margin-top:clamp(20px,3.5vh,40px)}
-.mem .art{position:relative;aspect-ratio:4/3;max-height:42vh;width:100%;background:var(--c);display:flex;align-items:center;justify-content:center;overflow:hidden;
-  box-shadow:inset 0 0 0 6px rgba(0,0,0,.22),inset 22px 0 0 rgba(0,0,0,.18),0 26px 50px rgba(0,0,0,.45)}
-.mem .art::before{content:'LOG BOOK';position:absolute;top:18px;left:40px;font-size:12px;letter-spacing:.25em;color:rgba(251,246,234,.75)}
-.mem .art img{width:38%;max-height:62%;object-fit:contain;filter:drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff) drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff) drop-shadow(8px 10px 0 rgba(0,0,0,.25))}
-.mem .art .q{font-size:clamp(60px,8vw,120px);color:rgba(251,246,234,.8)}
-.mem.locked .art img{filter:grayscale(.85) brightness(.85) drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff) drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff)}
-.mem.locked .art{filter:saturate(.45) brightness(.8)}
+.mem{display:grid;grid-template-columns:auto 1fr;gap:clamp(34px,5vw,80px);align-items:center;margin-top:clamp(18px,3vh,34px)}
+.book{position:relative;height:min(48vh,460px);aspect-ratio:3/4;background:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1.6px) 0 0/7px 7px,var(--c);
+  box-shadow:inset 0 0 0 5px rgba(0,0,0,.25),inset 26px 0 0 rgba(0,0,0,.2),inset 30px 0 0 rgba(255,255,255,.06),14px 18px 0 rgba(0,0,0,.45);transform:rotate(-1.5deg)}
+.book::before{content:'';position:absolute;inset:16px 16px 16px 42px;border:2px dashed rgba(251,246,234,.35)}
+.book .cn{position:absolute;width:18px;height:18px;background:#d8c9a2;box-shadow:inset -3px -3px 0 rgba(0,0,0,.25)}
+.book .cn.a{top:8px;right:8px}.book .cn.b{bottom:8px;right:8px}
+.book .tape{position:absolute;top:-12px;left:50%;width:110px;height:28px;margin-left:-40px;background:rgba(242,214,120,.75);transform:rotate(4deg)}
+.book .plate{position:absolute;left:23%;right:12%;top:12%;background:#fbf6ea;color:var(--ink);text-align:center;padding:6px 8px 8px;box-shadow:3px 4px 0 rgba(0,0,0,.25)}
+.book .plate small{display:block;font-size:11px;letter-spacing:.22em;color:var(--ink2)}
+.book .plate b{font-weight:normal;font-size:clamp(18px,1.8vw,26px)}
+.book .photo{position:absolute;left:28%;right:17%;top:36%;bottom:22%;background:#fbf6ea;padding:8px;box-shadow:3px 4px 0 rgba(0,0,0,.25);transform:rotate(2deg)}
+.book .photo i{display:flex;align-items:center;justify-content:center;width:100%;height:100%;background:#2b2347}
+.book .photo img{width:70%;height:70%;object-fit:contain;filter:drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff) drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff)}
+.book .photo .q{font-size:clamp(44px,5vw,80px);color:#a39bb8}
+.book .num{position:absolute;left:24%;bottom:8%;background:#e7d7ae;color:var(--ink);font-size:12px;padding:2px 10px;transform:rotate(-4deg)}
+.book .rib{position:absolute;right:20%;bottom:-16px;width:16px;height:46px;background:#c9584f;clip-path:polygon(0 0,100% 0,100% 100%,50% 78%,0 100%)}
+.book .strap{display:none;position:absolute;right:-6px;top:44%;width:40%;height:44px;background:#2a2433;box-shadow:inset 0 0 0 3px rgba(0,0,0,.4);align-items:center;justify-content:center;font-size:18px}
+.mem.locked .book{filter:saturate(.35) brightness(.7)}
+.mem.locked .book .strap{display:flex}
 .mem .src{font-size:clamp(13px,1.1vw,16px);color:var(--mute)}
 .mem h3{font-weight:normal;font-size:clamp(30px,min(3.4vw,5.6vh),52px);line-height:1.2;margin:6px 0}
 .mem .where{font-size:clamp(14px,1.2vw,18px);color:var(--sun)}
 .mem .quote{margin:clamp(14px,2.6vh,26px) 0;font-size:clamp(16px,min(1.5vw,2.5vh),23px);color:var(--cream);line-height:1.7;min-height:3.4em}
 .mem .st{display:inline-block;font-size:13px;padding:6px 14px;border:1px solid var(--moon);color:var(--moon)}
 .mem.locked .st{border-color:var(--line);color:var(--dim)}
-.picks{display:flex;gap:12px;margin-top:clamp(18px,3.4vh,34px)}
-.pick{position:relative;flex:1;max-width:170px;height:clamp(64px,9vh,90px);border:0;background:var(--c);color:#fbf6ea;font-size:clamp(13px,1.1vw,16px);cursor:pointer;
-  box-shadow:inset 0 0 0 3px rgba(0,0,0,.22),inset 10px 0 0 rgba(0,0,0,.18);opacity:.55;transition:opacity .15s,transform .15s;display:flex;align-items:flex-end;justify-content:center;padding-bottom:10px}
-.pick:hover{opacity:.85}
-.pick.on{opacity:1;transform:translateY(-6px);outline:2px solid var(--cream);outline-offset:3px}
-.pick .lk{position:absolute;top:6px;right:8px;font-size:11px}
-
+.shelf{display:flex;align-items:flex-end;gap:8px;margin-top:clamp(18px,3vh,30px);padding:0 14px;border-bottom:10px solid #3a2a20;box-shadow:0 5px 0 #241912;width:max-content;max-width:100%}
+.spine{position:relative;width:clamp(46px,4vw,62px);height:clamp(96px,14vh,140px);border:0;background:var(--c);color:#fbf6ea;cursor:pointer;
+  box-shadow:inset 0 0 0 3px rgba(0,0,0,.25),inset 0 12px 0 rgba(0,0,0,.18),inset 0 -12px 0 rgba(0,0,0,.18);writing-mode:vertical-rl;font-size:clamp(13px,1.05vw,16px);letter-spacing:.1em;
+  display:flex;align-items:center;justify-content:center;transition:transform .15s,filter .15s}
+.spine.lock{filter:saturate(.35) brightness(.7)}
+.spine:hover{transform:translateY(-6px)}
+.spine.on{transform:translateY(-16px);outline:2px solid var(--cream);outline-offset:2px;filter:none}
+.spine .lk{position:absolute;top:16px;writing-mode:horizontal-tb;font-size:11px}
 /* 5 유품 */
 .objs{display:grid;grid-template-columns:repeat(6,180px);justify-content:center;gap:20px;margin-top:clamp(22px,4vh,44px)}
 .obj{position:relative;width:180px;height:262px;background:#fbf6ea;color:var(--ink);padding:10px 10px 14px;box-shadow:8px 10px 0 rgba(0,0,0,.4);transform:rotate(var(--r,0deg));transition:transform .2s;display:flex;flex-direction:column}
@@ -137,11 +149,12 @@ h2{font-weight:normal;font-size:clamp(28px,min(3.4vw,5.6vh),50px);line-height:1.
 .axes{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:clamp(16px,3vh,28px) 0}
 .axes div{background:var(--bg2);padding:12px 18px;font-size:clamp(14px,1.1vw,17px);color:var(--dim)}
 .axes b{display:block;font-weight:normal;color:var(--cream);font-size:clamp(15px,1.25vw,19px)}
-.ends{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:12px;height:min(37vh,460px)}
+.ends{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:10px;height:min(31vh,400px)}
 .ends div{position:relative;overflow:hidden;background:#000}
-.ends div:first-child{grid-row:span 2}
 .ends img{width:100%;height:100%;object-fit:cover}
-.ends .lock img{filter:blur(7px) brightness(.55) saturate(.6);transform:scale(1.1)}
+.ends .lock img{filter:blur(12px) brightness(.45) saturate(.5);transform:scale(1.2)}
+.album{display:flex;flex-wrap:wrap;gap:10px 26px;align-items:center;margin-top:clamp(14px,2.6vh,24px);font-size:clamp(14px,1.1vw,17px);color:var(--dim)}
+.album b{font-weight:normal;color:var(--moon)}
 .ends .lock::after{content:'?';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:30px}
 .ends span{position:absolute;left:0;right:0;bottom:0;padding:10px 14px;font-size:clamp(13px,1vw,16px);background:linear-gradient(transparent,rgba(0,0,0,.75))}
 
@@ -171,7 +184,7 @@ h2{font-weight:normal;font-size:clamp(28px,min(3.4vw,5.6vh),50px);line-height:1.
 
 /* 9 플레이 */
 #play{position:relative;text-align:center;overflow:hidden;background:linear-gradient(#1c1730,#0c0a14)}
-#play::before{content:'';position:absolute;inset:0;background:url('img/end1_big.webp') center/cover;opacity:.16;image-rendering:pixelated}
+#play::before{content:'';position:absolute;inset:0;background:url('img/house.webp') center/cover;opacity:.14;image-rendering:pixelated}
 #play>*{position:relative}
 #play h2{font-size:clamp(30px,min(3.8vw,6vh),56px)}
 #play .body{margin:14px auto 34px}
@@ -206,7 +219,7 @@ footer .disc{max-width:min(1440px,92vw);margin:28px auto 0;padding-top:20px;bord
 @media (min-width:901px) and (max-height:700px){
   section,.feat{padding-top:28px!important;padding-bottom:28px!important}
   .obj{height:228px}.obj .ph{height:100px}
-  .ends{height:34vh}
+  .ends{height:28vh}
   .pane{min-height:0}
 }
 @media (min-width:1600px) and (min-height:760px){
@@ -229,13 +242,12 @@ footer .disc{max-width:min(1440px,92vw);margin:28px auto 0;padding-top:20px;bord
   .moon{width:56px;height:56px;right:9%;top:9%}.glow{display:none}
   .feat,.feat.r{grid-template-columns:1fr;gap:28px;padding:70px 20px}
   .feat.r .media{order:0}
-  .mem{grid-template-columns:1fr}
-  .picks{flex-wrap:wrap}.pick{min-width:30%}
+  .mem{grid-template-columns:1fr;justify-items:center}
+  .book{height:auto;width:min(80vw,320px)}
   .objs{grid-template-columns:1fr 1fr;gap:28px 16px}
   .obj{width:auto;height:auto}
   .gal{grid-template-columns:1fr 1fr}
   .ends{grid-template-columns:1fr 1fr;grid-template-rows:auto;height:auto}
-  .ends div:first-child{grid-column:span 2;grid-row:auto}
   .ends div{aspect-ratio:16/9}
   .axes,.qcards,.int{grid-template-columns:1fr}
   .task{grid-template-columns:32px 1fr;gap:4px 12px}
@@ -287,11 +299,10 @@ footer .disc{max-width:min(1440px,92vw);margin:28px auto 0;padding-top:20px;bord
 
 <!-- 2 이야기 -->
 <section id="story" class="story">
-  <p>만화는 그가 쓰러지는 장면에서 다음 화로 넘어간다.<br>남은 사람들이 어떻게 지냈는지는 나오지 않는다.</p>
+  <p>작가는 ‘그’가 쓰러지는 장면을 보여 주고, 다음 화로 넘어간다.<br>남겨진 이들의 슬픔과 애도는 카메라에 담기지 않는다.</p>
   <div class="cut">몇 주 후</div>
-  <p>다단의 집, 에이스가 쓰던 방.<br>주인은 없고, 택배 상자 몇 개가 와 있다.</p>
-  <p>당신은 상자를 하나씩 열어<br>물건을 있어야 할 자리에 놓는다.</p>
-  <p>당신이 누군지는<br>방을 다 치우고 나서야 알게 된다.</p>
+  <p>‘그’의 방.<br>주인 없는 차가운 바닥에, 나는 상자를 내려놓는다.</p>
+  <p>그의 손때가 묻은 물건을 하나씩 꺼내며<br>나는 그를 기억한다.</p>
 </section>
 
 <!-- 3 게임 특징 -->
@@ -338,16 +349,19 @@ footer .disc{max-width:min(1440px,92vw);margin:28px auto 0;padding-top:20px;bord
     <div class="kicker">MEMORIES</div>
     <h2>누구의 기억을 펼치시겠습니까?</h2>
     <div class="mem" id="mem">
-      <div class="art" id="memArt"></div>
+      <div class="book" id="book"><span class="tape"></span><span class="cn a"></span><span class="cn b"></span>
+        <div class="plate"><small>LOG BOOK</small><b id="bkName"></b></div>
+        <div class="photo"><i id="bkPhoto"></i></div>
+        <span class="num" id="bkNum"></span><span class="rib"></span><span class="strap">🔒</span></div>
       <div>
         <div class="src" id="memSrc"></div>
         <h3 id="memName"></h3>
         <div class="where" id="memWhere"></div>
         <p class="quote" id="memQuote"></p>
         <span class="st" id="memSt"></span>
+        <div class="shelf" id="picks"></div>
       </div>
     </div>
-    <div class="picks" id="picks"></div>
   </div>
 </section>
 
@@ -379,7 +393,7 @@ footer .disc{max-width:min(1440px,92vw);margin:28px auto 0;padding-top:20px;bord
       <figure><img class="zoom" src="img/shot_vn.jpg" alt=""><figcaption>그날, 마린포드</figcaption></figure>
       <figure><img class="px zoom" src="img/house.webp" alt=""><figcaption>다단의 집</figcaption></figure>
       <figure><img class="zoom" src="img/shot_room.jpg" alt=""><figcaption>상자 열기</figcaption></figure>
-      <figure><img class="px zoom" src="img/end1_big.webp" alt=""><figcaption>엔딩 1 · 다녀왔어</figcaption></figure>
+      <figure><img class="px zoom" src="img/room_big.png" alt=""><figcaption>주인 없는 방</figcaption></figure>
       <figure><img class="zoom" src="img/shot_album_blur.jpg" alt=""><figcaption>엔딩 앨범</figcaption></figure>
     </div>
   </div>
@@ -390,15 +404,17 @@ footer .disc{max-width:min(1440px,92vw);margin:28px auto 0;padding-top:20px;bord
   <div class="wrap">
     <div class="kicker">ENDINGS</div>
     <h2>엔딩 여섯 개</h2>
-    <p class="body" style="margin-top:8px">물건을 어떻게 놓았느냐에 따라 결말이 갈립니다. 하나는 먼저 보여 드리고, 나머지는 직접 찾아보세요.</p>
+    <p class="body" style="margin-top:8px">물건을 어떻게 놓았느냐에 따라 결말이 갈립니다. 어떤 엔딩이 있는지는 직접 찾아보세요.</p>
     <div class="axes"><div><b>얼마나 기억하는가</b>그의 물건을 그가 두던 자리에 놓았는지</div><div><b>얼마나 알아보는가</b>섞여 든 남의 물건을 가려냈는지</div></div>
     <div class="ends">
-      <div><img class="px" src="img/end1b.png" alt=""><span>1. 다녀왔어</span></div>
+      <div class="lock"><img class="px" src="img/end1b.png" alt=""><span>1</span></div>
       <div class="lock"><img class="px" src="img/end2.png" alt=""><span>2</span></div>
       <div class="lock"><img class="px" src="img/end3.png" alt=""><span>3</span></div>
       <div class="lock"><img class="px" src="img/end4.png" alt=""><span>4</span></div>
-      <div class="lock"><img class="px" src="img/end5.png" alt=""><span>5 · 6</span></div>
+      <div class="lock"><img class="px" src="img/end5.png" alt=""><span>5</span></div>
+      <div class="lock"><img class="px" src="img/end6.png" alt=""><span>6</span></div>
     </div>
+    <div class="album"><b>로그북 앨범</b><span>📷 찍은 방 사진 저장</span><span>✎ 앨범 꾸미기</span><span>▶ 본 엔딩 다시 보기</span></div>
   </div>
 </section>
 
@@ -424,7 +440,7 @@ footer .disc{max-width:min(1440px,92vw);margin:28px auto 0;padding-top:20px;bord
       <div class="int">
         <h3>작가는 다음 장으로 넘어갔지만,<br>독자는 아직 그 장면에 남아 있습니다.</h3>
         <div>
-          <div class="body"><p>원작은 대부분 죽는 순간까지만 보여 줍니다. 장례, 주인 없는 방, 남은 사람들의 일상은 다음 화로 넘어가며 생략됩니다. 독자의 슬픔은 이렇게 생략된 자리에 남습니다.</p>
+          <div class="body"><p>작가는 대부분 죽는 순간까지만 보여 줍니다. 장례, 주인 없는 방, 남은 사람들의 일상은 다음 화로 넘어가며 생략됩니다. 독자의 슬픔은 이렇게 생략된 자리에 남습니다.</p>
           <p>《메멘토리움》은 그 빈자리를 플레이로 채웁니다. 말로 위로하지 않고, 그 사람의 물건을 하나씩 손에 쥐어 보게 합니다.</p></div>
           <div class="ask"><small>기획 질문</small>좋아하던 캐릭터를 잊지 않으면서 보내 줄 수 있을까?</div>
         </div>
@@ -446,7 +462,7 @@ footer .disc{max-width:min(1440px,92vw);margin:28px auto 0;padding-top:20px;bord
 <!-- 9 플레이 -->
 <section id="play">
   <div class="kicker">PLAY NOW</div>
-  <h2>잊지 않으면서, 보내 주는 게임</h2>
+  <h2>카메라 밖, 남겨진 이들이<br>그를 애도하는 방법</h2>
   <p class="body">에이스 편 데모를 지금 바로 플레이할 수 있습니다.</p>
   <div><a class="btn solid big" href="https://mementorium.github.io/">▶ 지금 플레이</a></div>
   <div class="plats"><span>웹 브라우저</span><span>PC</span><span>모바일</span><span>설치 없음</span><span>무료</span></div>
@@ -478,22 +494,22 @@ function dr(t){cx.clearRect(0,0,cv.width,cv.height);for(const o of stars){cx.fil
   if(!matchMedia('(prefers-reduced-motion:reduce)').matches)requestAnimationFrame(dr);}
 sz();addEventListener('resize',sz);requestAnimationFrame(dr);
 
-// 캐릭터 고르기
+// 캐릭터 고르기 (로그북)
 const MEM=[
- {k:'ace',name:'포트거스 D. 에이스',src:'《원피스》',where:'다단의 집',quote:'“힘에 굴복해서야 남자로 태어난 의미가 없지.<br>난 결코 인생에 후회를 남기지 않아.”',img:'img/ahat_t.png',c:'#b4682c',open:true,st:'▶ 플레이 가능'},
- {k:'gojo',name:'고죠 사토루',src:'《주술회전》',where:'고죠의 방',quote:'“괜찮아, 내가 최강이니까.”',img:'img/blind_t.png',c:'#4f6f9e',st:'🔒 에이스 진엔딩 후 열람'},
- {k:'ren',name:'렌고쿠 쿄쥬로',src:'《귀멸의 칼날》',where:'센쥬로의 방',quote:'마음을 불태워라.<br>그 불꽃은 남은 이들에게 옮겨붙는다.',img:'img/haori_t.png',c:'#c9a23a',st:'🔒 고죠 진엔딩 후 열람'},
- {k:'eren',name:'에렌 예거',src:'《진격의 거인》',where:'???',quote:'· · ·',img:'',c:'#4d6a47',st:'🔒 렌고쿠 진엔딩 후 열람'},
- {k:'jin',name:'마츠다 진페이',src:'《명탐정 코난》',where:'???',quote:'· · ·',img:'img/jcig_t.png',c:'#3a3540',st:'🔒 에렌 진엔딩 후 열람'}];
-const picks=document.getElementById('picks'),mem=document.getElementById('mem');
+ {short:'에이스',name:'포트거스 D. 에이스',src:'《원피스》',where:'다단의 집',quote:'“힘에 굴복해서야 남자로 태어난 의미가 없지.<br>난 결코 인생에 후회를 남기지 않아.”',img:'img/ahat_t.png',c:'#b4682c',open:true,st:'▶ 플레이 가능'},
+ {short:'고죠',name:'고죠 사토루',src:'《주술회전》',where:'???',quote:'· · ·',c:'#4f6f9e',st:'🔒 에이스 진엔딩 후 열람'},
+ {short:'렌고쿠',name:'렌고쿠 쿄쥬로',src:'《귀멸의 칼날》',where:'???',quote:'· · ·',c:'#c9a23a',st:'🔒 고죠 진엔딩 후 열람'},
+ {short:'에렌',name:'에렌 예거',src:'《진격의 거인》',where:'???',quote:'· · ·',c:'#4d6a47',st:'🔒 렌고쿠 진엔딩 후 열람'},
+ {short:'진페이',name:'마츠다 진페이',src:'《명탐정 코난》',where:'???',quote:'· · ·',c:'#3a3540',st:'🔒 에렌 진엔딩 후 열람'}];
+const picks=document.getElementById('picks'),mem=document.getElementById('mem'),book=document.getElementById('book');
 function show(i){const m=MEM[i];
-  const art=document.getElementById('memArt');art.style.setProperty('--c',m.c);
-  art.innerHTML=m.img?`<img class="px" src="${m.img}" alt="">`:'<span class="q">?</span>';
+  book.style.setProperty('--c',m.c);bkName.textContent=m.short;bkNum.textContent='No.'+(i+1);
+  bkPhoto.innerHTML=m.img?`<img class="px" src="${m.img}" alt="">`:'<span class="q">?</span>';
   memSrc.textContent=m.src;memName.textContent=m.name;memWhere.textContent=m.where;memQuote.innerHTML=m.quote;memSt.textContent=m.st;
   mem.classList.toggle('locked',!m.open);
-  picks.querySelectorAll('.pick').forEach((b,k)=>b.classList.toggle('on',k===i));}
-MEM.forEach((m,i)=>{const b=document.createElement('button');b.type='button';b.className='pick';b.style.setProperty('--c',m.c);
-  b.innerHTML=(m.open?'':'<span class="lk">🔒</span>')+m.name.split(' ').pop();b.onclick=()=>show(i);picks.appendChild(b);});
+  picks.querySelectorAll('.spine').forEach((b,k)=>b.classList.toggle('on',k===i));}
+MEM.forEach((m,i)=>{const b=document.createElement('button');b.type='button';b.className='spine'+(m.open?'':' lock');b.style.setProperty('--c',m.c);
+  b.innerHTML=(m.open?'':'<span class="lk">🔒</span>')+m.short;b.onclick=()=>show(i);picks.appendChild(b);});
 show(0);
 
 // 개발 노트 탭
