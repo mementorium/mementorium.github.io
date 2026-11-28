@@ -260,6 +260,13 @@ footer .disc{max-width:min(1440px,92vw);margin:28px auto 0;padding-top:20px;bord
 @media (prefers-reduced-motion:reduce){.down,.story .cut::after}
 nav .links .sep{width:1px;height:14px;background:var(--line);align-self:center}
 @media (max-width:900px){nav .links .sep{display:none}}
+/* 게임 QR */
+.qrg{display:block;width:fit-content;align-self:center;margin-left:auto!important;margin-right:auto!important;margin-top:clamp(20px,3.5vh,40px);background:#fbf6ea;color:#4a3a2c;padding:12px 12px 10px;text-align:center;box-shadow:8px 10px 0 rgba(0,0,0,.4);transform:rotate(1.5deg);text-decoration:none;transition:transform .2s}
+.qrg:hover{transform:rotate(0) scale(1.03)}
+.qrg img{display:block;width:clamp(120px,14vh,170px);height:auto;margin:0 auto}
+.qrg b{display:block;font-weight:normal;font-size:14px;margin-top:8px}
+.qrg span{display:block;font-size:11px;color:#7d6852}
+@media (max-height:820px){.qrg{margin-top:14px!important;padding:8px 8px 6px}.qrg img{width:96px}.qrg b{font-size:12px;margin-top:4px}#play{padding-top:clamp(20px,4vh,50px)!important;padding-bottom:clamp(20px,4vh,50px)!important}}
 </style>
 </head>
 <body>
@@ -484,6 +491,7 @@ nav .links .sep{width:1px;height:14px;background:var(--line);align-self:center}
   <p class="body">에이스 편 데모를 지금 바로 플레이할 수 있습니다.</p>
   <div><a class="btn solid big" href="https://mementorium.github.io/">▶ 지금 플레이</a></div>
   <div class="plats"><span>웹 브라우저</span><span>PC</span><span>모바일</span><span>설치 없음</span><span>무료</span></div>
+  <a class="qrg" href="https://mementorium.github.io/"><img src="img/qr_game.svg" alt="게임 QR 코드"><b>휴대폰으로 바로 플레이</b><span>mementorium.github.io</span></a>
 </section>
 
 <footer>
