@@ -46,7 +46,7 @@ h2{font-weight:normal;font-size:clamp(28px,min(3.4vw,5.6vh),50px);line-height:1.
 /* 1 첫 화면: 게임 장면이 천천히 바뀜 */
 .hero{position:relative;min-height:calc(100vh - var(--nav) - 31px);display:flex;align-items:flex-end;justify-content:center;text-align:center;overflow:hidden;padding:0;background:#120f1e}
 .slides{position:absolute;inset:0}
-.sl{position:absolute;inset:0;background-size:cover;background-position:center;image-rendering:pixelated;opacity:0;transition:opacity .9s ease}
+.sl{position:absolute;inset:0;background-size:cover;background-position:center;image-rendering:pixelated;opacity:0;transition:opacity .7s ease}
 .sl.on{opacity:1}
 .hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 70%,rgba(14,12,22,.72) 0%,rgba(14,12,22,.35) 55%,rgba(14,12,22,.15) 100%),linear-gradient(transparent 55%,var(--bg) 100%);z-index:1}
 .hero .in{position:relative;z-index:2;padding:0 24px clamp(80px,13vh,140px);max-width:1100px;display:flex;flex-direction:column;align-items:center}
@@ -86,7 +86,7 @@ h2{font-weight:normal;font-size:clamp(28px,min(3.4vw,5.6vh),50px);line-height:1.
 
 /* 4 캐릭터 고르기: 게임 속 로그북 그대로 + 가운데 정렬 */
 #memories{background:var(--bg2)}
-.mem{display:grid;grid-template-columns:auto minmax(0,600px);gap:clamp(60px,9vw,160px);align-items:center;justify-content:center}
+.mem{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(50px,7vw,120px);align-items:center;margin-top:clamp(22px,4vh,44px)}
 .book{position:relative;height:min(48vh,500px);aspect-ratio:974/1205}
 .book img.cv{width:100%;height:100%;image-rendering:pixelated;filter:drop-shadow(10px 14px 0 rgba(0,0,0,.4))}
 .book .tint,.book .plate,.book .qm,.book .lock{display:none}
@@ -347,6 +347,8 @@ footer .disc{max-width:min(1440px,92vw);margin:28px auto 0;padding-top:20px;bord
 <!-- 4 캐릭터 -->
 <section id="memories">
   <div class="wrap">
+    <div class="kicker">MEMORIES</div>
+    <h2>누구의 기억을 펼치시겠습니까?</h2>
     <div class="mem" id="mem">
       <div class="book" id="book">
         <img class="cv" id="bkImg" src="img/book_ace.png" alt="로그북">
@@ -355,8 +357,6 @@ footer .disc{max-width:min(1440px,92vw);margin:28px auto 0;padding-top:20px;bord
         <div class="qm">?</div><div class="lock">🔒</div>
       </div>
       <div class="info">
-        <div class="kicker">MEMORIES</div>
-        <h2>누구의 기억을<br>펼치시겠습니까?</h2>
         <div class="who">
           <div class="src" id="memSrc"></div>
           <h3 id="memName"></h3>
@@ -498,7 +498,7 @@ footer .disc{max-width:min(1440px,92vw);margin:28px auto 0;padding-top:20px;bord
 // 첫 화면: 게임 장면 바꾸기 (사라졌다가 나타나기)
 (function(){const sl=[...document.querySelectorAll('.sl')];let k=0;
   if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-  setInterval(()=>{sl[k].classList.remove('on');k=(k+1)%sl.length;sl[k].classList.add('on');},3500);})();
+  setInterval(()=>{sl[k].classList.remove('on');k=(k+1)%sl.length;sl[k].classList.add('on');},2500);})();
 
 // 캐릭터 고르기 (로그북)
 const MEM=[
