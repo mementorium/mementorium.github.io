@@ -818,7 +818,8 @@ const SC={
     R(c,0,100,240,35,'#a89e8a');for(let i=0;i<10;i++)R(c,100+i*4-i*i*.3,100+i*3.5,40+i*8,3,'#c8bea8');
     R(c,18,74,4,40,'#c8322c');R(c,52,74,4,40,'#c8322c');R(c,10,70,52,4,'#c8322c');R(c,14,78,44,3,'#c8322c');R(c,8,68,56,2,'#2a1a1a');
     for(let i=0;i<12;i++){const k=(t*.1+i/12)%1;R(c,(i*37+t*8)%240,10+k*110,2,1,'#f6c0c8');}},
-  roomGojoImg(c,t){if(!BGIMG.gojo.complete||!BGIMG.gojo.naturalWidth){SC.roomGojo(c,t);return;}c.drawImage(BGIMG.gojo,0,0,240,135);
+  gojoHook(c){const H=GOJ_SLOT.wall,x=H.fx,y=H.surf-18;R(c,x-2,y-2,4,5,'#1c1418');R(c,x-1,y-1,2,3,'#b8863e');R(c,x-1,y-1,1,1,'#f0c878');R(c,x,y+1,1,1,'#7a5226');R(c,x,y+3,1,3,'#1c1418');R(c,x,y+5,2,1,'#1c1418');R(c,x+1,y+4,1,1,'#1c1418');},
+  roomGojoImg(c,t){if(!BGIMG.gojo.complete||!BGIMG.gojo.naturalWidth){SC.roomGojo(c,t);return;}c.drawImage(BGIMG.gojo,0,0,240,135);SC.gojoHook(c);
     for(let i=0;i<14;i++){const x=95+((i*23+t*3)%60),y=30+((i*17+t*2)%70);R(c,x,y,.5,.5,'rgba(255,230,170,.7)');}},
   roomGojo(c,t){
     R(c,0,0,240,88,'#c4c8d2');for(let y=6;y<88;y+=10)R(c,0,y,240,1,'#bcc0ca');R(c,0,86,240,3,'#6a6a74');
@@ -921,9 +922,10 @@ function zoneAt(x,y){let best=null,ba=1e9;for(const [k,z] of Object.entries(SLOT
 function normLoc(lm){const o={};for(const [k,v] of Object.entries(lm||{})){if(typeof v==='string'&&v!=='tray'&&v!=='gone'){const z=SLOT[v];o[k]=z?{z:v,x:z.x+z.w/2,y:z.surf!=null?z.surf:z.y+z.h}:'tray';}else o[k]=v&&typeof v==='object'?Object.assign({},v):v;}return o;}
 const ITEMK={jacket:.72,shades:.46,kiku:.55,gid:.34,gphoto:.46,ball:.42,kesa:.55,tie:.42,watch:.34,hammer:.48,cigbox:.32,yid:.34,panda:.5,prison:.38,pipe:1.15,wbflag:.9,spflag:.9,sake:.55,vivre:.4,beads:.5,logpose:.3,wantace:.6,pepper:.5,pillow:.68,bill:.42,coins:.5,worldmap:.68,elbow:.45,belt:.6,match:.4,lantern:.55,seachart:.6,canteen:.5,cards:.4,eyemask:.4,logbook:.5,compass:.42,marconote:.45,tcrate:.75,tmap:.55,spyglass:.55,rations:.55,wantluffy:.6,doodle:.5,shells:.5};
 const NOFLIP={gid:1,yid:1,gphoto:1,cigbox:1,wantace:1,wantluffy:1};
-function itemTf(L,it){if(!L)return null;let k=(it&&ITEMK[it.id])||1;if(SLOT&&SLOT[L.z]&&SLOT[L.z].cells)k=Math.min(k,.27);if(G&&G.id==='gojo')return{t:0,sc:k,fl:1};if(it&&NOFLIP[it.id])return{t:0,sc:k,fl:1};let fl=L.x>120;const onFloor=L.z==='floor'||L.z==='corner'||(L.z==='free'&&L.y>=84);if(onFloor)fl=L.x<=120;if(it&&(it.id==='wbflag'||it.id==='spflag')&&L.z!=='mast')fl=L.x<=120;return{t:0,sc:k,fl:fl?-1:1};}
+const GROT={prison:{shelf:7}};
+function itemTf(L,it){if(!L)return null;let k=(it&&ITEMK[it.id])||1;if(SLOT&&SLOT[L.z]&&SLOT[L.z].cells)k=Math.min(k,.27);if(G&&G.id==='gojo'){const z=SLOT&&SLOT[L.z];return{t:z&&z.sk||0,sc:k,fl:1,r:(it&&GROT[it.id]&&GROT[it.id][L.z])||0};}if(it&&NOFLIP[it.id])return{t:0,sc:k,fl:1};let fl=L.x>120;const onFloor=L.z==='floor'||L.z==='corner'||(L.z==='free'&&L.y>=84);if(onFloor)fl=L.x<=120;if(it&&(it.id==='wbflag'||it.id==='spflag')&&L.z!=='mast')fl=L.x<=120;return{t:0,sc:k,fl:fl?-1:1};}
 function inPoly(x,y,P){let c=false;for(let i=0,j=P.length-1;i<P.length;j=i++){const[xi,yi]=P[i],[xj,yj]=P[j];if((yi>y)!==(yj>y)&&x<(xj-xi)*(y-yi)/(yj-yi)+xi)c=!c;}return c;}
-function shelfFix(L){const z=L&&SLOT&&SLOT[L.z];if(!z||!z.cells)return null;const px=L.x*4,py=L.y*4;
+function shelfFix(L){const z=L&&SLOT&&SLOT[L.z];if(z&&z.fx!=null){L.x=z.fx;L.y=z.surf;return null;}if(z&&z.ln){const[[ax,ay],[bx,by]]=z.ln,x=Math.max(ax,Math.min(bx,L.x*4));L.x=x/4;L.y=(ay+(by-ay)*(x-ax)/(bx-ax))/4-1;return null;}if(!z||!z.cells)return null;const px=L.x*4,py=L.y*4;
   let ci=z.cells.findIndex(P=>inPoly(px,py,P)||inPoly(px,py-12,P));
   if(ci<0){let bd=1e9;z.cells.forEach((P,i)=>{const cy=(P[0][1]+P[1][1]+P[2][1]+P[3][1])/4,d=Math.abs(cy-py);if(d<bd){bd=d;ci=i;}});}
   const P=z.cells[ci],[,,BR,BL]=P,lo=Math.max(P[0][0],BL[0])+10,hi=Math.min(P[1][0],BR[0])-10,x=Math.max(lo,Math.min(hi,px)),y=BL[1]+(BR[1]-BL[1])*(x-BL[0])/(BR[0]-BL[0]);
@@ -934,7 +936,7 @@ function occZone(L){if(!SLOT||!L)return null;for(const [k,z] of Object.entries(S
 const occList=()=>Object.values(SLOT||{}).filter(z=>z.occ);
 function itemClip(L){const z=SLOT&&SLOT[L.z];return z&&z.clip?Math.max(0,Math.min(32,z.clip-(L.y-31))):32;}
 function drawItems(c,lm){const all=placed(lm),inO=all.filter(it=>occZone(lm[it.id])),rest=all.filter(it=>!occZone(lm[it.id]));
-  const one=it=>{const L=lm[it.id];if(!ART[it.spr])return;const cp=shelfFix(L);const f=itemTf(L,it);c.save();if(cp){c.beginPath();cp.forEach(([x,y],i)=>i?c.lineTo(x/4,y/4):c.moveTo(x/4,y/4));c.closePath();c.clip();}c.translate(L.x,L.y+1);c.scale(f.sc*f.fl,f.sc);c.drawImage(ART[it.spr],-16,-32,32,32);c.restore();};
+  const one=it=>{const L=lm[it.id];if(!ART[it.spr])return;const cp=shelfFix(L);const f=itemTf(L,it);c.save();if(cp){c.beginPath();cp.forEach(([x,y],i)=>i?c.lineTo(x/4,y/4):c.moveTo(x/4,y/4));c.closePath();c.clip();}c.translate(L.x,L.y+1);if(f.r)c.rotate(f.r*Math.PI/180);c.scale(f.sc*f.fl,f.sc);if(f.t)c.transform(1,f.t,0,1,0,0);c.drawImage(ART[it.spr],-16,-32,32,32);c.restore();};
   inO.forEach(one);const BG=G&&G.id==='gojo'?BGIMG.gojo:BGIMG.ace;if(inO.length&&BG&&BG.naturalWidth)occList().forEach(z=>{c.save();c.beginPath();const ring=r=>{r.forEach(([x,y],i)=>i?c.lineTo(x/4,y/4):c.moveTo(x/4,y/4));c.closePath();};ring(z.occ);(z.holes||[]).forEach(ring);c.clip('evenodd');c.drawImage(BG,0,0,240,135);c.restore();});
   rest.forEach(one);}
 function photo(lm,gh){const cv=document.createElement('canvas');cv.width=960;cv.height=540;const c=cv.getContext('2d');c.imageSmoothingEnabled=false;c.scale(4,4);
@@ -1606,10 +1608,10 @@ const REN_END={
 /* ================= 데이터: 고죠 ================= */
 const GOJ_SLOT={
   lamp:{x:52,y:44,w:20,h:50,cap:2,hang:1,nm:'등불'},
-  wall:{x:146,y:36,w:24,h:42,cap:1,hang:1,min:58,nm:'벽'},
+  wall:{x:146,y:36,w:24,h:42,cap:1,hang:1,fx:158,surf:70,nm:'벽 고리'},
   window:{x:100,y:50,w:40,h:20,cap:1,surf:66,nm:'원형 창 아래'},
   shelf:{x:178,y:46,w:20,h:30,cap:3,hang:1,cells:[[[722,186],[772,213],[767,251],[720,227]],[[719,233],[765,259],[762,302],[714,274]]],nm:'책장'},
-  chair:{x:88,y:68,w:32,h:30,cap:2,surf:95,nm:'의자 위'},
+  chair:{x:88,y:68,w:32,h:30,cap:2,surf:89,ln:[[386,362],[470,351]],sk:-.13,nm:'의자 위'},
   table:{x:120,y:74,w:24,h:14,cap:2,surf:84,nm:'작은 탁자 위'},
   desk:{x:17,y:90,w:74,h:20,cap:3,surf:104,nm:'책상 위'},
   floor:{x:0,y:96,w:240,h:39,cap:3,min:100,nm:'바닥'}
@@ -1826,7 +1828,7 @@ function renderRoom(){renderBoxes();
   const box=$('slots');box.innerHTML='';
   placed(loc).forEach(it=>{const L=loc[it.id];shelfFix(L);const im=document.createElement('img');im.src=ARTURL[it.spr];
     im.className='it'+(it.id===sel?' sel':'')+(drag&&drag.moved&&drag.id===it.id?' lifted':'');
-    im.style.left=(L.x*4-64)+'px';im.style.top=(L.y*4-124)+'px';const tf=itemTf(L,it);im.style.transformOrigin='50% 100%';im.style.transform=`scale(${tf.sc*tf.fl},${tf.sc})`;im.style.zIndex=occZone(L)?1:3;const cp=SLOT[L.z]&&SLOT[L.z].cells?SLOT[L.z].cells[L.cell]:null;if(cp){const w=document.createElement('div');w.style.cssText=`position:absolute;left:0;top:0;width:960px;height:540px;pointer-events:none;z-index:1;clip-path:polygon(${cp.map(([x,y])=>x+'px '+y+'px').join(',')})`;w.appendChild(im);box.appendChild(w);}else box.appendChild(im);});
+    im.style.left=(L.x*4-64)+'px';im.style.top=(L.y*4-124)+'px';const tf=itemTf(L,it);im.style.transformOrigin='50% 100%';im.style.transform=`${tf.r?`rotate(${tf.r}deg) `:''}scale(${tf.sc*tf.fl},${tf.sc})${tf.t?` skewY(${Math.atan(tf.t)}rad)`:''}`;im.style.zIndex=occZone(L)?1:3;const cp=SLOT[L.z]&&SLOT[L.z].cells?SLOT[L.z].cells[L.cell]:null;if(cp){const w=document.createElement('div');w.style.cssText=`position:absolute;left:0;top:0;width:960px;height:540px;pointer-events:none;z-index:1;clip-path:polygon(${cp.map(([x,y])=>x+'px '+y+'px').join(',')})`;w.appendChild(im);box.appendChild(w);}else box.appendChild(im);});
   if(G&&(G.id==='ace'||G.id==='gojo'))occList().forEach(oz=>{const o=document.createElement('img');o.src=(G.id==='gojo'?BGIMG.gojo:BGIMG.ace).src;o.className='occ';const rg=r=>'M'+r.map(([x,y])=>x+' '+y).join(' L')+' Z';const cp=oz.holes?`path(evenodd,"${[oz.occ,...oz.holes].map(rg).join(' ')}")`:`polygon(${oz.occ.map(([x,y])=>x+'px '+y+'px').join(',')})`;o.style.cssText=`position:absolute;left:0;top:0;width:960px;height:540px;z-index:2;pointer-events:none;image-rendering:pixelated;clip-path:${cp}`;box.appendChild(o);});
   const tr=$('trayItems');tr.innerHTML='';
   ITEMS.filter(i=>loc[i.id]==='tray').forEach(i=>{const d=document.createElement('div');d.className='tit'+(drag&&drag.moved&&drag.id===i.id?' lifted':'');d.dataset.id=i.id;
