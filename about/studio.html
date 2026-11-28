@@ -328,6 +328,18 @@ hr.gap{display:none}
   .art .credit div{padding:clamp(5px,1.1vh,12px) 0!important;font-size:15px}
   .art .kicker{margin-bottom:8px}
 }
+
+/* 픽셀 스티커 */
+body.doc .art{position:relative}
+.stk{position:absolute;right:clamp(-130px,-7vw,-40px);height:clamp(54px,5vw,80px);width:auto;image-rendering:pixelated;transform:rotate(var(--r,6deg));
+  filter:drop-shadow(3px 0 0 #f3e6c8) drop-shadow(-3px 0 0 #f3e6c8) drop-shadow(0 3px 0 #f3e6c8) drop-shadow(0 -3px 0 #f3e6c8) drop-shadow(4px 6px 0 rgba(0,0,0,.45));transition:transform .25s}
+.stk:hover{transform:rotate(calc(var(--r,6deg) * -1)) scale(1.08)}
+@media (max-width:1180px){.stk{right:0;top:-8px!important;height:46px}}
+@media (max-width:700px){.stk{display:none}}
+/* 로고와 ABOUT 사이 간격 · 제작 정보 세로 순서 */
+.logo-big{margin:0 auto clamp(60px,10vh,130px)!important}
+.art .credit{grid-auto-flow:column;grid-template-rows:repeat(4,auto)}
+@media (max-width:900px){.art .credit{grid-auto-flow:row;grid-template-rows:none}}
 </style>
 <body class="doc">
 <div class="notice"><b>수업용 프로젝트</b> · 비영리 팬 창작물입니다. 등장 캐릭터의 저작권은 각 원작자에게 있습니다.</div>
@@ -362,9 +374,10 @@ hr.gap{display:none}
 <hr class="gap">
 
 <section><div class="art">
+  <img class="stk" src="img/obj_a_vivre.png" alt="" style="--r:8deg;top:-6px">
   <div class="kicker">WHAT WE MAKE</div>
   <h2>우리가 만드는 게임</h2>
-  <p>Dotage는 이야기가 끝난 뒤에도 남아 있는 감정에 관심이 많습니다. 원작이 보여 주지 않은 시간, 등장인물이 아닌 그 곁에 있던 사람들의 시간을 게임으로 옮기는 것이 저희가 하고 싶은 일입니다.</p>
+  <p>Dotage는 이야기가 끝난 뒤에도 남아 있는 감정에 관심이 많습니다. 카메라가 비추지 않은 시간, 등장인물이 아닌 그 곁에 있던 사람들의 시간을 게임으로 옮기는 것이 저희가 하고 싶은 일입니다.</p>
   <p>첫 작품 《메멘토리움》은 좋아하던 캐릭터가 떠난 뒤, 그의 방을 정리하는 유품 정리 게임입니다. 화려한 연출보다 물건 하나, 대사 한 줄에 마음이 머무는 게임을 지향합니다.</p>
   <div class="cards2 four4">
     <div><b>손으로 찍은 도트</b>방 배경은 480×270, 유품은 64×64 크기로 하나하나 직접 그렸습니다. 원작 장면도 도트로 다시 그려 게임 안에 담았습니다.</div>
@@ -376,17 +389,18 @@ hr.gap{display:none}
 <hr class="gap">
 
 <section><div class="art">
+  <img class="stk" src="img/box.png" alt="" style="--r:-9deg;top:-4px">
   <div class="kicker">CREDITS</div>
   <h2>《메멘토리움》 제작 정보</h2>
   <div class="credit">
     <div><b>게임</b><span>MEMENTORIUM 메멘토리움</span></div>
+    <div><b>장르</b><span>유품 정리 퍼즐 · 비주얼 노벨</span></div>
+    <div><b>캐릭터</b><span>에이스 · 고죠 · 렌고쿠 · 에렌 · 진페이 (순차 공개)</span></div>
+    <div><b>버전</b><span>데모 (에이스 편) · 무료</span></div>
     <div><b>개발</b><span>Dotage</span></div>
     <div><b>배급</b><span>Jihyun Studio</span></div>
-    <div><b>장르</b><span>유품 정리 퍼즐 · 비주얼 노벨</span></div>
     <div><b>그래픽</b><span>도트 (배경 480×270 · 유품 64×64)</span></div>
     <div><b>플랫폼</b><span>웹 브라우저 (PC · 모바일) · 설치 없음</span></div>
-    <div><b>버전</b><span>데모 (에이스 편) · 무료</span></div>
-    <div><b>캐릭터</b><span>에이스 · 고죠 · 렌고쿠 · 에렌 · 진페이 (순차 공개)</span></div>
   </div>
   <p><b>Jihyun Studio</b>는 《메멘토리움》의 배급을 맡아, 게임이 더 많은 사람에게 닿을 수 있도록 함께하고 있습니다.</p>
   <p style="margin-top:50px;font-size:14px;color:var(--mute)">이 사이트와 게임은 수업 과제로 만든 비영리 팬 창작물입니다. 등장 캐릭터와 원작의 저작권은 각 원작자에게 있습니다.</p>
