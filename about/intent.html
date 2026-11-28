@@ -385,6 +385,12 @@ body.doc .art{position:relative}
 .art .tasks.wide .task{padding:clamp(4px,1.1vh,14px) 0!important}
 .art:has(.tasks.wide) .stk{margin-bottom:6px}
 @media (min-width:901px) and (max-height:700px){.art .tasks.wide .t,.art .tasks.wide .g b{font-size:15px!important}.art .stk{height:20px!important;margin-bottom:4px!important}.art p{margin-bottom:8px!important}.art .tasks.wide{margin:8px 0!important}}
+/* 강조는 누런 글씨로 · 기획 의도 문구는 상자 없이 가운데 */
+.art p b,.art p em{text-shadow:none!important;color:var(--moon)!important}
+.art blockquote{border:none!important;background:none!important;text-align:center;padding:clamp(16px,3vh,30px) 0!important;margin-top:clamp(16px,3vh,34px)!important;
+  border-top:1px solid var(--line)!important;border-bottom:1px solid var(--line)!important;color:var(--cream);font-size:clamp(17px,min(1.5vw,2.6vh),23px)!important;line-height:1.8!important}
+.art blockquote small{display:block;color:var(--sun);font-size:12px!important;letter-spacing:.3em;margin-bottom:10px!important}
+.art blockquote small::before,.art blockquote small::after{content:'';display:inline-block;width:28px;height:1px;background:var(--sun);opacity:.6;vertical-align:middle;margin:0 12px}
 </style>
 <body class="doc">
 <div class="notice"><b>수업용 프로젝트</b> · 비영리 팬 창작물입니다. 등장 캐릭터의 저작권은 각 원작자에게 있습니다.</div>
@@ -430,7 +436,7 @@ body.doc .art{position:relative}
   <p>작가가 보여 주는 것은 <b>대부분 죽음의 순간까지</b>입니다. 작가는 그가 쓰러지는 장면을 그리고, 다음 장으로 넘어갑니다. 이야기는 계속되어야 하기 때문입니다.</p>
   <p>그 사이에 생략되는 것들이 있습니다. 장례식, 주인을 잃은 방, 그의 물건을 하나씩 정리하는 사람들, 그리고 그 사람들이 다시 일상으로 돌아가기까지의 시간입니다. <b>카메라는 그곳을 비추지 않습니다</b>.</p>
   <p><b>독자의 슬픔은 바로 그 생략된 자리에 남습니다</b>. 이야기는 이미 앞으로 나아갔는데, 독자는 아직 그 장면에 머물러 있습니다. <b>보내 줄 시간을 충분히 갖지 못한 채로요</b>.</p>
-  <blockquote><small>기획 의도</small>《메멘토리움》은 카메라가 비추지 않은 그 뒤의 시간을, 플레이어가 직접 걸어 들어가 보여 줍니다.</blockquote>
+  <blockquote><small>기획 의도</small>《메멘토리움》은 <span style="color:var(--moon)">카메라가 비추지 않은 그 뒤의 시간</span>을,<br>플레이어가 직접 걸어 들어가 보여 줍니다.</blockquote>
 </div></section>
 <hr class="gap">
 
