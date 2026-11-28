@@ -340,6 +340,12 @@ body.doc .art{position:relative}
 .logo-big{margin:0 auto clamp(60px,10vh,130px)!important}
 .art .credit{grid-auto-flow:column;grid-template-rows:repeat(4,auto)}
 @media (max-width:900px){.art .credit{grid-auto-flow:row;grid-template-rows:none}}
+/* 픽셀 스티커 v2: 작게, 여러 개 */
+.stk{position:absolute;right:auto;height:clamp(30px,2.5vw,42px)!important;width:auto;image-rendering:pixelated;transform:rotate(var(--r,6deg));pointer-events:auto;
+  filter:drop-shadow(2px 0 0 #f3e6c8) drop-shadow(-2px 0 0 #f3e6c8) drop-shadow(0 2px 0 #f3e6c8) drop-shadow(0 -2px 0 #f3e6c8) drop-shadow(3px 4px 0 rgba(0,0,0,.45));transition:transform .25s}
+.stk[src*="pipe"]{height:clamp(40px,3.4vw,56px)!important}
+.stk:hover{transform:rotate(calc(var(--r,6deg) * -1)) scale(1.15)}
+@media (max-width:1240px){.stk{display:none}}
 </style>
 <body class="doc">
 <div class="notice"><b>수업용 프로젝트</b> · 비영리 팬 창작물입니다. 등장 캐릭터의 저작권은 각 원작자에게 있습니다.</div>
@@ -365,6 +371,9 @@ body.doc .art{position:relative}
 </section>
 
 <section><div class="art">
+  <img class="stk" src="img/obj_a_spflag.png" alt="" style="right:-95px;top:4%;--r:-10deg">
+  <img class="stk" src="img/obj_a_wbflag.png" alt="" style="left:-110px;top:30%;--r:8deg">
+  <img class="stk" src="img/obj_a_pillow.png" alt="" style="right:-110px;top:70%;--r:-6deg">
   <img class="logo-big" src="img/dotage_cream.png" alt="Dotage">
   <div class="kicker">ABOUT</div>
   <h2>Dotage는 어떤 스튜디오인가요</h2>
@@ -374,7 +383,9 @@ body.doc .art{position:relative}
 <hr class="gap">
 
 <section><div class="art">
-  <img class="stk" src="img/obj_a_vivre.png" alt="" style="--r:8deg;top:-6px">
+  <img class="stk" src="img/obj_a_pipe.png" alt="" style="right:-110px;top:2%;--r:9deg">
+  <img class="stk" src="img/obj_a_sake.png" alt="" style="left:-100px;top:40%;--r:-12deg">
+  <img class="stk" src="img/box.png" alt="" style="right:-90px;top:78%;--r:7deg">
   <div class="kicker">WHAT WE MAKE</div>
   <h2>우리가 만드는 게임</h2>
   <p>Dotage는 이야기가 끝난 뒤에도 남아 있는 감정에 관심이 많습니다. 카메라가 비추지 않은 시간, 등장인물이 아닌 그 곁에 있던 사람들의 시간을 게임으로 옮기는 것이 저희가 하고 싶은 일입니다.</p>
@@ -389,7 +400,9 @@ body.doc .art{position:relative}
 <hr class="gap">
 
 <section><div class="art">
-  <img class="stk" src="img/box.png" alt="" style="--r:-9deg;top:-4px">
+  <img class="stk" src="img/logpose.png" alt="" style="left:-105px;top:6%;--r:-8deg">
+  <img class="stk" src="img/ahat_t.png" alt="" style="right:-100px;top:46%;--r:11deg">
+  <img class="stk" src="img/obj_a_vivre.png" alt="" style="left:-85px;top:84%;--r:6deg">
   <div class="kicker">CREDITS</div>
   <h2>《메멘토리움》 제작 정보</h2>
   <div class="credit">

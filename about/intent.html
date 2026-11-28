@@ -365,6 +365,17 @@ body.doc .art{position:relative}
   .art .tasks.wide .g{font-size:13px!important;line-height:1.5!important}
   .art blockquote{padding:12px 24px!important;font-size:17px!important}
 }
+/* 픽셀 스티커 v2: 작게, 여러 개 */
+.stk{position:absolute;right:auto;height:clamp(30px,2.5vw,42px)!important;width:auto;image-rendering:pixelated;transform:rotate(var(--r,6deg));pointer-events:auto;
+  filter:drop-shadow(2px 0 0 #f3e6c8) drop-shadow(-2px 0 0 #f3e6c8) drop-shadow(0 2px 0 #f3e6c8) drop-shadow(0 -2px 0 #f3e6c8) drop-shadow(3px 4px 0 rgba(0,0,0,.45));transition:transform .25s}
+.stk[src*="pipe"]{height:clamp(40px,3.4vw,56px)!important}
+.stk:hover{transform:rotate(calc(var(--r,6deg) * -1)) scale(1.15)}
+@media (max-width:1240px){.stk{display:none}}
+/* 과업 표: 큰 글씨끼리 같은 줄, 설명은 작게 */
+.art .tasks.wide .task{align-items:first baseline!important}
+.art .tasks.wide .t,.art .tasks.wide .g b{font-size:clamp(17px,1.4vw,21px)!important;line-height:1.4!important}
+.art .tasks.wide .g{font-size:clamp(12px,.85vw,14px)!important;line-height:1.6!important}
+.art .tasks.wide .g b{margin-bottom:4px!important;color:var(--moon)}
 </style>
 <body class="doc">
 <div class="notice"><b>수업용 프로젝트</b> · 비영리 팬 창작물입니다. 등장 캐릭터의 저작권은 각 원작자에게 있습니다.</div>
@@ -390,7 +401,9 @@ body.doc .art{position:relative}
 </section>
 
 <section><div class="art">
-  <img class="stk" src="img/obj_a_sake.png" alt="" style="--r:9deg;top:-6px">
+  <img class="stk" src="img/obj_a_sake.png" alt="" style="right:-110px;top:2%;--r:9deg">
+  <img class="stk" src="img/box.png" alt="" style="left:-100px;top:40%;--r:-12deg">
+  <img class="stk" src="img/logpose.png" alt="" style="right:-90px;top:78%;--r:7deg">
   <div class="kicker">01 · QUESTION</div>
   <h2>우리는 왜 캐릭터가 죽으면 슬플까?</h2>
   <p>좋아하던 캐릭터가 죽는 장면을 본 날을 떠올려 봅니다. 만난 적도, 대화를 나눈 적도 없는 인물인데 며칠 동안 마음이 가라앉고, 그 장면을 몇 번이고 다시 찾아보게 됩니다. 이상한 일처럼 보이지만, 사실은 아주 자연스러운 반응입니다.</p>
@@ -404,9 +417,11 @@ body.doc .art{position:relative}
 <hr class="gap">
 
 <section><div class="art">
+  <img class="stk" src="img/ahat_t.png" alt="" style="left:-105px;top:6%;--r:-8deg">
+  <img class="stk" src="img/obj_a_vivre.png" alt="" style="right:-100px;top:46%;--r:11deg">
+  <img class="stk" src="img/obj_a_bill.png" alt="" style="left:-85px;top:84%;--r:6deg">
   <div class="kicker">02 · BEHIND THE CAMERA</div>
   <h2>카메라가 비추지 않은 곳</h2>
-  <p class="state">작가는 ‘그’가 쓰러지는 장면을 보여 주고<br>다음 장으로 넘어갑니다.<br><em>장례도, 주인 없는 방도,<br>남겨진 사람들의 애도도</em><br>카메라는 비추지 않습니다.</p>
   <p>작가가 보여 주는 것은 대부분 죽음의 순간까지입니다. 작가는 그가 쓰러지는 장면을 그리고, 다음 장으로 넘어갑니다. 이야기는 계속되어야 하기 때문입니다.</p>
   <p>그 사이에 생략되는 것들이 있습니다. 장례식, 주인을 잃은 방, 그의 물건을 하나씩 정리하는 사람들, 그리고 그 사람들이 다시 일상으로 돌아가기까지의 시간입니다. 카메라는 그곳을 비추지 않습니다.</p>
   <p>독자의 슬픔은 바로 그 생략된 자리에 남습니다. 이야기는 이미 앞으로 나아갔는데, 독자는 아직 그 장면에 머물러 있습니다. 보내 줄 시간을 충분히 갖지 못한 채로요.</p>
@@ -415,7 +430,9 @@ body.doc .art{position:relative}
 <hr class="gap">
 
 <section><div class="art">
-  <img class="stk" src="img/box.png" alt="" style="--r:-8deg;top:-4px">
+  <img class="stk" src="img/obj_a_spflag.png" alt="" style="right:-95px;top:4%;--r:-10deg">
+  <img class="stk" src="img/obj_a_wbflag.png" alt="" style="left:-110px;top:30%;--r:8deg">
+  <img class="stk" src="img/obj_a_pillow.png" alt="" style="right:-110px;top:70%;--r:-6deg">
   <div class="kicker">03 · WHY UNPACKING</div>
   <h2>왜 ‘유품 정리’인가</h2>
   <p>누군가를 떠나보낸 뒤 남겨진 사람들이 가장 먼저 마주하는 일 중 하나는 그 사람의 물건을 정리하는 일입니다. 옷장 속 옷, 책상 위의 메모, 늘 쓰던 컵 하나에도 그 사람의 시간이 묻어 있습니다. 물건을 정리하는 일은 곧 그 사람을 다시 한 번 떠올리는 일입니다.</p>
@@ -425,6 +442,9 @@ body.doc .art{position:relative}
 <hr class="gap">
 
 <section><div class="art">
+  <img class="stk" src="img/obj_a_pipe.png" alt="" style="right:-110px;top:2%;--r:9deg">
+  <img class="stk" src="img/obj_a_sake.png" alt="" style="left:-100px;top:40%;--r:-12deg">
+  <img class="stk" src="img/box.png" alt="" style="right:-90px;top:78%;--r:7deg">
   <div class="kicker">04 · DESIGN</div>
   <h2>애도의 순서를 플레이의 순서로</h2>
   <p>게임의 흐름은 애도 상담에서 널리 쓰이는 심리학자 윌리엄 워든의 <b>‘애도의 네 가지 과업’</b>을 바탕으로 짰습니다. 워든은 애도를 그저 시간이 지나면 저절로 끝나는 감정이 아니라, 남겨진 사람이 하나씩 해내야 하는 일로 보았습니다. 플레이어는 한 판을 하는 동안 이 네 단계를 차례로 지나갑니다.</p>
@@ -439,7 +459,9 @@ body.doc .art{position:relative}
 <hr class="gap">
 
 <section><div class="art">
-  <img class="stk" src="img/logpose.png" alt="" style="--r:10deg;top:-10px">
+  <img class="stk" src="img/logpose.png" alt="" style="left:-105px;top:6%;--r:-8deg">
+  <img class="stk" src="img/ahat_t.png" alt="" style="right:-100px;top:46%;--r:11deg">
+  <img class="stk" src="img/obj_a_vivre.png" alt="" style="left:-85px;top:84%;--r:6deg">
   <div class="kicker">05 · ENDINGS</div>
   <h2>왜 엔딩이 여섯 개인가</h2>
   <p>캐릭터마다 엔딩은 여섯 개입니다. 엔딩은 두 가지 기준으로 갈립니다. 하나는 <b>얼마나 기억하는가</b>, 즉 그의 물건을 그가 두던 자리에 놓았는지입니다. 다른 하나는 <b>얼마나 알아보는가</b>, 즉 상자에 섞여 든 다른 사람의 물건을 가려냈는지입니다.</p>
@@ -448,7 +470,9 @@ body.doc .art{position:relative}
 <hr class="gap">
 
 <section><div class="art">
-  <img class="stk" src="img/ahat_t.png" alt="" style="--r:-10deg;top:0">
+  <img class="stk" src="img/obj_a_bill.png" alt="" style="right:-95px;top:4%;--r:-10deg">
+  <img class="stk" src="img/obj_a_spflag.png" alt="" style="left:-110px;top:30%;--r:8deg">
+  <img class="stk" src="img/obj_a_wbflag.png" alt="" style="right:-110px;top:70%;--r:-6deg">
   <div class="kicker">06 · MEMORIES</div>
   <h2>다섯 개의 기억</h2>
   <p>게임에는 다섯 권의 로그북이 있습니다. 서로 다른 작품에서, 팬들이 오래도록 슬퍼한 죽음을 골랐습니다. 첫 번째 로그북은 《원피스》의 포트거스 D. 에이스이며, 앞 캐릭터의 진엔딩을 보면 다음 로그북이 하나씩 열립니다.</p>
