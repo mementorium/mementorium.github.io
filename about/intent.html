@@ -258,9 +258,17 @@ footer .disc{max-width:min(1440px,92vw);margin:28px auto 0;padding-top:20px;bord
   #stepper{right:12px;bottom:12px}#stepper button{width:40px;height:40px}
 }
 @media (prefers-reduced-motion:reduce){.down,.story .cut::after}
+.art .tasks.wide{margin:40px 0 50px;border-top:1px solid var(--line)}
+.art .tasks.wide .task{grid-template-columns:48px 1fr 34px 1.5fr;gap:18px;padding:26px 0}
+.art .tasks.wide .t{font-size:clamp(17px,1.4vw,21px);color:var(--cream)}
+.art .tasks.wide .g{font-size:clamp(14px,1.05vw,16px);line-height:1.8}
+.art .tasks.wide .g b{display:block;font-size:clamp(18px,1.5vw,22px);margin-bottom:6px}
+body.doc .art:has(.tasks.wide){max-width:1100px}
+@media (max-width:900px){.art .tasks.wide .task{grid-template-columns:32px 1fr}.art .tasks.wide .ar{display:none}.art .tasks.wide .g{grid-column:2}}
 </style>
 </head>
 <style>
+body.doc>section.dhead{min-height:calc(100vh - var(--nav) - 31px)!important;display:flex!important;flex-direction:column;align-items:center;justify-content:center;padding-top:24px!important;padding-bottom:24px!important}
 /* 읽는 페이지 */
 body.doc>section{min-height:0!important;display:block!important;padding:clamp(110px,16vh,200px) 44px!important}
 body.doc .art{max-width:780px;margin:0 auto}
@@ -360,12 +368,12 @@ hr.gap{border:0;height:1px;background:var(--line);max-width:780px;margin:0 auto}
   <div class="kicker">04 · DESIGN</div>
   <h2>애도의 순서를 플레이의 순서로</h2>
   <p>게임의 흐름은 애도 상담에서 널리 쓰이는 심리학자 윌리엄 워든의 <b>‘애도의 네 가지 과업’</b>을 바탕으로 짰습니다. 워든은 애도를 그저 시간이 지나면 저절로 끝나는 감정이 아니라, 남겨진 사람이 하나씩 해내야 하는 일로 보았습니다. 플레이어는 한 판을 하는 동안 이 네 단계를 차례로 지나갑니다.</p>
-  <ol class="steps">
-    <li><span class="n">1</span><small>과업 · 상실을 현실로 받아들이기</small><b>→ <i>그날을 다시 보기</i></b><span>게임은 원작 속 마지막 장면에서 시작합니다. 비주얼 노벨처럼 대사를 넘기며 그날을 다시 따라가는 동안, 플레이어는 그가 정말로 떠났다는 사실부터 마주합니다.</span></li>
-    <li><span class="n">2</span><small>과업 · 슬픔을 겪어 내기</small><b>→ <i>상자 열기</i></b><span>몇 주 뒤, 주인 없는 방에 택배 상자가 도착합니다. 상자를 열면 물건마다 떠오르는 장면이 있습니다. 피하지 않고 하나씩 꺼내 보는 것이 이 단계입니다.</span></li>
-    <li><span class="n">3</span><small>과업 · 그가 없는 세상에 적응하기</small><b>→ <i>자리 정하기</i></b><span>물건을 끌어다 방 안에 놓습니다. 그가 두던 자리를 떠올리며 방을 원래대로 되돌리는 동안, 플레이어는 그 사람이 없는 공간을 받아들이는 연습을 합니다.</span></li>
-    <li><span class="n">4</span><small>과업 · 이어지는 연결 찾기</small><b>→ <i>사진 한 장</i></b><span>정리를 마치면 방을 비우지 않고 사진으로 남깁니다. 그 사진은 로그북 앨범에 간직되고, 언제든 다시 꺼내 볼 수 있습니다.</span></li>
-  </ol>
+  <div class="tasks wide">
+    <div class="task"><span class="n">1</span><span class="t"><small>과업</small>상실을 현실로 받아들이기</span><span class="ar">→</span><span class="g"><b>그날을 다시 보기</b>게임은 원작 속 마지막 장면에서 시작합니다. 비주얼 노벨처럼 대사를 넘기며 그날을 다시 따라가는 동안, 플레이어는 그가 정말로 떠났다는 사실부터 마주합니다.</span></div>
+    <div class="task"><span class="n">2</span><span class="t"><small>과업</small>슬픔을 겪어 내기</span><span class="ar">→</span><span class="g"><b>상자 열기</b>몇 주 뒤, 주인 없는 방에 택배 상자가 도착합니다. 상자를 열면 물건마다 떠오르는 장면이 있습니다. 피하지 않고 하나씩 꺼내 보는 것이 이 단계입니다.</span></div>
+    <div class="task"><span class="n">3</span><span class="t"><small>과업</small>그가 없는 세상에 적응하기</span><span class="ar">→</span><span class="g"><b>자리 정하기</b>물건을 끌어다 방 안에 놓습니다. 그가 두던 자리를 떠올리며 방을 원래대로 되돌리는 동안, 플레이어는 그 사람이 없는 공간을 받아들이는 연습을 합니다.</span></div>
+    <div class="task"><span class="n">4</span><span class="t"><small>과업</small>이어지는 연결 찾기</span><span class="ar">→</span><span class="g"><b>사진 한 장</b>정리를 마치면 방을 비우지 않고 사진으로 남깁니다. 그 사진은 로그북 앨범에 간직되고, 언제든 다시 꺼내 볼 수 있습니다.</span></div>
+  </div>
   <p>이 흐름은 데니스 클래스 등이 제시한 <b>‘지속적 유대’</b>라는 관점과도 이어집니다. 애도는 떠난 사람을 완전히 잊고 끊어 내는 일이 아니라, 그와의 관계를 다른 모양으로 이어 가는 일이라는 생각입니다. 그래서 이 게임의 정리는 <em>버리는 정리가 아니라, 제자리를 찾아 주는 정리</em>입니다.</p>
 </div></section>
 <hr class="gap">
@@ -405,9 +413,38 @@ hr.gap{border:0;height:1px;background:var(--line);max-width:780px;margin:0 auto}
   <div class="disc">©2026 Dotage · 이 사이트와 게임은 수업 과제로 만든 비영리 팬 창작물입니다. 등장 캐릭터의 저작권은 각 원작자에게 있습니다.</div>
 </footer>
 
+<div id="lb"></div>
+<div id="stepper" aria-label="섹션 넘기기"><button type="button" id="stPrev" title="이전 (↑ · PageUp)">▲</button><span id="stNum">1</span><button type="button" id="stNext" title="다음 (↓ · PageDown · Space)">▼</button></div>
 <script>
+const lb=document.getElementById("lb");
 const links=document.getElementById('links');
 document.getElementById('menuBtn').onclick=()=>links.classList.toggle('on');
+// 발표용: 구역 하나씩 넘기기
+(function(){
+  const navH=()=>document.querySelector('nav').getBoundingClientRect().height;
+  const stops=[];
+  document.querySelectorAll('header.hero, body > section').forEach(sec=>{
+    if(sec.id==='features'){sec.querySelectorAll('.feat').forEach(f=>stops.push(f));return;}
+    stops.push(sec);});
+  const y=el=>Math.max(0,el.getBoundingClientRect().top+scrollY-navH());
+  const cur=()=>{const t=scrollY+4;let i=0;stops.forEach((el,k)=>{if(y(el)<=t)i=k;});return i;};
+  function go(d){const i=cur(),here=stops[i];
+    if(d>0){const r=here.getBoundingClientRect(),nt=stops[i+1]?y(stops[i+1]):Infinity;
+      if(r.bottom>innerHeight+40&&scrollY+innerHeight*.8<nt-20){scrollTo({top:Math.min(scrollY+innerHeight*.8,nt),behavior:'smooth'});return;}
+      if(stops[i+1])scrollTo({top:nt,behavior:'smooth'});}
+    else{const top=y(here);if(scrollY>top+10){scrollTo({top,behavior:'smooth'});return;}if(stops[i-1])scrollTo({top:y(stops[i-1]),behavior:'smooth'});}}
+  const prev=stPrev,next=stNext,num=stNum;
+  function upd(){const i=cur();num.textContent=(i+1)+' / '+stops.length;prev.disabled=scrollY<4;next.disabled=scrollY+innerHeight>=document.documentElement.scrollHeight-4;}
+  const later=()=>{setTimeout(upd,450);setTimeout(upd,900);};
+  prev.onclick=()=>{go(-1);later();};next.onclick=()=>{go(1);later();};
+  document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>{go(1);later();});
+  addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
+  addEventListener('keydown',e=>{
+    if(e.target.closest('input,textarea,select')||e.altKey||e.ctrlKey||e.metaKey)return;
+    if(lb.classList.contains('on')){if(e.key==='Escape')lb.classList.remove('on');return;}
+    if(['PageDown','ArrowRight','ArrowDown'].includes(e.key)||(e.key===' '&&!e.shiftKey)){e.preventDefault();go(1);later();}
+    else if(['PageUp','ArrowLeft','ArrowUp'].includes(e.key)||(e.key===' '&&e.shiftKey)){e.preventDefault();go(-1);later();}});
+})();
 </script>
 </body>
 </html>

@@ -261,6 +261,7 @@ footer .disc{max-width:min(1440px,92vw);margin:28px auto 0;padding-top:20px;bord
 </style>
 </head>
 <style>
+body.doc>section.dhead{min-height:calc(100vh - var(--nav) - 31px)!important;display:flex!important;flex-direction:column;align-items:center;justify-content:center;padding-top:24px!important;padding-bottom:24px!important}
 /* 읽는 페이지 */
 body.doc>section{min-height:0!important;display:block!important;padding:clamp(110px,16vh,200px) 44px!important}
 body.doc .art{max-width:780px;margin:0 auto}
@@ -374,9 +375,38 @@ hr.gap{border:0;height:1px;background:var(--line);max-width:780px;margin:0 auto}
   <div class="disc">©2026 Dotage · 이 사이트와 게임은 수업 과제로 만든 비영리 팬 창작물입니다. 등장 캐릭터의 저작권은 각 원작자에게 있습니다.</div>
 </footer>
 
+<div id="lb"></div>
+<div id="stepper" aria-label="섹션 넘기기"><button type="button" id="stPrev" title="이전 (↑ · PageUp)">▲</button><span id="stNum">1</span><button type="button" id="stNext" title="다음 (↓ · PageDown · Space)">▼</button></div>
 <script>
+const lb=document.getElementById("lb");
 const links=document.getElementById('links');
 document.getElementById('menuBtn').onclick=()=>links.classList.toggle('on');
+// 발표용: 구역 하나씩 넘기기
+(function(){
+  const navH=()=>document.querySelector('nav').getBoundingClientRect().height;
+  const stops=[];
+  document.querySelectorAll('header.hero, body > section').forEach(sec=>{
+    if(sec.id==='features'){sec.querySelectorAll('.feat').forEach(f=>stops.push(f));return;}
+    stops.push(sec);});
+  const y=el=>Math.max(0,el.getBoundingClientRect().top+scrollY-navH());
+  const cur=()=>{const t=scrollY+4;let i=0;stops.forEach((el,k)=>{if(y(el)<=t)i=k;});return i;};
+  function go(d){const i=cur(),here=stops[i];
+    if(d>0){const r=here.getBoundingClientRect(),nt=stops[i+1]?y(stops[i+1]):Infinity;
+      if(r.bottom>innerHeight+40&&scrollY+innerHeight*.8<nt-20){scrollTo({top:Math.min(scrollY+innerHeight*.8,nt),behavior:'smooth'});return;}
+      if(stops[i+1])scrollTo({top:nt,behavior:'smooth'});}
+    else{const top=y(here);if(scrollY>top+10){scrollTo({top,behavior:'smooth'});return;}if(stops[i-1])scrollTo({top:y(stops[i-1]),behavior:'smooth'});}}
+  const prev=stPrev,next=stNext,num=stNum;
+  function upd(){const i=cur();num.textContent=(i+1)+' / '+stops.length;prev.disabled=scrollY<4;next.disabled=scrollY+innerHeight>=document.documentElement.scrollHeight-4;}
+  const later=()=>{setTimeout(upd,450);setTimeout(upd,900);};
+  prev.onclick=()=>{go(-1);later();};next.onclick=()=>{go(1);later();};
+  document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>{go(1);later();});
+  addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
+  addEventListener('keydown',e=>{
+    if(e.target.closest('input,textarea,select')||e.altKey||e.ctrlKey||e.metaKey)return;
+    if(lb.classList.contains('on')){if(e.key==='Escape')lb.classList.remove('on');return;}
+    if(['PageDown','ArrowRight','ArrowDown'].includes(e.key)||(e.key===' '&&!e.shiftKey)){e.preventDefault();go(1);later();}
+    else if(['PageUp','ArrowLeft','ArrowUp'].includes(e.key)||(e.key===' '&&e.shiftKey)){e.preventDefault();go(-1);later();}});
+})();
 </script>
 </body>
 </html>
