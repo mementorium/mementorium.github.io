@@ -346,6 +346,12 @@ body.doc .art{position:relative}
 .stk[src*="pipe"]{height:clamp(40px,3.4vw,56px)!important}
 .stk:hover{transform:rotate(calc(var(--r,6deg) * -1)) scale(1.15)}
 @media (max-width:1240px){.stk{display:none}}
+/* 스티커 v3: 주황 소제목 위에 작게 하나 · 중요한 말 진하게 */
+.art .stk{position:static!important;display:block!important;height:clamp(24px,2vw,30px)!important;width:auto;margin:0 0 10px 2px;transform:rotate(var(--r,-6deg))}
+.art .stk:hover{transform:rotate(calc(var(--r,-6deg) * -1)) scale(1.15)}
+.art .stk[src*="pipe"]{height:clamp(30px,2.6vw,38px)!important}
+.art p b,.art p em{text-shadow:1px 0 0 currentColor}
+.art p b{color:var(--cream)}
 </style>
 <body class="doc">
 <div class="notice"><b>수업용 프로젝트</b> · 비영리 팬 창작물입니다. 등장 캐릭터의 저작권은 각 원작자에게 있습니다.</div>
@@ -371,25 +377,20 @@ body.doc .art{position:relative}
 </section>
 
 <section><div class="art">
-  <img class="stk" src="img/obj_a_spflag.png" alt="" style="right:-95px;top:4%;--r:-10deg">
-  <img class="stk" src="img/obj_a_wbflag.png" alt="" style="left:-110px;top:30%;--r:8deg">
-  <img class="stk" src="img/obj_a_pillow.png" alt="" style="right:-110px;top:70%;--r:-6deg">
   <img class="logo-big" src="img/dotage_cream.png" alt="Dotage">
   <div class="kicker">ABOUT</div>
   <h2>Dotage는 어떤 스튜디오인가요</h2>
-  <p><b>Dotage(도티지)</b>는 도트 그래픽 게임을 만드는 작은 인디 스튜디오입니다. 이름은 <em>도트(dot)</em>와 <em>소시지(sausage)</em>를 합쳐 지었습니다. 한 점 한 점 찍어 만드는 도트처럼 작고 성실하게, 그리고 김이 모락모락 나는 소시지처럼 따뜻한 게임을 만들고 싶다는 뜻을 담았습니다.</p>
-  <p>로고 속 소시지에서 피어오르는 김은 ‘막 만들어진 따뜻함’을 뜻합니다. 로고 역시 모두 도트로 직접 그렸습니다.</p>
+  <p><b>Dotage(도티지)</b>는 도트 그래픽 게임을 만드는 작은 인디 스튜디오입니다. 이름은 <em>도트(dot)</em>와 <em>소시지(sausage)</em>를 합쳐 지었습니다. 한 점 한 점 찍어 만드는 도트처럼 <b>작고 성실하게</b>, 그리고 김이 모락모락 나는 소시지처럼 <b>따뜻한 게임</b>을 만들고 싶다는 뜻을 담았습니다.</p>
+  <p>로고 속 소시지에서 피어오르는 김은 <b>‘막 만들어진 따뜻함’</b>을 뜻합니다. 로고 역시 모두 도트로 직접 그렸습니다.</p>
 </div></section>
 <hr class="gap">
 
 <section><div class="art">
-  <img class="stk" src="img/obj_a_pipe.png" alt="" style="right:-110px;top:2%;--r:9deg">
-  <img class="stk" src="img/obj_a_sake.png" alt="" style="left:-100px;top:40%;--r:-12deg">
-  <img class="stk" src="img/box.png" alt="" style="right:-90px;top:78%;--r:7deg">
+  <img class="stk" src="img/obj_a_vivre.png" alt="" style="--r:-7deg">
   <div class="kicker">WHAT WE MAKE</div>
   <h2>우리가 만드는 게임</h2>
-  <p>Dotage는 이야기가 끝난 뒤에도 남아 있는 감정에 관심이 많습니다. 카메라가 비추지 않은 시간, 등장인물이 아닌 그 곁에 있던 사람들의 시간을 게임으로 옮기는 것이 저희가 하고 싶은 일입니다.</p>
-  <p>첫 작품 《메멘토리움》은 좋아하던 캐릭터가 떠난 뒤, 그의 방을 정리하는 유품 정리 게임입니다. 화려한 연출보다 물건 하나, 대사 한 줄에 마음이 머무는 게임을 지향합니다.</p>
+  <p>Dotage는 <b>이야기가 끝난 뒤에도 남아 있는 감정</b>에 관심이 많습니다. <b>카메라가 비추지 않은 시간</b>, 등장인물이 아닌 그 곁에 있던 사람들의 시간을 게임으로 옮기는 것이 저희가 하고 싶은 일입니다.</p>
+  <p>첫 작품 《메멘토리움》은 좋아하던 캐릭터가 떠난 뒤, 그의 방을 정리하는 유품 정리 게임입니다. 화려한 연출보다 <b>물건 하나, 대사 한 줄에 마음이 머무는 게임</b>을 지향합니다.</p>
   <div class="cards2 four4">
     <div><b>손으로 찍은 도트</b>방 배경은 480×270, 유품은 64×64 크기로 하나하나 직접 그렸습니다. 원작 장면도 도트로 다시 그려 게임 안에 담았습니다.</div>
     <div><b>설치 없이 바로</b>웹 브라우저에서 바로 실행되도록 만들었습니다. PC와 휴대폰 어디서든 링크 하나로 플레이할 수 있습니다.</div>
@@ -400,9 +401,7 @@ body.doc .art{position:relative}
 <hr class="gap">
 
 <section><div class="art">
-  <img class="stk" src="img/logpose.png" alt="" style="left:-105px;top:6%;--r:-8deg">
-  <img class="stk" src="img/ahat_t.png" alt="" style="right:-100px;top:46%;--r:11deg">
-  <img class="stk" src="img/obj_a_vivre.png" alt="" style="left:-85px;top:84%;--r:6deg">
+  <img class="stk" src="img/box.png" alt="" style="--r:7deg">
   <div class="kicker">CREDITS</div>
   <h2>《메멘토리움》 제작 정보</h2>
   <div class="credit">
@@ -415,7 +414,7 @@ body.doc .art{position:relative}
     <div><b>그래픽</b><span>도트 (배경 480×270 · 유품 64×64)</span></div>
     <div><b>플랫폼</b><span>웹 브라우저 (PC · 모바일) · 설치 없음</span></div>
   </div>
-  <p><b>Jihyun Studio</b>는 《메멘토리움》의 배급을 맡아, 게임이 더 많은 사람에게 닿을 수 있도록 함께하고 있습니다.</p>
+  <p><b>Jihyun Studio</b>는 《메멘토리움》의 배급을 맡아, 게임이 <b>더 많은 사람에게 닿을 수 있도록</b> 함께하고 있습니다.</p>
   <p style="margin-top:50px;font-size:14px;color:var(--mute)">이 사이트와 게임은 수업 과제로 만든 비영리 팬 창작물입니다. 등장 캐릭터와 원작의 저작권은 각 원작자에게 있습니다.</p>
 </div></section>
 

@@ -376,6 +376,15 @@ body.doc .art{position:relative}
 .art .tasks.wide .t,.art .tasks.wide .g b{font-size:clamp(17px,1.4vw,21px)!important;line-height:1.4!important}
 .art .tasks.wide .g{font-size:clamp(12px,.85vw,14px)!important;line-height:1.6!important}
 .art .tasks.wide .g b{margin-bottom:4px!important;color:var(--moon)}
+/* 스티커 v3: 주황 소제목 위에 작게 하나 · 중요한 말 진하게 */
+.art .stk{position:static!important;display:block!important;height:clamp(24px,2vw,30px)!important;width:auto;margin:0 0 10px 2px;transform:rotate(var(--r,-6deg))}
+.art .stk:hover{transform:rotate(calc(var(--r,-6deg) * -1)) scale(1.15)}
+.art .stk[src*="pipe"]{height:clamp(30px,2.6vw,38px)!important}
+.art p b,.art p em{text-shadow:1px 0 0 currentColor}
+.art p b{color:var(--cream)}
+.art .tasks.wide .task{padding:clamp(4px,1.1vh,14px) 0!important}
+.art:has(.tasks.wide) .stk{margin-bottom:6px}
+@media (min-width:901px) and (max-height:700px){.art .tasks.wide .t,.art .tasks.wide .g b{font-size:15px!important}.art .stk{height:20px!important;margin-bottom:4px!important}.art p{margin-bottom:8px!important}.art .tasks.wide{margin:8px 0!important}}
 </style>
 <body class="doc">
 <div class="notice"><b>수업용 프로젝트</b> · 비영리 팬 창작물입니다. 등장 캐릭터의 저작권은 각 원작자에게 있습니다.</div>
@@ -401,14 +410,12 @@ body.doc .art{position:relative}
 </section>
 
 <section><div class="art">
-  <img class="stk" src="img/obj_a_sake.png" alt="" style="right:-110px;top:2%;--r:9deg">
-  <img class="stk" src="img/box.png" alt="" style="left:-100px;top:40%;--r:-12deg">
-  <img class="stk" src="img/logpose.png" alt="" style="right:-90px;top:78%;--r:7deg">
+  <img class="stk" src="img/obj_a_sake.png" alt="" style="--r:-8deg">
   <div class="kicker">01 · QUESTION</div>
   <h2>우리는 왜 캐릭터가 죽으면 슬플까?</h2>
-  <p>좋아하던 캐릭터가 죽는 장면을 본 날을 떠올려 봅니다. 만난 적도, 대화를 나눈 적도 없는 인물인데 며칠 동안 마음이 가라앉고, 그 장면을 몇 번이고 다시 찾아보게 됩니다. 이상한 일처럼 보이지만, 사실은 아주 자연스러운 반응입니다.</p>
+  <p>좋아하던 캐릭터가 죽는 장면을 본 날을 떠올려 봅니다. 만난 적도, 대화를 나눈 적도 없는 인물인데 며칠 동안 마음이 가라앉고, 그 장면을 몇 번이고 다시 찾아보게 됩니다. 이상한 일처럼 보이지만, <b>사실은 아주 자연스러운 반응입니다</b>.</p>
   <p>1956년, 사회학자 도널드 호튼과 리처드 월은 텔레비전 시청자들이 화면 속 인물과 마치 실제로 아는 사이처럼 친밀감을 느끼는 현상을 처음으로 설명하고, 이를 <b>‘준사회적 상호작용’</b>이라고 불렀습니다. 상대는 나를 모르지만, 나는 그를 오래 지켜보며 그의 말투와 습관, 웃는 얼굴까지 알게 됩니다. 이 일방적인 관계를 <b>‘준사회적 관계’</b>라고 합니다.</p>
-  <p>이후 연구자 조너선 코헨은 좋아하던 인물이 화면에서 사라질 때 사람들이 겪는 감정을 <b>‘준사회적 이별’</b>이라는 이름으로 살폈습니다. 그 결과, 사람들은 실제 관계가 끝났을 때와 비슷한 슬픔과 상실감을 느낀다는 것이 드러났습니다. 관계가 일방적이었다고 해서 그 슬픔이 가짜인 것은 아닙니다.</p>
+  <p>이후 연구자 조너선 코헨은 좋아하던 인물이 화면에서 사라질 때 사람들이 겪는 감정을 <b>‘준사회적 이별’</b>이라는 이름으로 살폈습니다. 그 결과, 사람들은 <b>실제 관계가 끝났을 때와 비슷한 슬픔과 상실감</b>을 느낀다는 것이 드러났습니다. 관계가 일방적이었다고 해서 <b>그 슬픔이 가짜인 것은 아닙니다</b>.</p>
   <div class="cards2">
     <div><b>1970년, 진짜 장례식</b>만화 《내일의 죠》에서 주인공의 라이벌 리키이시 토오루가 죽자, 독자들은 출판사 강당에 모여 실제로 장례식을 치렀습니다. 만화 캐릭터를 위해 사람들이 상복을 입고 모인 것입니다.</div>
     <div><b>지금도 이어지는 애도</b>지금의 팬들도 캐릭터의 기일을 챙기고, 추모 그림을 그리고, 그가 살아 있었다면 어땠을지를 상상하는 2차 창작을 씁니다. 형태만 달라졌을 뿐, 애도는 계속되고 있습니다.</div>
@@ -417,66 +424,56 @@ body.doc .art{position:relative}
 <hr class="gap">
 
 <section><div class="art">
-  <img class="stk" src="img/ahat_t.png" alt="" style="left:-105px;top:6%;--r:-8deg">
-  <img class="stk" src="img/obj_a_vivre.png" alt="" style="right:-100px;top:46%;--r:11deg">
-  <img class="stk" src="img/obj_a_bill.png" alt="" style="left:-85px;top:84%;--r:6deg">
+  <img class="stk" src="img/ahat_t.png" alt="" style="--r:7deg">
   <div class="kicker">02 · BEHIND THE CAMERA</div>
   <h2>카메라가 비추지 않은 곳</h2>
-  <p>작가가 보여 주는 것은 대부분 죽음의 순간까지입니다. 작가는 그가 쓰러지는 장면을 그리고, 다음 장으로 넘어갑니다. 이야기는 계속되어야 하기 때문입니다.</p>
-  <p>그 사이에 생략되는 것들이 있습니다. 장례식, 주인을 잃은 방, 그의 물건을 하나씩 정리하는 사람들, 그리고 그 사람들이 다시 일상으로 돌아가기까지의 시간입니다. 카메라는 그곳을 비추지 않습니다.</p>
-  <p>독자의 슬픔은 바로 그 생략된 자리에 남습니다. 이야기는 이미 앞으로 나아갔는데, 독자는 아직 그 장면에 머물러 있습니다. 보내 줄 시간을 충분히 갖지 못한 채로요.</p>
+  <p>작가가 보여 주는 것은 <b>대부분 죽음의 순간까지</b>입니다. 작가는 그가 쓰러지는 장면을 그리고, 다음 장으로 넘어갑니다. 이야기는 계속되어야 하기 때문입니다.</p>
+  <p>그 사이에 생략되는 것들이 있습니다. 장례식, 주인을 잃은 방, 그의 물건을 하나씩 정리하는 사람들, 그리고 그 사람들이 다시 일상으로 돌아가기까지의 시간입니다. <b>카메라는 그곳을 비추지 않습니다</b>.</p>
+  <p><b>독자의 슬픔은 바로 그 생략된 자리에 남습니다</b>. 이야기는 이미 앞으로 나아갔는데, 독자는 아직 그 장면에 머물러 있습니다. <b>보내 줄 시간을 충분히 갖지 못한 채로요</b>.</p>
   <blockquote><small>기획 의도</small>《메멘토리움》은 카메라가 비추지 않은 그 뒤의 시간을, 플레이어가 직접 걸어 들어가 보여 줍니다.</blockquote>
 </div></section>
 <hr class="gap">
 
 <section><div class="art">
-  <img class="stk" src="img/obj_a_spflag.png" alt="" style="right:-95px;top:4%;--r:-10deg">
-  <img class="stk" src="img/obj_a_wbflag.png" alt="" style="left:-110px;top:30%;--r:8deg">
-  <img class="stk" src="img/obj_a_pillow.png" alt="" style="right:-110px;top:70%;--r:-6deg">
+  <img class="stk" src="img/box.png" alt="" style="--r:-6deg">
   <div class="kicker">03 · WHY UNPACKING</div>
   <h2>왜 ‘유품 정리’인가</h2>
-  <p>누군가를 떠나보낸 뒤 남겨진 사람들이 가장 먼저 마주하는 일 중 하나는 그 사람의 물건을 정리하는 일입니다. 옷장 속 옷, 책상 위의 메모, 늘 쓰던 컵 하나에도 그 사람의 시간이 묻어 있습니다. 물건을 정리하는 일은 곧 그 사람을 다시 한 번 떠올리는 일입니다.</p>
-  <p>그래서 우리는 말로 위로하는 대신, 플레이어의 손에 물건을 하나씩 쥐어 주기로 했습니다. 상자에서 꺼낸 술잔 하나, 낡은 쇠파이프 하나가 원작의 어떤 장면을 떠올리게 하고, 그것을 <em>어디에 둘지 고민하는 순간</em> 플레이어는 그 캐릭터가 어떤 사람이었는지를 다시 생각하게 됩니다.</p>
-  <p>방에는 정해진 칸이 없습니다. 하지만 물건마다 있어야 할 자리는 있습니다. 그 자리는 캐릭터를 알아야만 보입니다. 이 게임에서 ‘정리를 잘한다’는 것은, 곧 ‘그 사람을 잘 기억한다’는 뜻입니다.</p>
+  <p>누군가를 떠나보낸 뒤 남겨진 사람들이 가장 먼저 마주하는 일 중 하나는 <b>그 사람의 물건을 정리하는 일</b>입니다. 옷장 속 옷, 책상 위의 메모, 늘 쓰던 컵 하나에도 그 사람의 시간이 묻어 있습니다. 물건을 정리하는 일은 곧 <b>그 사람을 다시 한 번 떠올리는 일</b>입니다.</p>
+  <p>그래서 우리는 말로 위로하는 대신, <b>플레이어의 손에 물건을 하나씩 쥐어 주기로</b> 했습니다. 상자에서 꺼낸 술잔 하나, 낡은 쇠파이프 하나가 원작의 어떤 장면을 떠올리게 하고, 그것을 <em>어디에 둘지 고민하는 순간</em> 플레이어는 그 캐릭터가 어떤 사람이었는지를 다시 생각하게 됩니다.</p>
+  <p>방에는 정해진 칸이 없습니다. 하지만 <b>물건마다 있어야 할 자리는 있습니다</b>. 그 자리는 캐릭터를 알아야만 보입니다. 이 게임에서 <b>‘정리를 잘한다’는 것은, 곧 ‘그 사람을 잘 기억한다’는 뜻</b>입니다.</p>
 </div></section>
 <hr class="gap">
 
 <section><div class="art">
-  <img class="stk" src="img/obj_a_pipe.png" alt="" style="right:-110px;top:2%;--r:9deg">
-  <img class="stk" src="img/obj_a_sake.png" alt="" style="left:-100px;top:40%;--r:-12deg">
-  <img class="stk" src="img/box.png" alt="" style="right:-90px;top:78%;--r:7deg">
+  <img class="stk" src="img/logpose.png" alt="" style="--r:8deg">
   <div class="kicker">04 · DESIGN</div>
   <h2>애도의 순서를 플레이의 순서로</h2>
-  <p>게임의 흐름은 애도 상담에서 널리 쓰이는 심리학자 윌리엄 워든의 <b>‘애도의 네 가지 과업’</b>을 바탕으로 짰습니다. 워든은 애도를 그저 시간이 지나면 저절로 끝나는 감정이 아니라, 남겨진 사람이 하나씩 해내야 하는 일로 보았습니다. 플레이어는 한 판을 하는 동안 이 네 단계를 차례로 지나갑니다.</p>
+  <p>게임의 흐름은 애도 상담에서 널리 쓰이는 심리학자 윌리엄 워든의 <b>‘애도의 네 가지 과업’</b>을 바탕으로 짰습니다. 워든은 애도를 그저 시간이 지나면 저절로 끝나는 감정이 아니라, <b>남겨진 사람이 하나씩 해내야 하는 일</b>로 보았습니다. 플레이어는 한 판을 하는 동안 이 네 단계를 차례로 지나갑니다.</p>
   <div class="tasks wide">
     <div class="task"><span class="n">1</span><span class="t">상실을 현실로 받아들이기</span><span class="ar">→</span><span class="g"><b>그날을 다시 보기</b>원작의 마지막 장면을 다시 보며, 그가 떠났다는 사실부터 마주합니다.</span></div>
     <div class="task"><span class="n">2</span><span class="t">슬픔을 겪어 내기</span><span class="ar">→</span><span class="g"><b>상자 열기</b>물건마다 떠오르는 장면을 피하지 않고 하나씩 꺼내 봅니다.</span></div>
     <div class="task"><span class="n">3</span><span class="t">그가 없는 세상에 적응하기</span><span class="ar">→</span><span class="g"><b>자리 정하기</b>그가 두던 자리를 떠올리며 방을 원래대로 되돌립니다.</span></div>
     <div class="task"><span class="n">4</span><span class="t">이어지는 연결 찾기</span><span class="ar">→</span><span class="g"><b>사진 한 장</b>방을 비우지 않고 사진으로 남겨 앨범에 간직합니다.</span></div>
   </div>
-  <p>이 흐름은 데니스 클래스 등이 제시한 <b>‘지속적 유대’</b>라는 관점과도 이어집니다. 애도는 떠난 사람을 완전히 잊고 끊어 내는 일이 아니라, 그와의 관계를 다른 모양으로 이어 가는 일이라는 생각입니다. 그래서 이 게임의 정리는 <em>버리는 정리가 아니라, 제자리를 찾아 주는 정리</em>입니다.</p>
+  <p>이 흐름은 데니스 클래스 등이 제시한 <b>‘지속적 유대’</b>라는 관점과도 이어집니다. 애도는 떠난 사람을 완전히 잊고 끊어 내는 일이 아니라, <b>그와의 관계를 다른 모양으로 이어 가는 일</b>이라는 생각입니다. 그래서 이 게임의 정리는 <em>버리는 정리가 아니라, 제자리를 찾아 주는 정리</em>입니다.</p>
 </div></section>
 <hr class="gap">
 
 <section><div class="art">
-  <img class="stk" src="img/logpose.png" alt="" style="left:-105px;top:6%;--r:-8deg">
-  <img class="stk" src="img/ahat_t.png" alt="" style="right:-100px;top:46%;--r:11deg">
-  <img class="stk" src="img/obj_a_vivre.png" alt="" style="left:-85px;top:84%;--r:6deg">
+  <img class="stk" src="img/obj_a_bill.png" alt="" style="--r:-7deg">
   <div class="kicker">05 · ENDINGS</div>
   <h2>왜 엔딩이 여섯 개인가</h2>
   <p>캐릭터마다 엔딩은 여섯 개입니다. 엔딩은 두 가지 기준으로 갈립니다. 하나는 <b>얼마나 기억하는가</b>, 즉 그의 물건을 그가 두던 자리에 놓았는지입니다. 다른 하나는 <b>얼마나 알아보는가</b>, 즉 상자에 섞여 든 다른 사람의 물건을 가려냈는지입니다.</p>
-  <p>모든 엔딩이 눈물겨운 것은 아닙니다. 대충 정리하면 혼이 나기도 하고, 엉뚱한 결말을 맞기도 합니다. 애도에는 울음만 있는 것이 아니라, 그 사람을 떠올리며 웃는 순간도 함께 있기 때문입니다.</p>
+  <p><b>모든 엔딩이 눈물겨운 것은 아닙니다</b>. 대충 정리하면 혼이 나기도 하고, 엉뚱한 결말을 맞기도 합니다. 애도에는 울음만 있는 것이 아니라, 그 사람을 떠올리며 <b>웃는 순간도 함께</b> 있기 때문입니다.</p>
 </div></section>
 <hr class="gap">
 
 <section><div class="art">
-  <img class="stk" src="img/obj_a_bill.png" alt="" style="right:-95px;top:4%;--r:-10deg">
-  <img class="stk" src="img/obj_a_spflag.png" alt="" style="left:-110px;top:30%;--r:8deg">
-  <img class="stk" src="img/obj_a_wbflag.png" alt="" style="right:-110px;top:70%;--r:-6deg">
+  <img class="stk" src="img/obj_a_spflag.png" alt="" style="--r:6deg">
   <div class="kicker">06 · MEMORIES</div>
   <h2>다섯 개의 기억</h2>
-  <p>게임에는 다섯 권의 로그북이 있습니다. 서로 다른 작품에서, 팬들이 오래도록 슬퍼한 죽음을 골랐습니다. 첫 번째 로그북은 《원피스》의 포트거스 D. 에이스이며, 앞 캐릭터의 진엔딩을 보면 다음 로그북이 하나씩 열립니다.</p>
-  <p>캐릭터마다 방과 유품, 남겨진 사람은 모두 다릅니다. 같은 ‘정리’라도 누구의 방이냐에 따라 전혀 다른 기억을 꺼내게 됩니다.</p>
+  <p>게임에는 <b>다섯 권의 로그북</b>이 있습니다. 서로 다른 작품에서, 팬들이 오래도록 슬퍼한 죽음을 골랐습니다. 첫 번째 로그북은 《원피스》의 포트거스 D. 에이스이며, <b>앞 캐릭터의 진엔딩을 보면 다음 로그북이 하나씩 열립니다</b>.</p>
+  <p>캐릭터마다 방과 유품, 남겨진 사람은 모두 다릅니다. 같은 ‘정리’라도 누구의 방이냐에 따라 <b>전혀 다른 기억</b>을 꺼내게 됩니다.</p>
   <div class="refs">참고 문헌<br>
   D. Horton, R. R. Wohl, 「Mass Communication and Para-Social Interaction」, Psychiatry, 1956<br>
   J. Cohen, 「Parasocial Breakups: Measuring Individual Differences in Responses to the Dissolution of Parasocial Relationships」, 2003<br>
