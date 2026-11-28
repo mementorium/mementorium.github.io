@@ -323,11 +323,22 @@ body.doc .art.two p:last-child{margin-bottom:0}
 .logo-big{margin:0 auto!important;width:min(clamp(220px,24vw,340px),46vh)!important}
 @media (max-width:900px){body.doc .art.two{grid-template-columns:1fr;gap:36px}.art .cards2.four{grid-template-columns:1fr}}
 @media (min-width:901px) and (max-height:700px){
+  .art ol.steps small{display:none}
   body.doc .art.two p{line-height:1.85;margin-bottom:12px;font-size:15px}
   .art .cards2 div{padding:14px 16px!important;line-height:1.7!important}
   .art ol.steps li{padding:8px 0!important}
   body.doc .art.two .l h2{margin-bottom:14px;font-size:28px}
 }
+</style>
+<style>
+body.doc>section:not(.dhead){justify-content:flex-start!important;padding-top:clamp(30px,6.5vh,96px)!important;padding-bottom:clamp(20px,3.5vh,56px)!important}
+body.doc .art.two{align-items:start!important;row-gap:clamp(18px,3.2vh,46px)!important}
+.art ol.steps li{padding:clamp(8px,1.5vh,20px) 0!important}
+.art ol.steps span{line-height:1.6!important;font-size:clamp(14px,min(1.05vw,1.9vh),17px)!important}
+.art ol.steps b{font-size:clamp(17px,min(1.4vw,2.4vh),22px)!important}
+.logo-big{width:min(clamp(200px,22vw,320px),36vh)!important}
+body.doc .art.two .hd{grid-column:1/-1}
+body.doc .art.two .hd h2{margin-bottom:0}
 </style>
 <body class="doc">
 <div class="notice"><b>수업용 프로젝트</b> · 비영리 팬 창작물입니다. 등장 캐릭터의 저작권은 각 원작자에게 있습니다.</div>
@@ -353,9 +364,9 @@ body.doc .art.two p:last-child{margin-bottom:0}
 </section>
 
 <section><div class="art two">
+  <div class="hd"><div class="kicker">01 · QUESTION</div>
+    <h2>우리는 왜 캐릭터가 죽으면 슬플까?</h2></div>
   <div class="l">
-    <div class="kicker">01 · QUESTION</div>
-    <h2>우리는 왜 캐릭터가<br>죽으면 슬플까?</h2>
     <p>좋아하던 캐릭터가 죽는 장면을 본 날을 떠올려 봅니다. 만난 적도 없는 인물인데 며칠 동안 마음이 가라앉고, 그 장면을 몇 번이고 다시 찾아보게 됩니다. 이상해 보이지만 아주 자연스러운 반응입니다.</p>
     <div class="cards2">
       <div><b>1970년, 진짜 장례식</b>《내일의 죠》에서 리키이시 토오루가 죽자, 독자들은 출판사 강당에 모여 실제로 장례식을 치렀습니다.</div>
@@ -369,10 +380,10 @@ body.doc .art.two p:last-child{margin-bottom:0}
 </div></section>
 
 <section><div class="art two">
+  <div class="hd"><div class="kicker">02 · BEHIND THE CAMERA</div>
+    <h2>카메라가 비추지 않은 곳</h2></div>
   <div class="l">
-    <div class="kicker">02 · BEHIND THE CAMERA</div>
-    <h2>카메라가 비추지 않은 곳</h2>
-    <p class="state"><span>작가는 ‘그’가 쓰러지는 장면을 보여 주고<br>다음 장으로 넘어갑니다.</span><span><em>장례도, 주인 없는 방도, 남겨진 사람들의 애도도</em><br>카메라는 비추지 않습니다.</span></p>
+    <p class="state"><span>작가는 ‘그’가 쓰러지는 장면을 보여 주고<br>다음 장으로 넘어갑니다.</span><span><em>장례도, 주인 없는 방도,<br>남겨진 사람들의 애도도</em><br>카메라는 비추지 않습니다.</span></p>
   </div>
   <div class="r">
     <p>이야기는 계속되어야 하기에, 원작은 대부분 죽음의 순간까지만 보여 줍니다. 그 사이에 장례식, 주인을 잃은 방, 그의 물건을 정리하는 사람들, 다시 일상으로 돌아가기까지의 시간이 생략됩니다.</p>
@@ -383,9 +394,9 @@ body.doc .art.two p:last-child{margin-bottom:0}
 </div></section>
 
 <section><div class="art two">
+  <div class="hd"><div class="kicker">03 · WHY UNPACKING</div>
+    <h2>왜 ‘유품 정리’인가</h2></div>
   <div class="l">
-    <div class="kicker">03 · WHY UNPACKING</div>
-    <h2>왜 ‘유품 정리’인가</h2>
     <p>누군가를 떠나보낸 뒤 남겨진 사람들이 가장 먼저 마주하는 일 중 하나는 그 사람의 물건을 정리하는 일입니다. 늘 쓰던 컵 하나에도 그 사람의 시간이 묻어 있습니다.</p>
   </div>
   <div class="r">
@@ -395,10 +406,10 @@ body.doc .art.two p:last-child{margin-bottom:0}
 </div></section>
 
 <section><div class="art two">
+  <div class="hd"><div class="kicker">04 · DESIGN</div>
+    <h2>애도의 순서를 플레이의 순서로</h2></div>
   <div class="l">
-    <div class="kicker">04 · DESIGN</div>
-    <h2>애도의 순서를<br>플레이의 순서로</h2>
-    <p>게임의 흐름은 심리학자 윌리엄 워든의 <b>‘애도의 네 가지 과업’</b>을 바탕으로 짰습니다. 워든은 애도를 시간이 지나면 저절로 끝나는 감정이 아니라, 남겨진 사람이 하나씩 해내야 하는 일로 보았습니다.</p>
+    <p>게임의 흐름은 심리학자 윌리엄 워든의 <b>‘애도의 네 가지 과업’</b>을 바탕으로 짰습니다. 워든은 애도를 저절로 끝나는 감정이 아니라, 남겨진 사람이 해내야 하는 일로 보았습니다.</p>
     <p>이 흐름은 <b>‘지속적 유대’</b>라는 관점과도 이어집니다. 애도는 떠난 사람을 끊어 내는 일이 아니라 관계를 다른 모양으로 이어 가는 일입니다. 그래서 이 게임의 정리는 <em>버리는 정리가 아니라, 제자리를 찾아 주는 정리</em>입니다.</p>
   </div>
   <div class="r">
