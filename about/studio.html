@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>게임 소개 — MEMENTORIUM 메멘토리움</title>
+<title>회사 소개 — MEMENTORIUM 메멘토리움</title>
 <meta name="description" content="그들이 떠난 후의 이야기. 남겨진 이들이 그를 기억하는 방법. 떠난 캐릭터의 방을 정리하는 도트 게임 《메멘토리움》 데모.">
 <style>
 @font-face{font-family:'Galmuri11';src:url('Galmuri11.woff2') format('woff2');font-display:swap}
@@ -216,8 +216,6 @@ footer .disc{max-width:min(1440px,92vw);margin:28px auto 0;padding-top:20px;bord
   #features{min-height:0;display:block}
 }
 @media (min-width:901px) and (max-height:700px){
-  .ctrls{gap:8px;margin-top:14px}.ctrl p{display:none}
-  #design .task{padding:6px 0}
   .memc .mem{margin-top:24px}
   .book{height:40vh}.picker{margin-top:8px}.mem .who{min-height:0}.mem .quote{margin:8px 0;min-height:0}.mem .info h2{margin-bottom:10px}
   section,.feat{padding-top:28px!important;padding-bottom:28px!important}
@@ -260,150 +258,107 @@ footer .disc{max-width:min(1440px,92vw);margin:28px auto 0;padding-top:20px;bord
   #stepper{right:12px;bottom:12px}#stepper button{width:40px;height:40px}
 }
 @media (prefers-reduced-motion:reduce){.down,.story .cut::after}
-
-/* 하위 페이지 머리 */
-.phead{position:relative;overflow:hidden;text-align:center;background:#120f1e}
-.phead .bg{position:absolute;inset:0;background-size:cover;background-position:center;image-rendering:pixelated;opacity:.35}
-.phead::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 40%,var(--bg))}
-.phead .in{position:relative;z-index:1}
-.phead h1{font-weight:normal;font-size:clamp(40px,min(6vw,10vh),90px);line-height:1.15;text-shadow:0 6px 0 #5b4a7c}
-.phead .lead{margin:22px auto 0;max-width:760px;font-size:clamp(16px,min(1.5vw,2.5vh),23px);color:var(--cream);opacity:.85;line-height:1.8}
-nav .links a.on{color:var(--cream);border-bottom:2px solid var(--sun);padding-bottom:3px}
-/* 기획 의도 페이지 */
-.camera{max-width:900px;margin:0 auto;text-align:center}
-.camera .big{font-size:clamp(24px,min(2.8vw,4.6vh),42px);line-height:1.5;margin:16px 0 26px}
-.camera .big em{font-style:normal;color:var(--moon)}
-/* 조작법 */
-.ctrls{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:clamp(22px,4vh,44px)}
-.ctrl{background:var(--bg2);border-top:3px solid var(--sun);padding:clamp(12px,1.8vh,22px) 18px}
-.ctrl i{display:block;font-style:normal;font-size:clamp(20px,min(2vw,3.4vh),30px);margin-bottom:4px}
-.ctrl b{display:block;font-weight:normal;font-size:clamp(15px,1.3vw,20px);margin-bottom:6px}
-.ctrl p{font-size:clamp(12px,min(1vw,1.8vh),15px);color:var(--dim);line-height:1.6}
-@media (max-width:900px){.ctrls{grid-template-columns:1fr 1fr}}
 </style>
 </head>
-<body>
-
-<div class="notice"><b>수업용 프로젝트</b> · 비영리 팬 창작물입니다. 등장 캐릭터의 저작권은 각 원작자에게 있습니다.</div>
-
+<style>
+/* 읽는 페이지 */
+body.doc>section{min-height:0!important;display:block!important;padding:clamp(110px,16vh,200px) 44px!important}
+body.doc .art{max-width:780px;margin:0 auto}
+body.doc .art+.art{margin-top:0}
+.dhead{position:relative;overflow:hidden;text-align:center;background:#120f1e;padding:clamp(150px,24vh,260px) 24px clamp(110px,16vh,180px)!important}
+.dhead .bg{position:absolute;inset:0;background-size:cover;background-position:center;image-rendering:pixelated;opacity:.32}
+.dhead::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 35%,var(--bg))}
+.dhead .in{position:relative;z-index:1}
+.dhead h1{font-weight:normal;font-size:clamp(42px,6vw,88px);line-height:1.15;text-shadow:0 6px 0 #5b4a7c}
+.dhead .lead{margin:26px auto 0;max-width:720px;font-size:clamp(16px,1.5vw,22px);line-height:1.9;opacity:.85}
+.art .kicker{margin-bottom:14px}
+.art h2{font-size:clamp(28px,3vw,42px);margin-bottom:40px}
+.art p{color:var(--dim);font-size:clamp(16px,1.25vw,19px);line-height:2.1;margin-bottom:28px}
+.art p b{font-weight:normal;color:var(--cream)}
+.art p em{font-style:normal;color:var(--moon)}
+.art blockquote{margin:56px 0;padding:30px 34px;border-left:3px solid var(--sun);background:var(--bg2);font-size:clamp(18px,1.6vw,24px);line-height:1.8;color:var(--cream)}
+.art blockquote small{display:block;font-size:13px;color:var(--sun);letter-spacing:.15em;margin-bottom:8px}
+.art .refs{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--mute);line-height:2}
+.art ol.steps{list-style:none;margin:40px 0;border-top:1px solid var(--line)}
+.art ol.steps li{display:grid;grid-template-columns:48px 1fr;gap:6px 18px;padding:26px 0;border-bottom:1px solid var(--line)}
+.art ol.steps .n{grid-row:span 3;font-size:32px;color:var(--mute);line-height:1}
+.art ol.steps small{font-size:12px;color:var(--mute);letter-spacing:.1em}
+.art ol.steps b{font-weight:normal;font-size:clamp(18px,1.6vw,23px)}
+.art ol.steps b i{font-style:normal;color:var(--moon)}
+.art ol.steps span{color:var(--dim);font-size:clamp(15px,1.15vw,17px);line-height:1.9}
+.art .cards2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:40px 0}
+.art .cards2 div{background:var(--bg2);border-top:3px solid var(--sun);padding:26px 28px;color:var(--dim);font-size:16px;line-height:1.9}
+.art .cards2 b{display:block;font-weight:normal;color:var(--cream);font-size:20px;margin-bottom:8px}
+.art .credit{margin:40px 0;border-top:1px solid var(--line)}
+.art .credit div{display:grid;grid-template-columns:120px 1fr;padding:16px 0;border-bottom:1px solid var(--line);font-size:17px}
+.art .credit b{font-weight:normal;color:var(--mute)}
+.logo-big{display:block;width:clamp(200px,22vw,300px);margin:0 auto 40px;image-rendering:pixelated}
+hr.gap{border:0;height:1px;background:var(--line);max-width:780px;margin:0 auto}
+@media (max-width:900px){.art .cards2{grid-template-columns:1fr}.art .credit div{grid-template-columns:90px 1fr}}
+</style>
+<style>nav .links a.on{color:var(--cream);border-bottom:2px solid var(--sun);padding-bottom:3px}</style>
+<body class="doc">
 <div class="notice"><b>수업용 프로젝트</b> · 비영리 팬 창작물입니다. 등장 캐릭터의 저작권은 각 원작자에게 있습니다.</div>
 
 <nav>
   <a class="logo" href="index.html">MEMENTORIUM</a>
   <div class="links" id="links">
     <a href="index.html">메인</a>
-    <a href="game.html" class="on">게임 소개</a>
     <a href="intent.html">기획 의도</a>
+    <a href="studio.html" class="on">회사 소개</a>
   </div>
   <a class="btn solid sm" href="https://mementorium.github.io/">▶ 무료 플레이</a>
   <button id="menuBtn" aria-label="메뉴">☰</button>
 </nav>
 
-<section class="phead">
-  <div class="bg" style="background-image:url('img/room_big.png')"></div>
+<section class="dhead">
+  <div class="bg" style="background-image:url('img/hero_beach.webp')"></div>
   <div class="in">
-    <div class="kicker">GAME</div>
-    <h1>게임 소개</h1>
-    <p class="lead">떠난 캐릭터의 방에 남은 유품을 하나씩 제자리에 놓는 도트 게임.<br>그날의 기억부터 마지막 사진 한 장까지, 한 판의 흐름을 소개합니다.</p>
+    <div class="kicker">STUDIO</div>
+    <h1>회사 소개</h1>
+    <p class="lead">도트로 기억을 담는 작은 인디 스튜디오, Dotage.</p>
   </div>
 </section>
 
-<section id="features">
-  <div class="feat">
-    <div class="media"><img class="px zoom" src="img/room_big.png" alt="주인 없는 에이스의 방"></div>
-    <div>
-      <div class="kicker">GAMEPLAY</div>
-      <h3>떠난 이의 마지막 방을,<br>당신의 손으로</h3>
-      <p class="body">원작에서 죽음을 맞은 캐릭터가 쓰던 방을 정리하는 도트 게임입니다. 유품을 하나씩 제자리에 놓다 보면, 그 사람이 어떻게 살았는지가 방 안에 다시 채워집니다.</p>
-      <div class="facts"><div><b>6</b>캐릭터별 엔딩</div><div><b>21</b>방마다 유품</div><div><b>5</b>기억의 방</div></div>
-    </div>
-  </div>
-  <div class="feat r">
-    <div class="media"><img class="zoom" src="img/shot_vn.jpg" alt="그날을 다시 보는 장면"></div>
-    <div>
-      <div class="no">01</div>
-      <h3>그날을 다시 보다</h3>
-      <p class="body">원작 속 마지막 장면에서 이야기가 시작됩니다. 대사를 넘기며 그날을 따라가다 보면, 방에 들어서기 전부터 마음의 준비가 됩니다.</p>
-    </div>
-  </div>
-  <div class="feat">
-    <div class="media"><img class="zoom" src="img/shot_room.jpg" alt="유품을 정리하는 장면"></div>
-    <div>
-      <div class="no">02</div>
-      <h3>정해진 칸 없이</h3>
-      <p class="body">상자를 열고 물건을 끌어다 놓습니다. 칸은 없지만 물건마다 제자리가 있고, 그 자리는 그 사람을 알아야 보입니다.</p>
-      <ul><li>상자에 섞인 남의 물건 가려내기</li><li>배경인 줄 알았던 소품도 자리 다시 보기</li><li>물건 크기에 맞는 자리 찾기</li></ul>
-    </div>
-  </div>
-  <div class="feat r">
-    <div class="media"><img class="zoom" src="img/shot_album_blur.jpg" alt="엔딩이 모이는 앨범"></div>
-    <div>
-      <div class="no">03</div>
-      <h3>사진 한 장으로</h3>
-      <p class="body">정리를 마치면 방을 사진으로 찍습니다. 놓은 대로 엔딩이 달라지고, 본 엔딩은 로그북 앨범에 모입니다. 방을 정리한 ‘당신’이 누구인지도 이때 알게 됩니다.</p>
-    </div>
-  </div>
-</section>
+<section><div class="art">
+  <img class="logo-big" src="img/dotage_cream.png" alt="Dotage">
+  <div class="kicker">ABOUT</div>
+  <h2>Dotage는 어떤 스튜디오인가요</h2>
+  <p><b>Dotage(도티지)</b>는 도트 그래픽 게임을 만드는 작은 인디 스튜디오입니다. 이름은 <em>도트(dot)</em>와 <em>소시지(sausage)</em>를 합쳐 지었습니다. 한 점 한 점 찍어 만드는 도트처럼 작고 성실하게, 그리고 김이 모락모락 나는 소시지처럼 따뜻한 게임을 만들고 싶다는 뜻을 담았습니다.</p>
+  <p>로고 속 소시지에서 피어오르는 김은 ‘막 만들어진 따뜻함’을 뜻합니다. 로고 역시 모두 도트로 직접 그렸습니다.</p>
+</div></section>
+<hr class="gap">
 
-<section id="howto">
-  <div class="wrap">
-    <div class="kicker">HOW TO PLAY</div>
-    <h2>이렇게 플레이합니다</h2>
-    <div class="ctrls">
-      <div class="ctrl"><i>📖</i><b>로그북 고르기</b><p>바닷가에 놓인 로그북을 ◀ ▶로 넘겨 고르고 '기억 펼치기'를 누릅니다.</p></div>
-      <div class="ctrl"><i>▶▶</i><b>그날 다시 보기</b><p>대사를 눌러 넘깁니다. 오른쪽 위 ▶▶로 건너뛸 수 있습니다.</p></div>
-      <div class="ctrl"><i>📦</i><b>상자 열기</b><p>방에 놓인 택배 상자를 누르면 유품이 나옵니다.</p></div>
-      <div class="ctrl"><i>✋</i><b>끌어다 놓기</b><p>물건을 끌어 원하는 곳에 놓습니다. 큰 물건은 좁은 자리에 들어가지 않습니다.</p></div>
-      <div class="ctrl"><i>✕</i><b>꾹 눌러 치우기</b><p>놓은 물건을 꾹 누르면 ✕가 나와 다시 치울 수 있습니다.</p></div>
-      <div class="ctrl"><i>↺</i><b>되돌리기</b><p>위쪽 ↺ 버튼으로 방을 처음 상태로 되돌립니다.</p></div>
-      <div class="ctrl"><i>📷</i><b>사진 찍기</b><p>다 놓았으면 사진을 찍습니다. 놓은 대로 엔딩이 갈리고, 틀린 물건 수를 알려 줍니다.</p></div>
-      <div class="ctrl"><i>✎</i><b>로그북 앨범</b><p>본 엔딩이 모입니다. 다시 보기, 방 사진 저장, 스티커 꾸미기를 할 수 있습니다.</p></div>
-    </div>
+<section><div class="art">
+  <div class="kicker">WHAT WE MAKE</div>
+  <h2>우리가 만드는 게임</h2>
+  <p>Dotage는 이야기가 끝난 뒤에도 남아 있는 감정에 관심이 많습니다. 원작이 보여 주지 않은 시간, 등장인물이 아닌 그 곁에 있던 사람들의 시간을 게임으로 옮기는 것이 저희가 하고 싶은 일입니다.</p>
+  <p>첫 작품 《메멘토리움》은 좋아하던 캐릭터가 떠난 뒤, 그의 방을 정리하는 유품 정리 게임입니다. 화려한 연출보다 물건 하나, 대사 한 줄에 마음이 머무는 게임을 지향합니다.</p>
+  <div class="cards2">
+    <div><b>손으로 찍은 도트</b>방 배경은 480×270, 유품은 64×64 크기로 하나하나 직접 그렸습니다. 원작 장면도 도트로 다시 그려 게임 안에 담았습니다.</div>
+    <div><b>설치 없이 바로</b>웹 브라우저에서 바로 실행되도록 만들었습니다. PC와 휴대폰 어디서든 링크 하나로 플레이할 수 있습니다.</div>
+    <div><b>원작에 대한 존중</b>유품은 모두 원작 속 장면에서 골랐습니다. 캐릭터를 아는 사람일수록 더 많은 것이 보이도록 만들었습니다.</div>
+    <div><b>함께 웃고 우는 게임</b>눈물 나는 엔딩만큼, 웃음이 터지는 엔딩도 소중하게 만들었습니다. 애도에는 웃음도 함께 있으니까요.</div>
   </div>
-</section>
+</div></section>
+<hr class="gap">
 
-<section id="objects">
-  <div class="wrap">
-    <div class="kicker">OBJECTS</div>
-    <h2>물건 하나에 장면 하나</h2>
-    <p class="body" style="max-width:860px;margin-top:10px">에이스의 방에 놓이는 유품은 모두 원작의 장면에서 골랐습니다. 물건을 집으면 그 장면이 떠오릅니다.</p>
-    <div class="objs">
-      <div class="obj" style="--r:-2deg"><span class="tp"></span><div class="ph"><img class="px" src="img/obj_a_sake.png" alt=""></div><h3>형제의 술잔</h3><p>어린 시절 사보, 루피와 잔을 나누며 의형제가 된 날.</p></div>
-      <div class="obj" style="--r:1.5deg"><span class="tp y"></span><div class="ph"><img class="px" src="img/obj_a_vivre.png" alt=""></div><h3>루피의 비브르 카드</h3><p>주인이 있는 쪽으로 움직이는 종이. 에이스는 동생과 서로의 행방을 이렇게 이어 두었습니다.</p></div>
-      <div class="obj" style="--r:-1deg"><span class="tp b"></span><div class="ph"><img class="px" src="img/obj_a_spflag.png" alt=""><img class="px" src="img/obj_a_wbflag.png" alt=""></div><h3>두 개의 해적기</h3><p>스페이드 해적단의 선장에서 흰수염 해적단 2번대 대장으로.</p></div>
-      <div class="obj" style="--r:2deg"><span class="tp"></span><div class="ph"><img class="px" src="img/obj_a_bill.png" alt=""></div><h3>외상 술값 계산서</h3><p>밥을 먹다 잠들고, 값을 치르지 않고 떠나던 버릇.</p></div>
-      <div class="obj" style="--r:-1.5deg"><span class="tp y"></span><div class="ph"><img class="px" src="img/obj_a_pillow.png" alt=""></div><h3>낮잠 베개</h3><p>식사 중에도 쓰러지듯 잠들던 모습.</p></div>
-      <div class="obj" style="--r:1deg"><span class="tp b"></span><div class="ph"><img class="px" src="img/obj_a_pipe.png" alt=""></div><h3>낡은 쇠파이프</h3><p>코르보 산에서 형제들과 들고 뛰어다니던 어린 시절의 무기.</p></div>
-    </div>
-    <div class="decoy"><b>섞여 든 물건</b> · 상자에는 주변 인물의 물건도 몇 개 들어 있습니다. 무엇이 그의 것이 아닌지 알아보려면, 그가 어떤 사람이었는지 알아야 합니다.</div>
+<section><div class="art">
+  <div class="kicker">CREDITS</div>
+  <h2>《메멘토리움》 제작 정보</h2>
+  <div class="credit">
+    <div><b>게임</b><span>MEMENTORIUM 메멘토리움</span></div>
+    <div><b>개발</b><span>Dotage</span></div>
+    <div><b>배급</b><span>Jihyun Studio</span></div>
+    <div><b>장르</b><span>유품 정리 퍼즐 · 비주얼 노벨</span></div>
+    <div><b>그래픽</b><span>도트 (배경 480×270 · 유품 64×64)</span></div>
+    <div><b>플랫폼</b><span>웹 브라우저 (PC · 모바일) · 설치 없음</span></div>
+    <div><b>버전</b><span>데모 (에이스 편) · 무료</span></div>
+    <div><b>캐릭터</b><span>에이스 · 고죠 · 렌고쿠 · 에렌 · 진페이 (순차 공개)</span></div>
   </div>
-</section>
-
-<section id="endings">
-  <div class="wrap">
-    <div class="kicker">ENDINGS</div>
-    <h2>엔딩 여섯 개</h2>
-    <p class="body" style="margin-top:8px">물건을 어떻게 놓았느냐에 따라 결말이 갈립니다. 어떤 엔딩이 있는지는 직접 찾아보세요.</p>
-    <div class="axes"><div><b>얼마나 기억하는가</b>그의 물건을 그가 두던 자리에 놓았는지</div><div><b>얼마나 알아보는가</b>섞여 든 남의 물건을 가려냈는지</div></div>
-    <div class="ends">
-      <div class="lock"><img class="px" src="img/end1b.png" alt=""><span>1</span></div>
-      <div class="lock"><img class="px" src="img/end2.png" alt=""><span>2</span></div>
-      <div class="lock"><img class="px" src="img/end3.png" alt=""><span>3</span></div>
-      <div class="lock"><img class="px" src="img/end4.png" alt=""><span>4</span></div>
-      <div class="lock"><img class="px" src="img/end5.png" alt=""><span>5</span></div>
-      <div class="lock"><img class="px" src="img/end6.png" alt=""><span>6</span></div>
-    </div>
-    <div class="album"><b>로그북 앨범</b><span>📷 찍은 방 사진 저장</span><span>✎ 앨범 꾸미기</span><span>▶ 본 엔딩 다시 보기</span></div>
-  </div>
-</section>
-
-<section id="play">
-  <div class="kicker">PLAY NOW</div>
-  <h2>카메라 밖, 남겨진 이들이<br>그를 애도하는 방법</h2>
-  <p class="body">에이스 편 데모를 지금 바로 플레이할 수 있습니다.</p>
-  <div><a class="btn solid big" href="https://mementorium.github.io/">▶ 지금 플레이</a></div>
-  <div class="plats"><span>웹 브라우저</span><span>PC</span><span>모바일</span><span>설치 없음</span><span>무료</span></div>
-</section>
+  <p><b>Jihyun Studio</b>는 《메멘토리움》의 배급을 맡아, 게임이 더 많은 사람에게 닿을 수 있도록 함께하고 있습니다.</p>
+  <p style="margin-top:50px;font-size:14px;color:var(--mute)">이 사이트와 게임은 수업 과제로 만든 비영리 팬 창작물입니다. 등장 캐릭터와 원작의 저작권은 각 원작자에게 있습니다.</p>
+</div></section>
 
 <footer>
   <div class="row">
@@ -419,80 +374,9 @@ nav .links a.on{color:var(--cream);border-bottom:2px solid var(--sun);padding-bo
   <div class="disc">©2026 Dotage · 이 사이트와 게임은 수업 과제로 만든 비영리 팬 창작물입니다. 등장 캐릭터의 저작권은 각 원작자에게 있습니다.</div>
 </footer>
 
-<div id="stepper" aria-label="섹션 넘기기"><button type="button" id="stPrev" title="이전 (↑ · PageUp)">▲</button><span id="stNum">1</span><button type="button" id="stNext" title="다음 (↓ · PageDown · Space)">▼</button></div>
-<div id="lb"><img alt=""></div>
-
 <script>
-// 첫 화면: 게임 장면 바꾸기 (사라졌다가 나타나기)
-(function(){const sl=[...document.querySelectorAll('.sl')];let k=0;
-  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-  setInterval(()=>{sl[k].classList.remove('on');k=(k+1)%sl.length;sl[k].classList.add('on');},2500);})();
-
-if(document.getElementById('mem')){
-// 캐릭터 고르기 (로그북)
-const MEM=[
- {short:'에이스',name:'포트거스 D. 에이스',src:'《원피스》',where:'다단의 집',quote:'“힘에 굴복해서야 남자로 태어난 의미가 없지.<br>난 결코 인생에 후회를 남기지 않아.”',img:'img/ahat_t.png',c:'#b4682c',open:true,st:'▶ 플레이 가능'},
- {short:'고죠',name:'고죠 사토루',src:'《주술회전》',where:'???',quote:'· · ·',c:'#4f6f9e',st:'🔒 에이스 진엔딩 후 열람'},
- {short:'렌고쿠',name:'렌고쿠 쿄쥬로',src:'《귀멸의 칼날》',where:'???',quote:'· · ·',c:'#c9a23a',st:'🔒 고죠 진엔딩 후 열람'},
- {short:'에렌',name:'에렌 예거',src:'《진격의 거인》',where:'???',quote:'· · ·',c:'#4d6a47',st:'🔒 렌고쿠 진엔딩 후 열람'},
- {short:'진페이',name:'마츠다 진페이',src:'《명탐정 코난》',where:'???',quote:'· · ·',c:'#3a3540',st:'🔒 에렌 진엔딩 후 열람'}];
-const picks=document.getElementById('picks'),mem=document.getElementById('mem'),book=document.getElementById('book');
-function show(i){const m=MEM[i];
-  book.style.setProperty('--c',m.c);bkName.textContent=m.short;
-  bkImg.src=m.open?'img/book_ace.png':'img/book_lock.png';
-  memSrc.textContent=m.src;memName.textContent=m.name;memWhere.textContent=m.where;memQuote.innerHTML=m.quote;memSt.textContent=m.st;
-  mem.classList.toggle('locked',!m.open);
-  picks.querySelectorAll('.mini').forEach((b,k)=>b.classList.toggle('on',k===i));}
-let curMem=0;
-MEM.forEach((m,i)=>{const b=document.createElement('button');b.type='button';b.className='mini';b.style.setProperty('--c',m.c);
-  b.innerHTML=`<span class="im"><img src="${m.open?'img/book_ace.png':'img/book_lock.png'}" alt="">${m.open?'':'<span class="t"></span>'}</span><span class="lb">${m.open?'':'🔒 '}${m.short}</span>`;
-  b.onclick=()=>{curMem=i;show(i);};picks.appendChild(b);});
-pkPrev.onclick=()=>{curMem=(curMem+MEM.length-1)%MEM.length;show(curMem);};
-pkNext.onclick=()=>{curMem=(curMem+1)%MEM.length;show(curMem);};
-show(0);
-
-}
-// 개발 노트 탭
-document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
-  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===t));
-  document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('on',p.id===t.dataset.tab));});
-
-// 그림 크게 보기
-const lb=document.getElementById('lb');
-document.querySelectorAll('.zoom').forEach(im=>im.addEventListener('click',()=>{lb.firstElementChild.src=im.src;lb.firstElementChild.className=im.classList.contains('px')?'px':'';lb.classList.add('on')}));
-lb.addEventListener('click',()=>lb.classList.remove('on'));
-
-// 휴대폰 메뉴
 const links=document.getElementById('links');
 document.getElementById('menuBtn').onclick=()=>links.classList.toggle('on');
-links.querySelectorAll('a').forEach(a=>a.onclick=()=>links.classList.remove('on'));
-
-// 발표용: 구역 하나씩 넘기기
-(function(){
-  const navH=()=>document.querySelector('nav').getBoundingClientRect().height;
-  const stops=[];
-  document.querySelectorAll('header.hero, body > section').forEach(sec=>{
-    if(sec.id==='features'){sec.querySelectorAll('.feat').forEach(f=>stops.push(f));return;}
-    stops.push(sec);});
-  const y=el=>Math.max(0,el.getBoundingClientRect().top+scrollY-navH());
-  const cur=()=>{const t=scrollY+4;let i=0;stops.forEach((el,k)=>{if(y(el)<=t)i=k;});return i;};
-  function go(d){const i=cur(),here=stops[i];
-    if(d>0){const r=here.getBoundingClientRect(),nt=stops[i+1]?y(stops[i+1]):Infinity;
-      if(r.bottom>innerHeight+40&&scrollY+innerHeight*.8<nt-20){scrollTo({top:Math.min(scrollY+innerHeight*.8,nt),behavior:'smooth'});return;}
-      if(stops[i+1])scrollTo({top:nt,behavior:'smooth'});}
-    else{const top=y(here);if(scrollY>top+10){scrollTo({top,behavior:'smooth'});return;}if(stops[i-1])scrollTo({top:y(stops[i-1]),behavior:'smooth'});}}
-  const prev=stPrev,next=stNext,num=stNum;
-  function upd(){const i=cur();num.textContent=(i+1)+' / '+stops.length;prev.disabled=scrollY<4;next.disabled=scrollY+innerHeight>=document.documentElement.scrollHeight-4;}
-  const later=()=>{setTimeout(upd,450);setTimeout(upd,900);};
-  prev.onclick=()=>{go(-1);later();};next.onclick=()=>{go(1);later();};
-  document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>{go(1);later();});
-  addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
-  addEventListener('keydown',e=>{
-    if(e.target.closest('input,textarea,select')||e.altKey||e.ctrlKey||e.metaKey)return;
-    if(lb.classList.contains('on')){if(e.key==='Escape')lb.classList.remove('on');return;}
-    if(['PageDown','ArrowRight','ArrowDown'].includes(e.key)||(e.key===' '&&!e.shiftKey)){e.preventDefault();go(1);later();}
-    else if(['PageUp','ArrowLeft','ArrowUp'].includes(e.key)||(e.key===' '&&e.shiftKey)){e.preventDefault();go(-1);later();}});
-})();
 </script>
 </body>
 </html>

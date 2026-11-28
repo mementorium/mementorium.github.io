@@ -216,8 +216,6 @@ footer .disc{max-width:min(1440px,92vw);margin:28px auto 0;padding-top:20px;bord
   #features{min-height:0;display:block}
 }
 @media (min-width:901px) and (max-height:700px){
-  .ctrls{gap:8px;margin-top:14px}.ctrl p{display:none}
-  #design .task{padding:6px 0}
   .memc .mem{margin-top:24px}
   .book{height:40vh}.picker{margin-top:8px}.mem .who{min-height:0}.mem .quote{margin:8px 0;min-height:0}.mem .info h2{margin-bottom:10px}
   section,.feat{padding-top:28px!important;padding-bottom:28px!important}
@@ -260,46 +258,60 @@ footer .disc{max-width:min(1440px,92vw);margin:28px auto 0;padding-top:20px;bord
   #stepper{right:12px;bottom:12px}#stepper button{width:40px;height:40px}
 }
 @media (prefers-reduced-motion:reduce){.down,.story .cut::after}
-
-/* 하위 페이지 머리 */
-.phead{position:relative;overflow:hidden;text-align:center;background:#120f1e}
-.phead .bg{position:absolute;inset:0;background-size:cover;background-position:center;image-rendering:pixelated;opacity:.35}
-.phead::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 40%,var(--bg))}
-.phead .in{position:relative;z-index:1}
-.phead h1{font-weight:normal;font-size:clamp(40px,min(6vw,10vh),90px);line-height:1.15;text-shadow:0 6px 0 #5b4a7c}
-.phead .lead{margin:22px auto 0;max-width:760px;font-size:clamp(16px,min(1.5vw,2.5vh),23px);color:var(--cream);opacity:.85;line-height:1.8}
-nav .links a.on{color:var(--cream);border-bottom:2px solid var(--sun);padding-bottom:3px}
-/* 기획 의도 페이지 */
-.camera{max-width:900px;margin:0 auto;text-align:center}
-.camera .big{font-size:clamp(24px,min(2.8vw,4.6vh),42px);line-height:1.5;margin:16px 0 26px}
-.camera .big em{font-style:normal;color:var(--moon)}
-/* 조작법 */
-.ctrls{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:clamp(22px,4vh,44px)}
-.ctrl{background:var(--bg2);border-top:3px solid var(--sun);padding:clamp(12px,1.8vh,22px) 18px}
-.ctrl i{display:block;font-style:normal;font-size:clamp(20px,min(2vw,3.4vh),30px);margin-bottom:4px}
-.ctrl b{display:block;font-weight:normal;font-size:clamp(15px,1.3vw,20px);margin-bottom:6px}
-.ctrl p{font-size:clamp(12px,min(1vw,1.8vh),15px);color:var(--dim);line-height:1.6}
-@media (max-width:900px){.ctrls{grid-template-columns:1fr 1fr}}
 </style>
 </head>
-<body>
-
-<div class="notice"><b>수업용 프로젝트</b> · 비영리 팬 창작물입니다. 등장 캐릭터의 저작권은 각 원작자에게 있습니다.</div>
-
+<style>
+/* 읽는 페이지 */
+body.doc>section{min-height:0!important;display:block!important;padding:clamp(110px,16vh,200px) 44px!important}
+body.doc .art{max-width:780px;margin:0 auto}
+body.doc .art+.art{margin-top:0}
+.dhead{position:relative;overflow:hidden;text-align:center;background:#120f1e;padding:clamp(150px,24vh,260px) 24px clamp(110px,16vh,180px)!important}
+.dhead .bg{position:absolute;inset:0;background-size:cover;background-position:center;image-rendering:pixelated;opacity:.32}
+.dhead::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 35%,var(--bg))}
+.dhead .in{position:relative;z-index:1}
+.dhead h1{font-weight:normal;font-size:clamp(42px,6vw,88px);line-height:1.15;text-shadow:0 6px 0 #5b4a7c}
+.dhead .lead{margin:26px auto 0;max-width:720px;font-size:clamp(16px,1.5vw,22px);line-height:1.9;opacity:.85}
+.art .kicker{margin-bottom:14px}
+.art h2{font-size:clamp(28px,3vw,42px);margin-bottom:40px}
+.art p{color:var(--dim);font-size:clamp(16px,1.25vw,19px);line-height:2.1;margin-bottom:28px}
+.art p b{font-weight:normal;color:var(--cream)}
+.art p em{font-style:normal;color:var(--moon)}
+.art blockquote{margin:56px 0;padding:30px 34px;border-left:3px solid var(--sun);background:var(--bg2);font-size:clamp(18px,1.6vw,24px);line-height:1.8;color:var(--cream)}
+.art blockquote small{display:block;font-size:13px;color:var(--sun);letter-spacing:.15em;margin-bottom:8px}
+.art .refs{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--mute);line-height:2}
+.art ol.steps{list-style:none;margin:40px 0;border-top:1px solid var(--line)}
+.art ol.steps li{display:grid;grid-template-columns:48px 1fr;gap:6px 18px;padding:26px 0;border-bottom:1px solid var(--line)}
+.art ol.steps .n{grid-row:span 3;font-size:32px;color:var(--mute);line-height:1}
+.art ol.steps small{font-size:12px;color:var(--mute);letter-spacing:.1em}
+.art ol.steps b{font-weight:normal;font-size:clamp(18px,1.6vw,23px)}
+.art ol.steps b i{font-style:normal;color:var(--moon)}
+.art ol.steps span{color:var(--dim);font-size:clamp(15px,1.15vw,17px);line-height:1.9}
+.art .cards2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:40px 0}
+.art .cards2 div{background:var(--bg2);border-top:3px solid var(--sun);padding:26px 28px;color:var(--dim);font-size:16px;line-height:1.9}
+.art .cards2 b{display:block;font-weight:normal;color:var(--cream);font-size:20px;margin-bottom:8px}
+.art .credit{margin:40px 0;border-top:1px solid var(--line)}
+.art .credit div{display:grid;grid-template-columns:120px 1fr;padding:16px 0;border-bottom:1px solid var(--line);font-size:17px}
+.art .credit b{font-weight:normal;color:var(--mute)}
+.logo-big{display:block;width:clamp(200px,22vw,300px);margin:0 auto 40px;image-rendering:pixelated}
+hr.gap{border:0;height:1px;background:var(--line);max-width:780px;margin:0 auto}
+@media (max-width:900px){.art .cards2{grid-template-columns:1fr}.art .credit div{grid-template-columns:90px 1fr}}
+</style>
+<style>nav .links a.on{color:var(--cream);border-bottom:2px solid var(--sun);padding-bottom:3px}</style>
+<body class="doc">
 <div class="notice"><b>수업용 프로젝트</b> · 비영리 팬 창작물입니다. 등장 캐릭터의 저작권은 각 원작자에게 있습니다.</div>
 
 <nav>
   <a class="logo" href="index.html">MEMENTORIUM</a>
   <div class="links" id="links">
     <a href="index.html">메인</a>
-    <a href="game.html">게임 소개</a>
     <a href="intent.html" class="on">기획 의도</a>
+    <a href="studio.html">회사 소개</a>
   </div>
   <a class="btn solid sm" href="https://mementorium.github.io/">▶ 무료 플레이</a>
   <button id="menuBtn" aria-label="메뉴">☰</button>
 </nav>
 
-<section class="phead">
+<section class="dhead">
   <div class="bg" style="background-image:url('img/hero_night.webp')"></div>
   <div class="in">
     <div class="kicker">INTENT</div>
@@ -308,73 +320,73 @@ nav .links a.on{color:var(--cream);border-bottom:2px solid var(--sun);padding-bo
   </div>
 </section>
 
-<section id="question">
-  <div class="wrap">
-    <div class="kicker">QUESTION</div>
-    <h2>우리는 왜 캐릭터가 죽으면 슬플까?</h2>
-    <div style="margin-top:clamp(22px,4vh,44px)"><div class="qcards">
-        <div class="qcard"><b>만난 적 없는 친구</b><p>우리는 화면 속 인물에게도 실제 친구처럼 정을 붙입니다. 심리학에서는 이를 ‘준사회적 관계’라고 부릅니다. 그래서 좋아하던 캐릭터가 떠나면 실제 이별과 비슷한 상실감을 느낍니다.</p></div>
-        <div class="qcard"><b>1970년, 진짜 장례식</b><p>만화 《내일의 죠》에서 리키이시 토오루가 죽자 독자들은 출판사 강당에 모여 실제로 장례식을 치렀습니다. 지금도 팬들은 캐릭터의 기일을 챙기고, 추모 그림과 2차 창작을 남깁니다.</p></div>
-      </div>
-      <p class="ref">참고 · D. Horton, R. R. Wohl, 「Mass Communication and Para-Social Interaction」(1956) / J. Cohen, 「Parasocial Breakups」(2003)</p>
-    </div>
-    <div class="pane" id="t2">
-      <div class="int">
-        <h3>작가는 다음 장으로 넘어갔지만,<br>독자는 아직 그 장면에 남아 있습니다.</h3>
-        <div>
-          <div class="body"><p>작가는 대부분 죽는 순간까지만 보여 줍니다. 장례, 주인 없는 방, 남은 사람들의 일상은 다음 화로 넘어가며 생략됩니다. 독자의 슬픔은 이렇게 생략된 자리에 남습니다.</p>
-          <p>《메멘토리움》은 그 빈자리를 플레이로 채웁니다. 말로 위로하지 않고, 그 사람의 물건을 하나씩 손에 쥐어 보게 합니다.</p></div>
-          <div class="ask"><small>기획 질문</small>좋아하던 캐릭터를 잊지 않으면서 보내 줄 수 있을까?</div>
-        </div>
-      </div></div>
-    <p class="ref">참고 · D. Horton, R. R. Wohl, 「Mass Communication and Para-Social Interaction」(1956) / J. Cohen, 「Parasocial Breakups」(2003)</p>
+<section><div class="art">
+  <div class="kicker">01 · QUESTION</div>
+  <h2>우리는 왜 캐릭터가 죽으면 슬플까?</h2>
+  <p>좋아하던 캐릭터가 죽는 장면을 본 날을 떠올려 봅니다. 만난 적도, 대화를 나눈 적도 없는 인물인데 며칠 동안 마음이 가라앉고, 그 장면을 몇 번이고 다시 찾아보게 됩니다. 이상한 일처럼 보이지만, 사실은 아주 자연스러운 반응입니다.</p>
+  <p>1956년, 사회학자 도널드 호튼과 리처드 월은 텔레비전 시청자들이 화면 속 인물과 마치 실제로 아는 사이처럼 친밀감을 느끼는 현상을 처음으로 설명하고, 이를 <b>‘준사회적 상호작용’</b>이라고 불렀습니다. 상대는 나를 모르지만, 나는 그를 오래 지켜보며 그의 말투와 습관, 웃는 얼굴까지 알게 됩니다. 이 일방적인 관계를 <b>‘준사회적 관계’</b>라고 합니다.</p>
+  <p>이후 연구자 조너선 코헨은 좋아하던 인물이 화면에서 사라질 때 사람들이 겪는 감정을 <b>‘준사회적 이별’</b>이라는 이름으로 살폈습니다. 그 결과, 사람들은 실제 관계가 끝났을 때와 비슷한 슬픔과 상실감을 느낀다는 것이 드러났습니다. 관계가 일방적이었다고 해서 그 슬픔이 가짜인 것은 아닙니다.</p>
+  <div class="cards2">
+    <div><b>1970년, 진짜 장례식</b>만화 《내일의 죠》에서 주인공의 라이벌 리키이시 토오루가 죽자, 독자들은 출판사 강당에 모여 실제로 장례식을 치렀습니다. 만화 캐릭터를 위해 사람들이 상복을 입고 모인 것입니다.</div>
+    <div><b>지금도 이어지는 애도</b>지금의 팬들도 캐릭터의 기일을 챙기고, 추모 그림을 그리고, 그가 살아 있었다면 어땠을지를 상상하는 2차 창작을 씁니다. 형태만 달라졌을 뿐, 애도는 계속되고 있습니다.</div>
   </div>
-</section>
+</div></section>
+<hr class="gap">
 
-<section id="camera">
-  <div class="wrap camera">
-    <div class="kicker">BEHIND THE CAMERA</div>
-    <p class="big">작가는 ‘그’가 쓰러지는 장면을 보여 주고<br>다음 장으로 넘어갑니다.<br><em>장례도, 주인 없는 방도, 남겨진 사람들의 애도도</em><br>카메라는 비추지 않습니다.</p>
-    <p class="body">《메멘토리움》은 그 카메라가 비추지 않은 곳에서 시작합니다.</p>
-  </div>
-</section>
+<section><div class="art">
+  <div class="kicker">02 · BEHIND THE CAMERA</div>
+  <h2>카메라가 비추지 않은 곳</h2>
+  <p>그런데 원작이 보여 주는 것은 대부분 죽음의 순간까지입니다. 작가는 그가 쓰러지는 장면을 그리고, 다음 장으로 넘어갑니다. 이야기는 계속되어야 하기 때문입니다.</p>
+  <p>그 사이에 생략되는 것들이 있습니다. 장례식, 주인을 잃은 방, 그의 물건을 하나씩 정리하는 사람들, 그리고 그 사람들이 다시 일상으로 돌아가기까지의 시간입니다. 카메라는 그곳을 비추지 않습니다.</p>
+  <p>독자의 슬픔은 바로 그 생략된 자리에 남습니다. 이야기는 이미 앞으로 나아갔는데, 독자는 아직 그 장면에 머물러 있습니다. 보내 줄 시간을 충분히 갖지 못한 채로요.</p>
+  <blockquote><small>기획 질문</small>좋아하던 캐릭터를 잊지 않으면서, 보내 줄 수 있을까?</blockquote>
+  <p>《메멘토리움》은 이 질문에서 출발했습니다. 우리는 원작이 비추지 않은 그 뒤의 시간을, 플레이어가 직접 걸어 들어갈 수 있는 공간으로 만들고 싶었습니다.</p>
+</div></section>
+<hr class="gap">
 
-<section id="why">
-  <div class="wrap">
-    <div class="int">
-      <div><div class="kicker">INTENT</div><h2>작가는 다음 장으로 넘어갔지만,<br>독자는 아직 그 장면에 남아 있습니다.</h2></div>
-      <div>
-        <div class="body"><p>작가는 대부분 죽는 순간까지만 보여 줍니다. 장례, 주인 없는 방, 남은 사람들의 일상은 다음 화로 넘어가며 생략됩니다. 독자의 슬픔은 이렇게 생략된 자리에 남습니다.</p>
-          <p>《메멘토리움》은 그 빈자리를 플레이로 채웁니다. 말로 위로하지 않고, 그 사람의 물건을 하나씩 손에 쥐어 보게 합니다.</p></div>
-        <div class="ask"><small>기획 질문</small>좋아하던 캐릭터를 잊지 않으면서 보내 줄 수 있을까?</div>
-      </div>
-    </div>
-  </div>
-</section>
+<section><div class="art">
+  <div class="kicker">03 · WHY UNPACKING</div>
+  <h2>왜 ‘유품 정리’인가</h2>
+  <p>누군가를 떠나보낸 뒤 남겨진 사람들이 가장 먼저 마주하는 일 중 하나는 그 사람의 물건을 정리하는 일입니다. 옷장 속 옷, 책상 위의 메모, 늘 쓰던 컵 하나에도 그 사람의 시간이 묻어 있습니다. 물건을 정리하는 일은 곧 그 사람을 다시 한 번 떠올리는 일입니다.</p>
+  <p>그래서 우리는 말로 위로하는 대신, 플레이어의 손에 물건을 하나씩 쥐어 주기로 했습니다. 상자에서 꺼낸 술잔 하나, 낡은 쇠파이프 하나가 원작의 어떤 장면을 떠올리게 하고, 그것을 <em>어디에 둘지 고민하는 순간</em> 플레이어는 그 캐릭터가 어떤 사람이었는지를 다시 생각하게 됩니다.</p>
+  <p>방에는 정해진 칸이 없습니다. 하지만 물건마다 있어야 할 자리는 있습니다. 그 자리는 캐릭터를 알아야만 보입니다. 이 게임에서 ‘정리를 잘한다’는 것은, 곧 ‘그 사람을 잘 기억한다’는 뜻입니다.</p>
+</div></section>
+<hr class="gap">
 
-<section id="design">
-  <div class="wrap">
-    <div class="kicker">DESIGN</div>
-    <h2>애도의 순서를 플레이의 순서로</h2>
-    <p class="body" style="margin:8px 0 clamp(18px,3vh,30px)">애도 상담에서 쓰이는 윌리엄 워든의 ‘애도의 네 가지 과업’을 게임의 흐름으로 옮겼습니다.</p>
-    <div class="tasks">
-        <div class="task"><span class="n">1</span><span class="t"><small>과업</small>상실을 현실로 받아들이기</span><span class="ar">→</span><span class="g"><b>그날을 다시 보기</b>원작의 마지막 장면에서 그가 떠났다는 사실부터 마주합니다.</span></div>
-        <div class="task"><span class="n">2</span><span class="t"><small>과업</small>슬픔을 겪어 내기</span><span class="ar">→</span><span class="g"><b>상자 열기</b>물건마다 떠오르는 장면을 피하지 않고 하나씩 꺼냅니다.</span></div>
-        <div class="task"><span class="n">3</span><span class="t"><small>과업</small>그가 없는 세상에 적응하기</span><span class="ar">→</span><span class="g"><b>자리 정하기</b>물건마다 있어야 할 자리를 찾아 방을 원래대로 되돌립니다.</span></div>
-        <div class="task"><span class="n">4</span><span class="t"><small>과업</small>이어지는 연결 찾기</span><span class="ar">→</span><span class="g"><b>사진 한 장</b>방을 비우지 않고 사진으로 남겨 앨범에 간직합니다.</span></div>
-      </div>
-      
-    <p class="ref">애도는 떠난 사람을 잊는 일이 아니라 관계를 다른 모양으로 이어 가는 일입니다(지속적 유대). 그래서 이 게임의 정리는 버리는 정리가 아니라 제자리를 찾아 주는 정리입니다.<br>참고 · J. W. Worden, 《Grief Counseling and Grief Therapy》 / D. Klass, P. R. Silverman, S. L. Nickman 엮음, 《Continuing Bonds》(1996)</p>
-  </div>
-</section>
+<section><div class="art">
+  <div class="kicker">04 · DESIGN</div>
+  <h2>애도의 순서를 플레이의 순서로</h2>
+  <p>게임의 흐름은 애도 상담에서 널리 쓰이는 심리학자 윌리엄 워든의 <b>‘애도의 네 가지 과업’</b>을 바탕으로 짰습니다. 워든은 애도를 그저 시간이 지나면 저절로 끝나는 감정이 아니라, 남겨진 사람이 하나씩 해내야 하는 일로 보았습니다. 플레이어는 한 판을 하는 동안 이 네 단계를 차례로 지나갑니다.</p>
+  <ol class="steps">
+    <li><span class="n">1</span><small>과업 · 상실을 현실로 받아들이기</small><b>→ <i>그날을 다시 보기</i></b><span>게임은 원작 속 마지막 장면에서 시작합니다. 비주얼 노벨처럼 대사를 넘기며 그날을 다시 따라가는 동안, 플레이어는 그가 정말로 떠났다는 사실부터 마주합니다.</span></li>
+    <li><span class="n">2</span><small>과업 · 슬픔을 겪어 내기</small><b>→ <i>상자 열기</i></b><span>몇 주 뒤, 주인 없는 방에 택배 상자가 도착합니다. 상자를 열면 물건마다 떠오르는 장면이 있습니다. 피하지 않고 하나씩 꺼내 보는 것이 이 단계입니다.</span></li>
+    <li><span class="n">3</span><small>과업 · 그가 없는 세상에 적응하기</small><b>→ <i>자리 정하기</i></b><span>물건을 끌어다 방 안에 놓습니다. 그가 두던 자리를 떠올리며 방을 원래대로 되돌리는 동안, 플레이어는 그 사람이 없는 공간을 받아들이는 연습을 합니다.</span></li>
+    <li><span class="n">4</span><small>과업 · 이어지는 연결 찾기</small><b>→ <i>사진 한 장</i></b><span>정리를 마치면 방을 비우지 않고 사진으로 남깁니다. 그 사진은 로그북 앨범에 간직되고, 언제든 다시 꺼내 볼 수 있습니다.</span></li>
+  </ol>
+  <p>이 흐름은 데니스 클래스 등이 제시한 <b>‘지속적 유대’</b>라는 관점과도 이어집니다. 애도는 떠난 사람을 완전히 잊고 끊어 내는 일이 아니라, 그와의 관계를 다른 모양으로 이어 가는 일이라는 생각입니다. 그래서 이 게임의 정리는 <em>버리는 정리가 아니라, 제자리를 찾아 주는 정리</em>입니다.</p>
+</div></section>
+<hr class="gap">
 
-<section id="play">
-  <div class="kicker">PLAY NOW</div>
-  <h2>카메라 밖, 남겨진 이들이<br>그를 애도하는 방법</h2>
-  <p class="body">에이스 편 데모를 지금 바로 플레이할 수 있습니다.</p>
-  <div><a class="btn solid big" href="https://mementorium.github.io/">▶ 지금 플레이</a></div>
-  <div class="plats"><span>웹 브라우저</span><span>PC</span><span>모바일</span><span>설치 없음</span><span>무료</span></div>
-</section>
+<section><div class="art">
+  <div class="kicker">05 · ENDINGS</div>
+  <h2>왜 엔딩이 여섯 개인가</h2>
+  <p>캐릭터마다 엔딩은 여섯 개입니다. 엔딩은 두 가지 기준으로 갈립니다. 하나는 <b>얼마나 기억하는가</b>, 즉 그의 물건을 그가 두던 자리에 놓았는지입니다. 다른 하나는 <b>얼마나 알아보는가</b>, 즉 상자에 섞여 든 다른 사람의 물건을 가려냈는지입니다.</p>
+  <p>모든 엔딩이 눈물겨운 것은 아닙니다. 대충 정리하면 혼이 나기도 하고, 엉뚱한 결말을 맞기도 합니다. 애도에는 울음만 있는 것이 아니라, 그 사람을 떠올리며 웃는 순간도 함께 있기 때문입니다.</p>
+  <p>그리고 엔딩 속에서는, 방을 정리하던 <b>‘나’가 누구였는지</b>도 드러납니다. 플레이어 역시 그를 잃은 사람 중 하나였다는 것을, 마지막에 알게 됩니다.</p>
+</div></section>
+<hr class="gap">
+
+<section><div class="art">
+  <div class="kicker">06 · MEMORIES</div>
+  <h2>다섯 개의 기억</h2>
+  <p>게임에는 다섯 권의 로그북이 있습니다. 서로 다른 작품에서, 팬들이 오래도록 슬퍼한 죽음을 골랐습니다. 첫 번째 로그북은 《원피스》의 포트거스 D. 에이스이며, 앞 캐릭터의 진엔딩을 보면 다음 로그북이 하나씩 열립니다.</p>
+  <p>캐릭터마다 방과 유품, 남겨진 사람은 모두 다릅니다. 같은 ‘정리’라도 누구의 방이냐에 따라 전혀 다른 기억을 꺼내게 됩니다.</p>
+  <div class="refs">참고 문헌<br>
+  D. Horton, R. R. Wohl, 「Mass Communication and Para-Social Interaction」, Psychiatry, 1956<br>
+  J. Cohen, 「Parasocial Breakups: Measuring Individual Differences in Responses to the Dissolution of Parasocial Relationships」, 2003<br>
+  J. W. Worden, 《Grief Counseling and Grief Therapy》<br>
+  D. Klass, P. R. Silverman, S. L. Nickman 엮음, 《Continuing Bonds: New Understandings of Grief》, 1996</div>
+</div></section>
 
 <footer>
   <div class="row">
@@ -390,80 +402,9 @@ nav .links a.on{color:var(--cream);border-bottom:2px solid var(--sun);padding-bo
   <div class="disc">©2026 Dotage · 이 사이트와 게임은 수업 과제로 만든 비영리 팬 창작물입니다. 등장 캐릭터의 저작권은 각 원작자에게 있습니다.</div>
 </footer>
 
-<div id="stepper" aria-label="섹션 넘기기"><button type="button" id="stPrev" title="이전 (↑ · PageUp)">▲</button><span id="stNum">1</span><button type="button" id="stNext" title="다음 (↓ · PageDown · Space)">▼</button></div>
-<div id="lb"><img alt=""></div>
-
 <script>
-// 첫 화면: 게임 장면 바꾸기 (사라졌다가 나타나기)
-(function(){const sl=[...document.querySelectorAll('.sl')];let k=0;
-  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-  setInterval(()=>{sl[k].classList.remove('on');k=(k+1)%sl.length;sl[k].classList.add('on');},2500);})();
-
-if(document.getElementById('mem')){
-// 캐릭터 고르기 (로그북)
-const MEM=[
- {short:'에이스',name:'포트거스 D. 에이스',src:'《원피스》',where:'다단의 집',quote:'“힘에 굴복해서야 남자로 태어난 의미가 없지.<br>난 결코 인생에 후회를 남기지 않아.”',img:'img/ahat_t.png',c:'#b4682c',open:true,st:'▶ 플레이 가능'},
- {short:'고죠',name:'고죠 사토루',src:'《주술회전》',where:'???',quote:'· · ·',c:'#4f6f9e',st:'🔒 에이스 진엔딩 후 열람'},
- {short:'렌고쿠',name:'렌고쿠 쿄쥬로',src:'《귀멸의 칼날》',where:'???',quote:'· · ·',c:'#c9a23a',st:'🔒 고죠 진엔딩 후 열람'},
- {short:'에렌',name:'에렌 예거',src:'《진격의 거인》',where:'???',quote:'· · ·',c:'#4d6a47',st:'🔒 렌고쿠 진엔딩 후 열람'},
- {short:'진페이',name:'마츠다 진페이',src:'《명탐정 코난》',where:'???',quote:'· · ·',c:'#3a3540',st:'🔒 에렌 진엔딩 후 열람'}];
-const picks=document.getElementById('picks'),mem=document.getElementById('mem'),book=document.getElementById('book');
-function show(i){const m=MEM[i];
-  book.style.setProperty('--c',m.c);bkName.textContent=m.short;
-  bkImg.src=m.open?'img/book_ace.png':'img/book_lock.png';
-  memSrc.textContent=m.src;memName.textContent=m.name;memWhere.textContent=m.where;memQuote.innerHTML=m.quote;memSt.textContent=m.st;
-  mem.classList.toggle('locked',!m.open);
-  picks.querySelectorAll('.mini').forEach((b,k)=>b.classList.toggle('on',k===i));}
-let curMem=0;
-MEM.forEach((m,i)=>{const b=document.createElement('button');b.type='button';b.className='mini';b.style.setProperty('--c',m.c);
-  b.innerHTML=`<span class="im"><img src="${m.open?'img/book_ace.png':'img/book_lock.png'}" alt="">${m.open?'':'<span class="t"></span>'}</span><span class="lb">${m.open?'':'🔒 '}${m.short}</span>`;
-  b.onclick=()=>{curMem=i;show(i);};picks.appendChild(b);});
-pkPrev.onclick=()=>{curMem=(curMem+MEM.length-1)%MEM.length;show(curMem);};
-pkNext.onclick=()=>{curMem=(curMem+1)%MEM.length;show(curMem);};
-show(0);
-
-}
-// 개발 노트 탭
-document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
-  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===t));
-  document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('on',p.id===t.dataset.tab));});
-
-// 그림 크게 보기
-const lb=document.getElementById('lb');
-document.querySelectorAll('.zoom').forEach(im=>im.addEventListener('click',()=>{lb.firstElementChild.src=im.src;lb.firstElementChild.className=im.classList.contains('px')?'px':'';lb.classList.add('on')}));
-lb.addEventListener('click',()=>lb.classList.remove('on'));
-
-// 휴대폰 메뉴
 const links=document.getElementById('links');
 document.getElementById('menuBtn').onclick=()=>links.classList.toggle('on');
-links.querySelectorAll('a').forEach(a=>a.onclick=()=>links.classList.remove('on'));
-
-// 발표용: 구역 하나씩 넘기기
-(function(){
-  const navH=()=>document.querySelector('nav').getBoundingClientRect().height;
-  const stops=[];
-  document.querySelectorAll('header.hero, body > section').forEach(sec=>{
-    if(sec.id==='features'){sec.querySelectorAll('.feat').forEach(f=>stops.push(f));return;}
-    stops.push(sec);});
-  const y=el=>Math.max(0,el.getBoundingClientRect().top+scrollY-navH());
-  const cur=()=>{const t=scrollY+4;let i=0;stops.forEach((el,k)=>{if(y(el)<=t)i=k;});return i;};
-  function go(d){const i=cur(),here=stops[i];
-    if(d>0){const r=here.getBoundingClientRect(),nt=stops[i+1]?y(stops[i+1]):Infinity;
-      if(r.bottom>innerHeight+40&&scrollY+innerHeight*.8<nt-20){scrollTo({top:Math.min(scrollY+innerHeight*.8,nt),behavior:'smooth'});return;}
-      if(stops[i+1])scrollTo({top:nt,behavior:'smooth'});}
-    else{const top=y(here);if(scrollY>top+10){scrollTo({top,behavior:'smooth'});return;}if(stops[i-1])scrollTo({top:y(stops[i-1]),behavior:'smooth'});}}
-  const prev=stPrev,next=stNext,num=stNum;
-  function upd(){const i=cur();num.textContent=(i+1)+' / '+stops.length;prev.disabled=scrollY<4;next.disabled=scrollY+innerHeight>=document.documentElement.scrollHeight-4;}
-  const later=()=>{setTimeout(upd,450);setTimeout(upd,900);};
-  prev.onclick=()=>{go(-1);later();};next.onclick=()=>{go(1);later();};
-  document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>{go(1);later();});
-  addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
-  addEventListener('keydown',e=>{
-    if(e.target.closest('input,textarea,select')||e.altKey||e.ctrlKey||e.metaKey)return;
-    if(lb.classList.contains('on')){if(e.key==='Escape')lb.classList.remove('on');return;}
-    if(['PageDown','ArrowRight','ArrowDown'].includes(e.key)||(e.key===' '&&!e.shiftKey)){e.preventDefault();go(1);later();}
-    else if(['PageUp','ArrowLeft','ArrowUp'].includes(e.key)||(e.key===' '&&e.shiftKey)){e.preventDefault();go(-1);later();}});
-})();
 </script>
 </body>
 </html>
