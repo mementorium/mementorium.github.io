@@ -1608,10 +1608,10 @@ const REN_END={
 /* ================= 데이터: 고죠 ================= */
 const GOJ_SLOT={
   lamp:{x:52,y:44,w:20,h:50,cap:2,hang:1,nm:'등불'},
-  wall:{x:146,y:36,w:24,h:42,cap:1,hang:1,fx:158,surf:70,nm:'벽 고리'},
+  wall:{x:144,y:28,w:33,h:66,cap:1,hang:1,fx:158,surf:70,nm:'벽 고리'},
   window:{x:100,y:50,w:40,h:20,cap:1,surf:66,nm:'원형 창 아래'},
   shelf:{x:178,y:46,w:20,h:30,cap:3,hang:1,cells:[[[722,186],[772,213],[767,251],[720,227]],[[719,233],[765,259],[762,302],[714,274]]],nm:'책장'},
-  chair:{x:88,y:68,w:32,h:30,cap:2,surf:89,ln:[[386,362],[470,351]],sk:-.13,nm:'의자 위'},
+  chair:{x:88,y:68,w:32,h:30,cap:2,surf:89,ln:[[386,362],[470,351]],nm:'의자 위'},
   table:{x:120,y:74,w:24,h:14,cap:2,surf:84,nm:'작은 탁자 위'},
   desk:{x:17,y:90,w:74,h:20,cap:3,surf:104,nm:'책상 위'},
   floor:{x:0,y:96,w:240,h:39,cap:3,min:100,nm:'바닥'}
@@ -1849,7 +1849,7 @@ function hitItem(p){const arr=placed(loc).reverse();
   for(const it of arr){const L=loc[it.id],tf=itemTf(L,it);let lx,ly;if(tf){const u=(p.x-L.x*4)*(tf.fl||1)/tf.sc,v=(p.y-(L.y*4+4))/tf.sc-u*tf.t;lx=Math.floor(u+64);ly=Math.floor(v+128);}else{lx=Math.floor(p.x-(L.x*4-64));ly=Math.floor(p.y-(L.y*4-124));}
     if(lx<0||ly<0||lx>=128||ly>=128)continue;if(ALPHA[it.spr]&&ALPHA[it.spr][(ly>>1)*64+(lx>>1)])return it;}return null;}
 function dropInfo(p){const left=p.x-drag.off.x,top=p.y-drag.off.y;const cx=(left+64)/4,by=(top+124)/4;
-  const it=ITEMS.find(i=>i.id===drag.id);const ob=overBox(p),overTray=ob>=0&&BOXOPEN[ob];const z=overTray?null:zoneAt(cx,by);
+  const it=ITEMS.find(i=>i.id===drag.id);const ob=overBox(p),overTray=ob>=0&&BOXOPEN[ob];let z=overTray?null:zoneAt(cx,by);const hk=SLOT&&SLOT.wall&&SLOT.wall.fx!=null?SLOT.wall:null;if(!overTray&&hk&&Math.hypot(p.x/4-hk.fx,p.y/4-(hk.surf-16))<16)z='wall';
   return{left,top,cx,by,it,overTray,z,bad:false};}
 $('room').addEventListener('pointerdown',e=>{
   if(e.target.closest('#rtop,#info')||e.button>0)return;
