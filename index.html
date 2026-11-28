@@ -993,7 +993,7 @@ function albumInner(ch){const d=DECO[ch.id]||{};const sv=PXI[d.si];return `<i cl
   ${(d.pk||[]).map(([k,x,y,r])=>pxi(k,x,y,r,2)).join('')}<i class="rib" style="--rb:${d.rb||'#b8302a'}"></i>`;}
 const LOCK_MS=24*60*60*1000;
 function trueAt(id){const sv=SAVE[id];if(!sv)return null;if(!sv.trueAt&&sv.endings&&sv.endings[1]){sv.trueAt=Date.now();persist();}return sv.trueAt||null;}
-function lockInfo(i){if(i===0||SHOWALL||!CHARS[i].ok)return null;const prev=CHARS[i-1];const t=prev.ok?trueAt(prev.id):null;if(lockInfo(i-1)&&!t)return{msg:`${prev.nm}의 진엔딩을 보면<br>24시간 뒤에 열려요`};
+function lockInfo(i){if(i>0&&!CHARS[i].ok)return{msg:'제작 중'};if(i===0||SHOWALL)return null;const prev=CHARS[i-1];const t=prev.ok?trueAt(prev.id):null;if(lockInfo(i-1)&&!t)return{msg:`${prev.nm}의 진엔딩을 보면<br>24시간 뒤에 열려요`};
   if(!t)return{msg:`${prev.nm}의 진엔딩을 보면<br>24시간 뒤에 열려요`};const left=t+LOCK_MS-Date.now();if(left<=0)return null;return{msg:'열릴 때까지',left};}
 function fmtLeft(ms){const s=Math.ceil(ms/1000),h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=s%60;return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(x).padStart(2,'0')}`;}
 function paintLocks(){document.querySelectorAll('.aslot').forEach(w=>{const i=+w.dataset.i,L=lockInfo(i);w.classList.toggle('locked',!!L);let o=w.querySelector('.lockov');
@@ -1007,7 +1007,7 @@ function toShelf(){go('shelf');scene($('shelfBg'),SC.beach);playBgm('calm');
     const w=document.createElement('div');w.className='aslot';w.dataset.i=i;
     const a=document.createElement('div');a.className='album';a.style.backgroundColor=ch.col;a.style.animationDelay=(-i*.8)+'s';
     a.innerHTML=albumInner(ch)+`<div class="tag ${ch.ok?'go':''}">${ch.ok?n+' / '+NE:'제작 중'}</div>`;
-    w.appendChild(a);w.onclick=()=>{if(shSwiped)return;if(i!==shIdx){shGo(i);return;}const L=lockInfo(i);if(L){SFX.nope();toast(L.left?`${fmtLeft(L.left)} 뒤에 열려요.`:`${CHARS[i-1].nm}의 진엔딩을 먼저 봐야 해요.`);return;}if(!ch.ok){SFX.nope();toast(`${ch.nm}의 앨범은 아직 비어 있어요.`);return;}openAlbum(ch);};box.appendChild(w);});
+    w.appendChild(a);w.onclick=()=>{if(shSwiped)return;if(i!==shIdx){shGo(i);return;}const L=lockInfo(i);if(L&&ch.ok){SFX.nope();toast(L.left?`${fmtLeft(L.left)} 뒤에 열려요.`:`${CHARS[i-1].nm}의 진엔딩을 먼저 봐야 해요.`);return;}if(!ch.ok){SFX.nope();toast(`${ch.nm}의 앨범은 아직 비어 있어요.`);return;}openAlbum(ch);};box.appendChild(w);});
   paintLocks();
   $('shDots').innerHTML=CHARS.map(()=>'<i></i>').join('');shLayout();}
 function shLayout(){document.querySelectorAll('.aslot').forEach(w=>{const d=+w.dataset.i-shIdx,ad=Math.abs(d);
